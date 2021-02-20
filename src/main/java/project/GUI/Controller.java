@@ -54,8 +54,8 @@ public class Controller implements Initializable {
 
         try {
             connection.startConnection();
-            URL url2 = getClass().getClassLoader().getResource("/fxml/DrawerPane.fxml");
-            URL url1 = Controller.class.getResource("/fxml/DrawerPane.fxml");
+            URL url2 = getClass().getClassLoader().getResource("/fxml/Drawer.fxml");
+            URL url1 = Controller.class.getResource("/fxml/Drawer.fxml");
             Pane box = FXMLLoader.load(url1);
             drawer.setSidePane(box);
             HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(ham);
