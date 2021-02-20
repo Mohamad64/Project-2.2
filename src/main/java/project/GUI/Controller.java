@@ -1,4 +1,4 @@
-package project;
+package project.GUI;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
