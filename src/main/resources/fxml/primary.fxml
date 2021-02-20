@@ -17,6 +17,7 @@
    <children>
       <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #E9B637;">
          <children>
+            <JFXHamburger fx:id="ham" layoutX="740.0" layoutY="160.0" />
             <Pane layoutX="280.0" layoutY="200.0" prefHeight="580.0" prefWidth="500.0">
                <children>
                   <VBox prefHeight="580.0" prefWidth="500.0">
@@ -38,6 +39,21 @@
                   <DropShadow spread="0.57" />
                </effect>
             </Pane>
+            <JFXTextField alignment="CENTER" editable="false" prefHeight="130.0" prefWidth="800.0" promptText="Welcome to MaAsist">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="45.0" />
+               </font>
+               <unFocusColor>
+                  <RadialGradient centerX="0.5" centerY="0.49519230769230765" focusDistance="0.3333333333333335" radius="0.5">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="BLACK" offset="0.5514377159113999" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </unFocusColor>
+            </JFXTextField>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
          </children>
       </Pane>
    </children>
