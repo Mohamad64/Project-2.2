@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 public class MainApp extends Application {
-    private static Stage stage;
+    public static Stage stage;
 
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {

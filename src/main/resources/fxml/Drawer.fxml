@@ -13,17 +13,17 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="230.0" style="-fx-background-color: #E9B637;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.DrawerController">
     <children>
         <Circle fill="#1f93ff00" layoutX="48.0" layoutY="48.0" radius="34.0" stroke="#0000004b" strokeType="INSIDE" />
-        <JFXButton layoutY="120.0" prefHeight="50.0" prefWidth="230.0" text="Profile">
+        <JFXButton fx:id="profile" layoutY="120.0" onAction="#profileAction" prefHeight="50.0" prefWidth="230.0" text="Profile">
             <font>
                 <Font name="Times Bold Italic" size="18.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutY="590.0" prefHeight="50.0" prefWidth="230.0" text="Settings">
+        <JFXButton fx:id="settings" layoutY="590.0" onAction="#SettingAction" prefHeight="50.0" prefWidth="230.0" text="Settings">
             <font>
                 <Font name="Times Bold Italic" size="18.0" />
             </font>
         </JFXButton>
-        <JFXButton layoutY="190.0" prefHeight="50.0" prefWidth="230.0" text="Let's talk">
+        <JFXButton fx:id="bot" layoutY="190.0" onAction="#botAction" prefHeight="50.0" prefWidth="230.0" text="Let's talk">
             <font>
                 <Font name="Times Bold Italic" size="18.0" />
             </font>
