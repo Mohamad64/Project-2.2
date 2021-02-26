@@ -31,6 +31,10 @@ import javax.imageio.event.IIOReadUpdateListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -48,6 +52,7 @@ public class Controller implements Initializable {
     public Button update;
     private boolean isServer = false;
     private Connections connection = isServer ? createServer() : createClient();
+    private DateFormat df = new SimpleDateFormat("hh:mm");
 
 
     /*
@@ -120,6 +125,10 @@ public class Controller implements Initializable {
             txtField.clear();
 
             txtArea.appendText(message + "\n");
+            String strDate = df.format(new Date().getTime());
+            txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+strDate);
+            txtArea.appendText("\n");
+
 
             try {
                 connection.send(message);
