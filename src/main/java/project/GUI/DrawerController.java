@@ -6,9 +6,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import javax.crypto.Cipher;
 import java.io.IOException;
 import java.net.URL;
 
@@ -17,15 +20,7 @@ public class DrawerController {
     public JFXButton settings;
     public JFXButton bot;
     public static Stage newStage = new Stage();
-
-
-    public void setSettingsAction(){
-
-    }
-
-    public void setBotAction(){
-
-    }
+    public static ImageView image;
 
     public void StageChanger() throws IOException {
 
@@ -35,8 +30,6 @@ public class DrawerController {
         newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-//                newStage.close();
-//                MainApp.stage.show();
                 System.exit(0);
 
             }
@@ -67,8 +60,6 @@ public class DrawerController {
         newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-//                newStage.close();
-//                MainApp.stage.show();
                 System.exit(0);
             }
         });

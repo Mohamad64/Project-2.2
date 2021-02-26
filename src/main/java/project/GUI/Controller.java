@@ -1,32 +1,67 @@
 package project.GUI;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.event.IIOReadUpdateListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
 
+    /*
+        Primary fxml components
+     */
     public TextArea txtArea;
     public TextField txtField;
     public JFXHamburger ham;
     public JFXDrawer drawer;
+    public ImageView image;
+    public Label label;
+    public Button update;
     private boolean isServer = false;
     private Connections connection = isServer ? createServer() : createClient();
 
-//    @Override
-//    public void init() throws Exception {
-//    }
+
+    /*
+     Profile fxml components
+     */
+    public JFXButton edit;
+    public JFXTextField username;
+    public JFXTextField email;
+    public JFXButton confirm;
+    public ImageView profile;
+    public FileChooser fileChooser;
+    public File file;
+    public static Image im;
+
 
     //    @Override
     public void stop() throws Exception {
@@ -78,7 +113,9 @@ public class Controller implements Initializable {
     public void setTxtFieldAction() {
 
         txtField.setOnAction(event -> {
-            String message = isServer ? "Server: " : "Client: ";
+            if(Client.getName().equals(""))
+                Client.setName("Client: ");
+            String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
             txtField.clear();
 
@@ -92,6 +129,29 @@ public class Controller implements Initializable {
         });
     }
 
-    public void setHamAction() {
+    public void confirmAction(ActionEvent actionEvent) {
+        Client.setName(username.getText());
+        Client.setEmail(email.getText());
+    }
+
+    public void editProfilePic(ActionEvent actionEvent) {
+        Stage stage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open your image");
+        file = fileChooser.showOpenDialog(stage);
+
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            im = SwingFXUtils.toFXImage(bufferedImage,null);
+            profile.setImage(im);
+
+        }catch (Exception e){
+        }
+    }
+
+    public void updateInfo(ActionEvent actionEvent) {
+        if(!Client.getEmail().equals(""))
+            label.setText(Client.getEmail());
+        image.setImage(im);
     }
 }

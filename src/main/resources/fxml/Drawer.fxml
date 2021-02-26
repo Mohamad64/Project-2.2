@@ -31,10 +31,6 @@
         <Line endX="100.0" layoutX="115.0" layoutY="100.0" startX="-100.0" stroke="#00000042" />
         <Line endX="100.0" layoutX="115.0" layoutY="245.0" startX="-100.0" stroke="#00000042" />
         <Line endX="100.0" layoutX="115.0" layoutY="585.0" startX="-100.0" stroke="#00000042" />
-        <ImageView fitHeight="50.0" fitWidth="40.0" layoutX="28.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@Pepper-a-robot-by-SoftBank-Robotics_-body.jpg" />
-            </image>
-        </ImageView>
+        <ImageView fx:id="image" fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
     </children>
 </Pane>
