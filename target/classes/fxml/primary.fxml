@@ -25,12 +25,17 @@
                         <Pane prefHeight="80.0" prefWidth="500.0">
                            <children>
                               <ImageView fx:id="image" fitHeight="70.0" fitWidth="70.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="label" blendMode="SRC_ATOP" layoutX="90.0" layoutY="20.0" prefHeight="25.0" prefWidth="180.0" text="Email Address" underline="true">
+                              <Label fx:id="label" blendMode="SRC_ATOP" layoutX="90.0" layoutY="30.0" prefHeight="25.0" prefWidth="180.0" text="Email Address" underline="true">
                                  <font>
                                     <Font name="Times Roman" size="13.0" />
                                  </font>
                               </Label>
                               <Button fx:id="update" layoutX="399.0" layoutY="24.0" mnemonicParsing="false" onAction="#updateInfo" text="Update info" />
+                              <Label fx:id="label1" blendMode="SRC_ATOP" layoutX="90.0" layoutY="10.0" prefHeight="25.0" prefWidth="180.0" text="UserName" underline="true">
+                                 <font>
+                                    <Font name="Times Roman" size="13.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </Pane>
                         <TextArea fx:id="txtArea" editable="false" prefHeight="440.0" prefWidth="500.0">

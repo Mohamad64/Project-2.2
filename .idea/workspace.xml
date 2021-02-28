@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="username, email and profile picture all set">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="time setup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614343848853</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="time setup">
+      <created>1614345603250</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614345603250</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,6 +99,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="haha" />
     <MESSAGE value="username, email and profile picture all set" />
-    <option name="LAST_COMMIT_MESSAGE" value="username, email and profile picture all set" />
+    <MESSAGE value="time setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="time setup" />
   </component>
 </project>

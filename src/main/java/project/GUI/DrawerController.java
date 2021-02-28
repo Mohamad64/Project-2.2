@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -21,6 +22,7 @@ public class DrawerController {
     public JFXButton bot;
     public static Stage newStage = new Stage();
     public static ImageView image;
+//    public Color color = Controller.colorSel.getValue();
 
     public void StageChanger() throws IOException {
 

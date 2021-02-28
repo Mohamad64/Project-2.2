@@ -28,6 +28,12 @@
                </unFocusColor>
             </JFXTextField>
             <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+<!--            <JFXColorPicker fx:id="colorSel" layoutX="598.0" layoutY="230.0" onAction="#changeColor" />-->
+            <Label layoutX="355.0" layoutY="230.0" prefHeight="35.0" prefWidth="200.0" text="Change the background color:" underline="true">
+               <font>
+                  <Font name="Times Bold Italic" size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

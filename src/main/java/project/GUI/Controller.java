@@ -1,9 +1,6 @@
 package project.GUI;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -13,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,7 +19,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -39,6 +42,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    Pane box;
+
 
     /*
         Primary fxml components
@@ -49,6 +54,7 @@ public class Controller implements Initializable {
     public JFXDrawer drawer;
     public ImageView image;
     public Label label;
+    public Label label1;
     public Button update;
     private boolean isServer = false;
     private Connections connection = isServer ? createServer() : createClient();
@@ -66,6 +72,12 @@ public class Controller implements Initializable {
     public FileChooser fileChooser;
     public File file;
     public static Image im;
+
+    /*
+    Setting fxml components
+     */
+//    public static JFXColorPicker colorSel;
+
 
 
     //    @Override
@@ -91,12 +103,14 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        colorSel.setValue(Color.web(" #E9B637"));
 
         try {
             connection.startConnection();
             URL url2 = getClass().getClassLoader().getResource("/fxml/Drawer.fxml");
             URL url1 = Controller.class.getResource("/fxml/Drawer.fxml");
-            Pane box = FXMLLoader.load(url1);
+            box = FXMLLoader.load(url1);
+//            box.setBackground(new Background(new BackgroundFill(Paint.valueOf(colorSel.toString()), CornerRadii.EMPTY, Insets.EMPTY)));
             drawer.setSidePane(box);
             HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(ham);
             transition.setRate(-1);
@@ -161,6 +175,14 @@ public class Controller implements Initializable {
     public void updateInfo(ActionEvent actionEvent) {
         if(!Client.getEmail().equals(""))
             label.setText(Client.getEmail());
+        if(!Client.getName().equals(""))
+            label1.setText(Client.getName());
         image.setImage(im);
     }
+
+//    public void changeColor(ActionEvent actionEvent) {
+//        Color selectedColor = colorSel.getValue();
+//        box.setBackground(new Background(new BackgroundFill(Paint.valueOf(colorSel.toString()), CornerRadii.EMPTY, Insets.EMPTY)));
+//
+//    }
 }
