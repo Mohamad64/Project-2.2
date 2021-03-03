@@ -1,8 +1,13 @@
 package project.Database;
 
+import org.bson.Document;
+
 import com.mongodb.MongoClient;
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoDatabase;
+
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.MongoCollection;
 
 public class SkillsDatabase {
 
@@ -17,7 +22,12 @@ public class SkillsDatabase {
         skill = local.getDatabase(skillName);
     }
 
-    public MongoIterable<String> getDatabaseNames(){
+    protected Document queryCollection(String collectionName,  BasicDBObject query){
+        MongoCollection<Document> collection = skill.getCollection(collectionName);
+        return collection.find(query).first();
+    }
+
+    protected MongoIterable<String> getDatabaseNames(){
         return local.listDatabaseNames();
     }
 
