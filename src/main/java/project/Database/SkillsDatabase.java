@@ -5,17 +5,18 @@ import com.mongodb.client.MongoIterable;
 
 public class SkillsDatabase {
 
-    public static void main(String[] args){
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        try{
-            MongoIterable<String> databaseNames = mongoClient.listDatabaseNames();
-            for(String dbName : databaseNames){
-                System.out.println(dbName);
-            }
-        }
-        finally{
-            mongoClient.close();
-        }
+    private MongoClient local;
+
+    public SkillsDatabase(){
+        local = new MongoClient("localhost", 27017);
     }
-    
+
+    public MongoIterable<String> getDatabaseNames(){
+        return local.listDatabaseNames();
+    }
+
+    @Override
+    protected void finalize(){
+        local.close();
+    }
 }
