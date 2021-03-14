@@ -43,8 +43,8 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     Pane box;
-    String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-    String inquiry;
+    private final static String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    public static String inquiry;
 
 
     /*
@@ -155,7 +155,7 @@ public class Controller implements Initializable {
         });
     }
 
-    private void inquire(String message) {
+    private static void inquire(String message) {
 
         if(message.contains("time") && message.contains("course")) {
             inquiry += "<time>";
