@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="time setup">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="username">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_4_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +25,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1pRBRwDEw1AVbaYc4F6o82NBk8H" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="RunManager">
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RunManager" selected="Application.MainApp">
     <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.GUI.MainApp" />
       <module name="project-example" />
@@ -50,15 +55,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SkillsDatabase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.Database.SkillsDatabase" />
+      <module name="project-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.Database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.MainApp" />
+      <item itemvalue="Application.SkillsDatabase" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
+        <item itemvalue="Application.SkillsDatabase" />
       </list>
     </recent_temporary>
   </component>
   <component name="SliceToolwindowSettings">
     <option name="autoScroll" value="true" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="haha">
       <created>1614171568816</created>
@@ -81,7 +105,21 @@
       <option name="project" value="LOCAL" />
       <updated>1614345603250</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="username">
+      <created>1614549810978</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614549810978</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="username" />
+      <created>1615136019118</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615136019118</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,6 +138,7 @@
     <MESSAGE value="haha" />
     <MESSAGE value="username, email and profile picture all set" />
     <MESSAGE value="time setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="time setup" />
+    <MESSAGE value="username" />
+    <option name="LAST_COMMIT_MESSAGE" value="username" />
   </component>
 </project>
