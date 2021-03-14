@@ -26,14 +26,6 @@ public class TextEditor {
             inquiry+='<'+split[index+1]+'>';
         }
 
-        if(message.contains("course")||message.contains("courses")) {
-            inquiry += "<course>";
-            for(String s:weekdays){
-                if(message.contains(s))
-                    inquiry+='<'+s+'>';
-            }
-        }
-
         if(message.contains("courses") && message.contains("date")){
             inquiry+="<course>";
             String[] split = message.split(" ");
@@ -44,6 +36,14 @@ public class TextEditor {
                 index++;
             }
             inquiry+='<'+split[index+1]+'>';
+        }
+
+        else {
+            inquiry += "<course>";
+            for(String s:weekdays){
+                if(message.contains(s))
+                    inquiry+='<'+s+'>';
+            }
         }
         inquiry = inquiry.trim();
         return inquiry;

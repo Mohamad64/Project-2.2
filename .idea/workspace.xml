@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="word extraction">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="TextEditor">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +34,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
@@ -141,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615738735623</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="TextEditor">
+      <created>1615739027170</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1615739027170</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,6 +175,7 @@
     <MESSAGE value="time setup" />
     <MESSAGE value="username" />
     <MESSAGE value="word extraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="word extraction" />
+    <MESSAGE value="TextEditor" />
+    <option name="LAST_COMMIT_MESSAGE" value="TextEditor" />
   </component>
 </project>
