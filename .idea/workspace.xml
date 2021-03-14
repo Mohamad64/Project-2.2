@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="username">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_4_1.xml" afterDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="word extraction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,14 @@
       <option name="presentableId" value="Default" />
       <updated>1615136019118</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="word extraction">
+      <created>1615729917046</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1615729917046</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -139,6 +143,7 @@
     <MESSAGE value="username, email and profile picture all set" />
     <MESSAGE value="time setup" />
     <MESSAGE value="username" />
-    <option name="LAST_COMMIT_MESSAGE" value="username" />
+    <MESSAGE value="word extraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="word extraction" />
   </component>
 </project>

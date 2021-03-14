@@ -43,7 +43,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     Pane box;
-    String[] weekdays = {"Monday","Teusday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+    String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     String inquiry;
 
 
