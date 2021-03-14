@@ -27,6 +27,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import project.Database.TextEditor;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
@@ -138,7 +139,7 @@ public class Controller implements Initializable {
                 Client.setName("Client: ");
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
-            inquire(message);
+            TextEditor.inquire(message);
             txtField.clear();
 
             txtArea.appendText(message + "\n");
