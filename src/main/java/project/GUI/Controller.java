@@ -147,7 +147,7 @@ public class Controller implements Initializable {
                 Client.setName("Client: ");
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
-            TextEditor.inquire(message);
+//            TextEditor.inquire(message);
             txtField.clear();
 
             txtArea.appendText(message + "\n");
