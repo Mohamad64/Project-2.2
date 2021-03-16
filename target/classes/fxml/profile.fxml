@@ -1,61 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.shape.*?>
 <?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
    <children>
-      <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #E9B637;">
+      <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
          <children>
-            <JFXHamburger fx:id="ham" layoutX="740.0" layoutY="160.0" />
-            <JFXTextField alignment="CENTER" editable="false" prefHeight="130.0" prefWidth="800.0" promptText="Welcome to MaAssist">
-               <font>
-                  <Font name="Times New Roman Bold Italic" size="45.0" />
-               </font>
-               <unFocusColor>
-                  <RadialGradient centerX="0.5" centerY="0.49519230769230765" focusDistance="0.3333333333333335" radius="0.5">
-                     <stops>
-                        <Stop color="BLACK" />
-                        <Stop color="BLACK" offset="0.5514377159113999" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </unFocusColor>
-            </JFXTextField>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
-            <Circle fill="#1f93ff00" layoutX="312.0" layoutY="230.0" radius="43.0" stroke="BLACK" strokeType="INSIDE" />
-            <JFXButton fx:id="edit" layoutX="373.0" layoutY="217.0" onAction="#editProfilePic" text="Edit Profile Picture">
-               <font>
-                  <Font name="Times Bold Italic" size="14.0" />
-               </font>
-            </JFXButton>
-            <JFXTextField fx:id="username" layoutX="276.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username">
-               <font>
-                  <Font name="Times Bold Italic" size="15.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField fx:id="email" layoutX="276.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address">
-               <font>
-                  <Font name="Times Bold Italic" size="15.0" />
-               </font>
-            </JFXTextField>
-            <JFXButton fx:id="confirm" layoutX="614.0" layoutY="716.0" onAction="#confirmAction" prefHeight="31.0" prefWidth="129.0" text="Confirm">
-               <font>
-                  <Font name="Times Bold Italic" size="16.0" />
-               </font>
-            </JFXButton>
-            <ImageView fx:id="profile" fitHeight="63.0" fitWidth="63.0" layoutX="280.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="145.0" fitWidth="464.0" layoutX="189.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Pepper-a-robot-by-SoftBank-Robotics_-body.jpg" />
+                  <Image url="@../MaAssistlogo.png" />
                </image>
             </ImageView>
+            <JFXHamburger fx:id="ham" layoutX="740.0" layoutY="160.0" />
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+            <Circle fx:id="circle" fill="#1f93ff00" layoutX="329.0" layoutY="230.0" radius="43.0" stroke="WHITE" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" />
+            <JFXButton fx:id="edit" layoutX="390.0" layoutY="217.0" onAction="#editProfilePic" text="Edit Profile Picture" textFill="WHITE">
+               <font>
+                  <Font name="forma" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="username" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" unFocusColor="WHITE">
+               <font>
+                  <Font name="forma" size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="email" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" unFocusColor="WHITE">
+               <font>
+                  <Font name="forma" size="15.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="confirm" layoutX="614.0" layoutY="716.0" onAction="#confirmAction" prefHeight="31.0" prefWidth="129.0" ripplerFill="WHITE" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="forma" size="16.0" />
+               </font>
+            </JFXButton>
+            <Button fx:id= "backButton" onAction="#getBackAction" layoutX="26.0" layoutY="59.0" mnemonicParsing="false"  textOverrun="WORD_ELLIPSIS" />
+            <!--            <ImageView fx:id="profile" fitHeight="63.0" fitWidth="63.0" layoutX="297.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">-->
+            <!--               <image>-->
+            <!--                  <Image url="@Pepper-a-robot-by-SoftBank-Robotics_-body.jpg" />-->
+            <!--               </image>-->
+            <!--            </ImageView>-->
          </children>
       </Pane>
    </children>

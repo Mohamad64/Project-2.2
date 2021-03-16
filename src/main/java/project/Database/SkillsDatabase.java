@@ -1,13 +1,19 @@
 package project.Database;
 
+import java.util.*;
+
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoDatabase;
 
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.MongoCollection;
+
+import static com.mongodb.client.model.Aggregates.*;
 
 public class SkillsDatabase {
 
@@ -22,9 +28,13 @@ public class SkillsDatabase {
         skill = local.getDatabase(skillName);
     }
 
-    protected Document queryCollection(String collectionName,  BasicDBObject query){
+    protected Bson joinCollections(String leftCollection, String rightCollection, String keyName){
+        return Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
+    }
+
+    protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){
         MongoCollection<Document> collection = skill.getCollection(collectionName);
-        return collection.find(query).first();
+        return collection.aggregate(pipeline).into(new ArrayList<>());
     }
 
     protected MongoIterable<String> getDatabaseNames(){

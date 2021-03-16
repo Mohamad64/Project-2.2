@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -15,13 +16,17 @@ import javafx.stage.WindowEvent;
 import javax.crypto.Cipher;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ResourceBundle;
 
-public class DrawerController {
+public class DrawerController implements Initializable {
     public JFXButton profile;
     public JFXButton settings;
     public JFXButton bot;
     public static Stage newStage = new Stage();
     public static ImageView image;
+    private static final String IDLE_BUTTON_STYLE = "-fx-background-color: #FFFFFF;";
+    private static final String HOVERED_BUTTON_STYLE = "-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;";
+
 //    public Color color = Controller.colorSel.getValue();
 
     public void StageChanger() throws IOException {
@@ -66,4 +71,22 @@ public class DrawerController {
             }
         });
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        profile.setStyle(IDLE_BUTTON_STYLE);
+        profile.setOnMouseEntered(e -> profile.setStyle(HOVERED_BUTTON_STYLE));
+        profile.setOnMouseExited(e -> profile.setStyle(IDLE_BUTTON_STYLE));
+
+        settings.setStyle(IDLE_BUTTON_STYLE);
+        settings.setOnMouseEntered(e -> settings.setStyle(HOVERED_BUTTON_STYLE));
+        settings.setOnMouseExited(e -> settings.setStyle(IDLE_BUTTON_STYLE));
+
+        bot.setStyle(IDLE_BUTTON_STYLE);
+        bot.setOnMouseEntered(e -> bot.setStyle(HOVERED_BUTTON_STYLE));
+        bot.setOnMouseExited(e -> bot.setStyle(IDLE_BUTTON_STYLE));
+
+    }
+
 }
