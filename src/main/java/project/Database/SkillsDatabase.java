@@ -1,6 +1,6 @@
 package project.Database;
 
-import java.util.Arrays;
+import java.util.*;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -32,9 +32,9 @@ public class SkillsDatabase {
         return Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
     }
 
-    protected Document queryCollection(String collectionName,  BasicDBObject query){
+    protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){
         MongoCollection<Document> collection = skill.getCollection(collectionName);
-        return collection.find(query).first();
+        return collection.aggregate(pipeline).into(new ArrayList<>());
     }
 
     protected MongoIterable<String> getDatabaseNames(){
