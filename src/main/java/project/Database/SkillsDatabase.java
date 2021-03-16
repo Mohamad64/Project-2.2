@@ -28,10 +28,8 @@ public class SkillsDatabase {
         skill = local.getDatabase(skillName);
     }
 
-    protected MongoIterable<Document> joinCollections(String leftCollection, String rightCollection, String keyName){
-        MongoCollection<Document> collection = skill.getCollection(leftCollection);
-        Bson lookup = Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
-        return collection.aggregate(Arrays.asList(lookup));
+    protected Bson joinCollections(String leftCollection, String rightCollection, String keyName){
+        return Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
     }
 
     protected Document queryCollection(String collectionName,  BasicDBObject query){
