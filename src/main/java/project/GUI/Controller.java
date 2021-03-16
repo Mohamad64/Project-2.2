@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -24,7 +25,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.Database.TextEditor;
@@ -34,6 +37,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.event.IIOReadUpdateListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -46,6 +50,7 @@ public class Controller implements Initializable {
     Pane box;
     private final static String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     public static String inquiry;
+    public Stage newStage = new Stage();
 
 
     /*
@@ -68,6 +73,7 @@ public class Controller implements Initializable {
      Profile fxml components
      */
     public JFXButton edit;
+    public Button backButton;
     public JFXTextField username;
     public JFXTextField email;
     public JFXButton confirm;
@@ -75,6 +81,8 @@ public class Controller implements Initializable {
     public FileChooser fileChooser;
     public File file;
     public static Image im;
+    public Circle circle;
+
 
     /*
     Setting fxml components
@@ -213,7 +221,7 @@ public class Controller implements Initializable {
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             im = SwingFXUtils.toFXImage(bufferedImage,null);
-            profile.setImage(im);
+            circle.setFill(new ImagePattern(im));
 
         }catch (Exception e){
         }
@@ -227,6 +235,13 @@ public class Controller implements Initializable {
         image.setImage(im);
     }
 
+    public void getBackAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+"primary" + ".fxml"));
+        Scene mainViewScene = new Scene(fxmlLoader.load());
+        newStage.setScene(mainViewScene);
+        MainApp.stage.hide();
+        newStage.showAndWait();
+    }
 //    public void changeColor(ActionEvent actionEvent) {
 //        Color selectedColor = colorSel.getValue();
 //        box.setBackground(new Background(new BackgroundFill(Paint.valueOf(colorSel.toString()), CornerRadii.EMPTY, Insets.EMPTY)));
