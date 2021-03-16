@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #E9B637;">
+         <children>
+            <JFXHamburger fx:id="ham" layoutX="740.0" layoutY="160.0" />
+            <Pane layoutX="280.0" layoutY="200.0" prefHeight="580.0" prefWidth="500.0">
+               <children>
+                  <VBox prefHeight="580.0" prefWidth="500.0">
+                     <children>
+                        <Pane prefHeight="80.0" prefWidth="500.0">
+                           <children>
+                              <ImageView fx:id="image" fitHeight="70.0" fitWidth="70.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label fx:id="label" blendMode="SRC_ATOP" layoutX="90.0" layoutY="30.0" prefHeight="25.0" prefWidth="180.0" text="Email Address" underline="true">
+                                 <font>
+                                    <Font name="Times Roman" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="update" layoutX="399.0" layoutY="24.0" mnemonicParsing="false" onAction="#updateInfo" text="Update info" />
+                              <Label fx:id="label1" blendMode="SRC_ATOP" layoutX="90.0" layoutY="10.0" prefHeight="25.0" prefWidth="180.0" text="UserName" underline="true">
+                                 <font>
+                                    <Font name="Times Roman" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <TextArea fx:id="txtArea" editable="false" prefHeight="440.0" prefWidth="500.0">
+                           <font>
+                              <Font name="Times Roman" size="15.0" />
+                           </font>
+                        </TextArea>
+                        <TextField fx:id="txtField" onAction="#setTxtFieldAction" prefHeight="80.0" prefWidth="500.0" promptText=" Type in your request">
+                           <font>
+                              <Font name="Times Bold Italic" size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <DropShadow spread="0.57" />
+               </effect>
+            </Pane>
+            <JFXTextField alignment="CENTER" editable="false" prefHeight="130.0" prefWidth="800.0" promptText="Welcome to MaAssist">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="45.0" />
+               </font>
+               <unFocusColor>
+                  <RadialGradient centerX="0.5" centerY="0.49519230769230765" focusDistance="0.3333333333333335" radius="0.5">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="BLACK" offset="0.5514377159113999" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </unFocusColor>
+            </JFXTextField>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

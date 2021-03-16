@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+   <children>
+      <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #E9B637;">
+         <children>
+            <JFXHamburger fx:id="ham" layoutX="740.0" layoutY="160.0" />
+            <JFXTextField alignment="CENTER" editable="false" prefHeight="130.0" prefWidth="800.0" promptText="Welcome to MaAsist">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="45.0" />
+               </font>
+               <unFocusColor>
+                  <RadialGradient centerX="0.5" centerY="0.49519230769230765" focusDistance="0.3333333333333335" radius="0.5">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="BLACK" offset="0.5514377159113999" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </unFocusColor>
+            </JFXTextField>
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+<!--            <JFXColorPicker fx:id="colorSel" layoutX="598.0" layoutY="230.0" onAction="#changeColor" />-->
+            <Label layoutX="355.0" layoutY="230.0" prefHeight="35.0" prefWidth="200.0" text="Change the background color:" underline="true">
+               <font>
+                  <Font name="Times Bold Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
