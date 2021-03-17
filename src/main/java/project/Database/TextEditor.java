@@ -47,7 +47,6 @@ public class TextEditor {
                     inquiry+= s+"_weekday_ ";
             }
         }
-        inquiry = inquiry.trim();
         return inquiry;
     }
 

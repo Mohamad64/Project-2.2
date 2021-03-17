@@ -147,7 +147,7 @@ public class Controller implements Initializable {
                 Client.setName("Client: ");
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
-//            TextEditor.inquire(message);
+            TextEditor.inquire(message);
             txtField.clear();
 
             txtArea.appendText(message + "\n");
@@ -162,49 +162,6 @@ public class Controller implements Initializable {
                 txtArea.appendText("Failed to send\n");
             }
         });
-    }
-
-    private static void inquire(String message) {
-
-        if(message.contains("time") && message.contains("course")) {
-            inquiry += "<time>";
-            String[] split = message.split(" ");
-            int index = 0;
-            for(String s : split) {
-                if(s.equals("course"))
-                    break;
-                index++;
-            }
-            inquiry+='<'+split[index+1]+'>';
-            index=0;
-            for (String ss:split){
-                if(ss.equals("on"))
-                    break;
-                index++;
-            }
-            inquiry+='<'+split[index+1]+'>';
-        }
-
-        if(message.contains("course")||message.contains("courses")) {
-            inquiry += "<course>";
-            for(String s:weekdays){
-                if(message.contains(s))
-                    inquiry+='<'+s+'>';
-            }
-        }
-
-        if(message.contains("courses") && message.contains("date")){
-            inquiry+="<course>";
-            String[] split = message.split(" ");
-            int index=0;
-            for(String s:split){
-                if(s.equals("date"))
-                    break;
-                index++;
-            }
-            inquiry+='<'+split[index+1]+'>';
-        }
-        inquiry = inquiry.trim();
     }
 
     public void confirmAction(ActionEvent actionEvent) {
