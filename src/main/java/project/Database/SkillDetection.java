@@ -22,22 +22,31 @@ public class SkillDetection {
     public List<Document> parseInfo(String inquiry) {
         ArrayList<Bson> pipeline = new ArrayList<Bson>();
         SkillsDatabase db = new SkillsDatabase();
+        String leftCollection = " ";
+        String rightCollection = " ";
+        String keyName = " ";
         String[] keywords = inquiry.split(" ");
         for(int i = 0; i< keywords.length; i++){
             if(keywords[i].equals("course")) {
                 collectionName = "courses";
+                leftCollection = "courses";
             } else if(keywords[i].equals("time")) {
                 collectionName = "lectures";
             } else if(keywords[i].contains("_date_")) {
                 keywords[i] = keywords[i].replaceAll("_date_", "");
                 pipeline.add(db.filter("date", keywords[i]));
+                rightCollection = "lectures";
+                keyName = "course_id";
             } else if(keywords[i].contains("_weekday_")) {
                 keywords[i] = keywords[i].replaceAll("_weekday_", "");
                 keywords[i] = getDate(Integer.parseInt(keywords[i]));
                 pipeline.add(db.filter("date", keywords[i]));
+                rightCollection = "lectures";
+                keyName = "course_id";
             }
         }
         db.useSkill("calendar");
+        db.joinCollections(leftCollection, rightCollection, keyName);
         return db.queryCollection(collectionName, pipeline);
     }
 
