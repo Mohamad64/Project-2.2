@@ -2,6 +2,7 @@ package project.Database;
 
 import java.util.*;
 
+import com.mongodb.QueryBuilder;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -30,6 +31,11 @@ public class SkillsDatabase {
 
     protected Bson joinCollections(String leftCollection, String rightCollection, String keyName){
         return Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
+    }
+
+    protected Bson filter(String key, String keyName) {
+        QueryBuilder queryBuilder = QueryBuilder.start(key);
+        return (Bson) queryBuilder.is(keyName);
     }
 
     protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){

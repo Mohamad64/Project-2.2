@@ -51,7 +51,7 @@ public class TextEditor {
     }
 
     public static boolean isValidDate(String inDate) {
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         format.setLenient(false);
         try {
             format.parse(inDate.trim());

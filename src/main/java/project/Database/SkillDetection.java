@@ -2,32 +2,43 @@ package project.Database;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
+import org.bson.Document;
+import org.bson.conversions.Bson;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.*;
 
 
 public class SkillDetection {
 
+    public SkillDetection() {
+
+    }
+
     String collectionName;
 
-    public void parseInfo(String inquiry) {
+    public List<Document> parseInfo(String inquiry) {
+        ArrayList<Bson> pipeline = new ArrayList<Bson>();
+        SkillsDatabase db = new SkillsDatabase();
         String[] keywords = inquiry.split(" ");
         for(int i = 0; i< keywords.length; i++){
             if(keywords[i].equals("course")) {
-                collectionName = "courseName";
+                collectionName = "courses";
             } else if(keywords[i].equals("time")) {
-                collectionName = "start-time";
+                collectionName = "lectures";
             } else if(keywords[i].contains("_date_")) {
                 keywords[i] = keywords[i].replaceAll("_date_", "");
-                //BasicDBObject.parse("date: " + keywords[i]);
+                pipeline.add(db.filter("date", keywords[i]));
             } else if(keywords[i].contains("_weekday_")) {
                 keywords[i] = keywords[i].replaceAll("_weekday_", "");
                 keywords[i] = getDate(Integer.parseInt(keywords[i]));
-                //BasicDBObject.parse("date: " + keywords[i]);
+                pipeline.add(db.filter("date", keywords[i]));
             }
         }
-        //SkillsDatabase.queryCollection(collectionName,)
+        db.useSkill("calendar");
+        return db.queryCollection(collectionName, pipeline);
     }
 
     public String getDate(int weekday) {
@@ -44,5 +55,8 @@ public class SkillDetection {
         return needed_date.toString();
     }
 
-
+    public static void main(String[] args) {
+        SkillDetection test = new SkillDetection();
+        System.out.print(test.parseInfo("course 2021-03-05_date_").toString());
+    }
 }
