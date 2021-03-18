@@ -12,8 +12,9 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.MongoCollection;
 
-import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Aggregates.*;
+import static com.mongodb.client.model.Projections.*;
 
 public class SkillsDatabase {
 
@@ -60,8 +61,12 @@ public class SkillsDatabase {
 
         //chaining the necessary commands to combine collections
         pipeline.add(db.joinCollections("courses", "lectures", "course_id"));
-        pipeline.add(db.contains("course-name","Mathematical Modelling"));
-        pipeline.add(db.contains("lectures.room-id",0));
+        //pipeline.add(db.contains("course-name","Mathematical Modelling"));
+        pipeline.add(db.contains("lectures.start_time","2021-03-05T13:45:00Z"));
+
+        //optionally only show the fields you specify
+        Bson project = project(fields(excludeId(), include("course-name")));
+        pipeline.add(project);
 
         //output retrieved documents in JSON format
         List<Document> results = db.queryCollection("courses", pipeline);
