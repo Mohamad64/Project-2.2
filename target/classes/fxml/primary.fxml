@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
    <children>
       <Pane fx:id="background" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
          <children>
@@ -32,7 +33,7 @@
                               <Button fx:id="update" layoutX="399.0" layoutY="24.0" mnemonicParsing="false" onAction="#updateInfo" text="Update info" />
                               <Label fx:id="label1" blendMode="SRC_ATOP" layoutX="90.0" layoutY="10.0" prefHeight="25.0" prefWidth="180.0" text="UserName" textFill="WHITE" underline="true">
                                  <font>
-                                    <Font name="Arial" size="13.0" />
+                                    <Font name="Times Roman" size="13.0" />
                                  </font>
                               </Label>
                            </children>

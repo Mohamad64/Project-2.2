@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -7,7 +9,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
    <children>
       <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
          <children>
@@ -21,17 +23,17 @@
             <Circle fx:id="circle" fill="#1f93ff00" layoutX="329.0" layoutY="230.0" radius="43.0" stroke="WHITE" strokeLineJoin="ROUND" strokeMiterLimit="20.0" strokeType="INSIDE" />
             <JFXButton fx:id="edit" layoutX="390.0" layoutY="217.0" onAction="#editProfilePic" text="Edit Profile Picture" textFill="WHITE">
                <font>
-                  <Font name="forma" size="14.0" />
+                  <Font name="Times Roman" size="15.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="username" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" unFocusColor="WHITE">
+            <JFXTextField fx:id="username" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" unFocusColor="#ffee00">
                <font>
-                  <Font name="forma" size="15.0" />
+                  <Font name="Times Roman" size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="email" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" unFocusColor="WHITE">
+            <JFXTextField fx:id="email" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" unFocusColor="#ffee00">
                <font>
-                  <Font name="forma" size="15.0" />
+                  <Font name="Times Roman" size="15.0" />
                </font>
             </JFXTextField>
             <JFXButton fx:id="confirm" layoutX="614.0" layoutY="716.0" onAction="#confirmAction" prefHeight="31.0" prefWidth="129.0" ripplerFill="WHITE" text="Confirm" textFill="WHITE">
@@ -39,7 +41,7 @@
                   <Font name="forma" size="16.0" />
                </font>
             </JFXButton>
-            <Button fx:id= "backButton" onAction="#getBackAction" layoutX="26.0" layoutY="59.0" mnemonicParsing="false"  textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="backButton" layoutX="26.0" layoutY="59.0" mnemonicParsing="false" onAction="#getBackAction" textOverrun="WORD_ELLIPSIS" />
             <!--            <ImageView fx:id="profile" fitHeight="63.0" fitWidth="63.0" layoutX="297.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">-->
             <!--               <image>-->
             <!--                  <Image url="@Pepper-a-robot-by-SoftBank-Robotics_-body.jpg" />-->

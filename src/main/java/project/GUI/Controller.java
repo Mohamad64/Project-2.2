@@ -152,7 +152,8 @@ public class Controller implements Initializable {
 
             txtArea.appendText(message + "\n");
             String strDate = df.format(new Date().getTime());
-            txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+strDate);
+            txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+
+                    "\t"+strDate);
             txtArea.appendText("\n");
 
 
