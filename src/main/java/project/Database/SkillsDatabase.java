@@ -37,7 +37,7 @@ public class SkillsDatabase {
         return match(eq(key,value));
     }
 
-    protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){
+    protected List<Document> get(String collectionName,  List<Bson> pipeline){
         MongoCollection<Document> collection = skill.getCollection(collectionName);
         return collection.aggregate(pipeline).into(new ArrayList<>());
     }
@@ -55,21 +55,21 @@ public class SkillsDatabase {
         SkillsDatabase db = new SkillsDatabase();
 
         //testing commands to get data from the skill
-        ArrayList<Bson> pipeline = new ArrayList<Bson>();
+        ArrayList<Bson> commands = new ArrayList<Bson>();
 
         db.useSkill("calendar");
 
         //chaining the necessary commands to combine collections
-        pipeline.add(db.listing("courses", "lectures", "course_id"));
-        //pipeline.add(db.contains("course-name","Mathematical Modelling"));
-        pipeline.add(db.contains("lectures.start_time","2021-03-05T13:45:00Z"));
+        commands.add(db.listing("courses", "lectures", "course_id"));
+        //commands.add(db.contains("course-name","Mathematical Modelling"));
+        commands.add(db.contains("lectures.start_time","2021-03-05T13:45:00Z"));
 
         //optionally only show the fields you specify
         Bson project = project(fields(excludeId(), include("course-name")));
-        pipeline.add(project);
+        commands.add(project);
 
         //output retrieved documents in JSON format
-        List<Document> results = db.queryCollection("courses", pipeline);
+        List<Document> results = db.get("courses", commands);
         System.out.println(results.toString());
     }
 }
