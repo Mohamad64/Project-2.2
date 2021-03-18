@@ -29,7 +29,7 @@ public class SkillsDatabase {
         skill = local.getDatabase(skillName);
     }
 
-    protected Bson joinCollections(String leftCollection, String rightCollection, String keyName){
+    protected Bson listing(String leftCollection, String rightCollection, String keyName){
         return lookup(rightCollection, "_id", keyName, rightCollection);
     }
 
@@ -60,7 +60,7 @@ public class SkillsDatabase {
         db.useSkill("calendar");
 
         //chaining the necessary commands to combine collections
-        pipeline.add(db.joinCollections("courses", "lectures", "course_id"));
+        pipeline.add(db.listing("courses", "lectures", "course_id"));
         //pipeline.add(db.contains("course-name","Mathematical Modelling"));
         pipeline.add(db.contains("lectures.start_time","2021-03-05T13:45:00Z"));
 
