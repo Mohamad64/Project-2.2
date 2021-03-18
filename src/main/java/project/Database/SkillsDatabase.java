@@ -7,13 +7,12 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import com.mongodb.MongoClient;
-import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoDatabase;
 
 import com.mongodb.client.MongoIterable;
-import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.MongoCollection;
 
+import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Aggregates.*;
 
 public class SkillsDatabase {
@@ -30,12 +29,11 @@ public class SkillsDatabase {
     }
 
     protected Bson joinCollections(String leftCollection, String rightCollection, String keyName){
-        return Aggregates.lookup(rightCollection, "_id", keyName, rightCollection);
+        return lookup(rightCollection, "_id", keyName, rightCollection);
     }
 
-    protected Bson filter(String key, String keyName) {
-        QueryBuilder queryBuilder = QueryBuilder.start(key);
-        return (Bson) queryBuilder.is(keyName);
+    protected Bson contains(String key, String keyName) {
+        return match(eq(key,keyName));
     }
 
     protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){
@@ -50,5 +48,26 @@ public class SkillsDatabase {
     @Override
     protected void finalize(){
         local.close();
+    }
+
+    public static void main(String[] args){
+        SkillsDatabase db = new SkillsDatabase();
+        /*NOTE: This should output the following when the mockup database is connected
+        [Document{{_id=1, course-name=Human Computer Interaction, lectures=[Document{{_id=2, course_id=1, room-id=0, start_time=2021-03-01T16:15:00Z, end-time=2021-03-01T18:15:00Z}},
+         Document{{_id=4, course_id=1, room-id=0, start_time=2021-03-02T13:45:00Z, end-time=2021-03-02T15:45:00Z}}]}}]
+        */
+
+        //testing commands to get data from the skill
+        ArrayList<Bson> pipeline = new ArrayList<Bson>();
+
+        db.useSkill("calendar");
+
+        //chaining the necessary commands to combine collections
+        pipeline.add(db.joinCollections("courses", "lectures", "course_id"));
+        pipeline.add(db.contains("course-name","Human Computer Interaction"));
+
+        //output retrieved documents in JSON format
+        List<Document> results = db.queryCollection("courses", pipeline);
+        System.out.println(results.toString());
     }
 }
