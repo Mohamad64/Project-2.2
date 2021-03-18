@@ -32,8 +32,8 @@ public class SkillsDatabase {
         return lookup(rightCollection, "_id", keyName, rightCollection);
     }
 
-    protected Bson contains(String key, String keyName) {
-        return match(eq(key,keyName));
+    protected Bson contains(String key, Object value) {
+        return match(eq(key,value));
     }
 
     protected List<Document> queryCollection(String collectionName,  List<Bson> pipeline){
@@ -52,10 +52,6 @@ public class SkillsDatabase {
 
     public static void main(String[] args){
         SkillsDatabase db = new SkillsDatabase();
-        /*NOTE: This should output the following when the mockup database is connected
-        [Document{{_id=1, course-name=Human Computer Interaction, lectures=[Document{{_id=2, course_id=1, room-id=0, start_time=2021-03-01T16:15:00Z, end-time=2021-03-01T18:15:00Z}},
-         Document{{_id=4, course_id=1, room-id=0, start_time=2021-03-02T13:45:00Z, end-time=2021-03-02T15:45:00Z}}]}}]
-        */
 
         //testing commands to get data from the skill
         ArrayList<Bson> pipeline = new ArrayList<Bson>();
@@ -64,7 +60,8 @@ public class SkillsDatabase {
 
         //chaining the necessary commands to combine collections
         pipeline.add(db.joinCollections("courses", "lectures", "course_id"));
-        pipeline.add(db.contains("course-name","Human Computer Interaction"));
+        pipeline.add(db.contains("course-name","Mathematical Modelling"));
+        pipeline.add(db.contains("lectures.room-id",0));
 
         //output retrieved documents in JSON format
         List<Document> results = db.queryCollection("courses", pipeline);
