@@ -135,6 +135,8 @@ public class Controller implements Initializable {
                     drawer.open();
                 }
             });
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -199,6 +201,7 @@ public class Controller implements Initializable {
         MainApp.stage.hide();
         newStage.showAndWait();
     }
+
 //    public void changeColor(ActionEvent actionEvent) {
 //        Color selectedColor = colorSel.getValue();
 //        box.setBackground(new Background(new BackgroundFill(Paint.valueOf(colorSel.toString()), CornerRadii.EMPTY, Insets.EMPTY)));
