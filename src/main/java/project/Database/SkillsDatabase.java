@@ -63,6 +63,26 @@ public class SkillsDatabase {
         local.close();
     }
 
+    public static String reply(String message){
+        SkillsDatabase db = new SkillsDatabase();
+
+        db.useSkill("calendar");
+        
+        //look at the courses
+        db.load("courses");
+
+        //chaining the necessary commands to combine collections
+        db.listing("courses", "lectures", "course_id");
+        //commands.add(db.contains("course-name","Mathematical Modelling"));
+        db.contains("lectures.start_time","2021-03-05T13:45:00Z");
+
+        //optionally only show the fields you specify
+        db.show("course-name");
+
+        List<Document> results = db.get();
+        return (String) results.get(0).get("course-name");
+    }
+
     public static void main(String[] args){
         SkillsDatabase db = new SkillsDatabase();
 
@@ -81,6 +101,6 @@ public class SkillsDatabase {
 
         //output retrieved documents in JSON format
         List<Document> results = db.get();
-        System.out.println(results.toString());
+        System.out.println(results.get(0).get("course-name"));
     }
 }
