@@ -26,12 +26,14 @@
                   <Font name="Times Roman" size="15.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="username" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" unFocusColor="#ffee00">
+<!--            <JFXTextField fx:id="username" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" unFocusColor="#ffee00">-->
+            <JFXTextField fx:id="username" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="323.0" prefHeight="21.0" prefWidth="442.0" promptText="Username" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="WHITE">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
             </JFXTextField>
-            <JFXTextField fx:id="email" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" unFocusColor="#ffee00">
+<!--            <JFXTextField fx:id="email" alignment="CENTER" blendMode="SCREEN" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" unFocusColor="#ffee00">-->
+            <JFXTextField fx:id="email" alignment="CENTER" focusColor="WHITE" layoutX="204.0" layoutY="423.0" prefHeight="21.0" prefWidth="442.0" promptText="Email Address" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="WHITE">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
@@ -41,7 +43,17 @@
                   <Font name="forma" size="16.0" />
                </font>
             </JFXButton>
-            <Button fx:id="backButton" layoutX="26.0" layoutY="59.0" mnemonicParsing="false" onAction="#getBackAction" textOverrun="WORD_ELLIPSIS" />
+
+<!--            <Button fx:id="backButton" layoutX="26.0" layoutY="59.0" mnemonicParsing="false" onAction="#getBackAction" style="-fx-background-radius: 5em; .button:hover {-fx-background-color: blue;} .button:pressed { -fx-background-color: white;}" textOverrun="WORD_ELLIPSIS">-->
+<!--               <graphic>-->
+<!--                  <ImageView fitHeight="69.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">-->
+<!--                     <image>-->
+<!--                        <Image url="@back.png" />-->
+<!--                     </image>-->
+<!--                  </ImageView>-->
+<!--               </graphic></Button>-->
+
+<!--            <Button fx:id="backButton" layoutX="26.0" layoutY="59.0" mnemonicParsing="false" onAction="#getBackAction" textOverrun="WORD_ELLIPSIS" />-->
             <!--            <ImageView fx:id="profile" fitHeight="63.0" fitWidth="63.0" layoutX="297.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">-->
             <!--               <image>-->
             <!--                  <Image url="@Pepper-a-robot-by-SoftBank-Robotics_-body.jpg" />-->
