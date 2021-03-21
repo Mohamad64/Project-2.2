@@ -20,14 +20,14 @@ public class TextEditor {
                     break;
                 index++;
             }
-            inquiry+= split[index+1] + ' ';
+            inquiry+= split[index+1] + "_course_ ";
             index=0;
             for (String ss:split){
                 if(ss.equals("on"))
                     break;
                 index++;
             }
-            inquiry+= split[index+1]+' ';
+            inquiry+= split[index+1]+ "_date_ ";
         } else if(message.contains("courses") && message.contains("date")){
             inquiry+="course ";
             String[] split = message.split(" ");

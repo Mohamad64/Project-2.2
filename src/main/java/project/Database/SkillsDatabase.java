@@ -36,12 +36,12 @@ public class SkillsDatabase {
         this.collection = skill.getCollection(collectionName);
     }
 
-    protected void listing(String leftCollection, String rightCollection, String keyName){
-        this.commands.add(lookup(rightCollection, "_id", keyName, rightCollection));
+    protected void listing(String leftCollection, String rightCollection, String rKeyName, String lKeyName){
+        this.commands.add(lookup(rightCollection, lKeyName, rKeyName, rightCollection));
     }
 
     protected void contains(String key, Object value) {
-        this.commands.add(match(eq(key,value)));
+        this.commands.add(match(gte(key, value)));
     }
 
     protected void show(String fieldName) {
@@ -72,7 +72,7 @@ public class SkillsDatabase {
         db.load("courses");
 
         //chaining the necessary commands to combine collections
-        db.listing("courses", "lectures", "course_id");
+        //db.listing("courses", "lectures", "course_id");
         //commands.add(db.contains("course-name","Mathematical Modelling"));
         db.contains("lectures.start_time","2021-03-05T13:45:00Z");
 
@@ -92,15 +92,17 @@ public class SkillsDatabase {
         db.load("courses");
 
         //chaining the necessary commands to combine collections
-        db.listing("courses", "lectures", "course_id");
+        //db.listing("courses", "lectures", "course_id");
         //commands.add(db.contains("course-name","Mathematical Modelling"));
-        db.contains("lectures.start_time","2021-03-05T13:45:00Z");
+        db.contains("lectures.start_time","2021-03-05");
 
         //optionally only show the fields you specify
-        db.show("course-name");
+        //db.show("course_name");
 
         //output retrieved documents in JSON format
         List<Document> results = db.get();
-        System.out.println(results.get(0).get("course-name"));
+        for(int i = 0; i<results.size();i++){
+            System.out.println(results.get(i).get("course_name").toString());
+        }
     }
 }

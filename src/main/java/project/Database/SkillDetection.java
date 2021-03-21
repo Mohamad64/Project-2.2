@@ -5,6 +5,7 @@ import com.mongodb.DBObject;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
+import javax.print.Doc;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
@@ -19,36 +20,35 @@ public class SkillDetection {
 
     String collectionName;
 
-//    public List<Document> parseInfo(String inquiry) {
-//        ArrayList<Bson> pipeline = new ArrayList<Bson>();
-//        SkillsDatabase db = new SkillsDatabase();
-//        String leftCollection = " ";
-//        String rightCollection = " ";
-//        String keyName = " ";
-//        String[] keywords = inquiry.split(" ");
-//        for(int i = 0; i< keywords.length; i++){
-//            if(keywords[i].equals("course")) {
-//                collectionName = "courses";
-//                leftCollection = "courses";
-//            } else if(keywords[i].equals("time")) {
-//                collectionName = "lectures";
-//            } else if(keywords[i].contains("_date_")) {
-//                keywords[i] = keywords[i].replaceAll("_date_", "");
-//                pipeline.add(db.filter("date", keywords[i]));
-//                rightCollection = "lectures";
-//                keyName = "course_id";
-//            } else if(keywords[i].contains("_weekday_")) {
-//                keywords[i] = keywords[i].replaceAll("_weekday_", "");
-//                keywords[i] = getDate(Integer.parseInt(keywords[i]));
-//                pipeline.add(db.filter("date", keywords[i]));
-//                rightCollection = "lectures";
-//                keyName = "course_id";
-//            }
-//        }
-//        db.useSkill("calendar");
-//        db.joinCollections(leftCollection, rightCollection, keyName);
-//        return db.queryCollection(collectionName, pipeline);
-//    }
+    public List<Document> parseInfo(String inquiry) {
+        SkillsDatabase db = new SkillsDatabase();
+        db.useSkill("calendar");
+        //db.load("courses");
+        //db.listing("courses", "lectures", "course_id");
+        String[] keywords = inquiry.split(" ");
+        for(int i = 0; i< keywords.length; i++){
+            if(keywords[i].equals("course")) {
+                db.load("courses");
+                db.listing("courses", "lectures", "course_id", "_id");
+            } else if(keywords[i].equals("time")) {
+                db.load("lectures");
+                db.listing("lectures", "courses", "_id", "course_id");
+            } else if(keywords[i].contains("_date_")) {
+                keywords[i] = keywords[i].replaceAll("_date_", "");
+                db.contains("lectures.start_time",keywords[i]);
+            } else if(keywords[i].contains("_weekday_")) {
+                keywords[i] = keywords[i].replaceAll("_weekday_", "");
+                keywords[i] = getDate(Integer.parseInt(keywords[i]));
+                db.contains("lectures.start_time",keywords[i]);
+            } else if(keywords[i].contains("_course_")) {
+                keywords[i] = keywords[i].replaceAll("_course_", "");
+                System.out.println(keywords[i]);
+                db.contains("courses.course_name", keywords[i]);
+            }
+        }
+        List<Document> results = db.get();
+        return results;
+    }
 
     public String getDate(int weekday) {
         LocalDate needed_date = switch (weekday) {
@@ -64,8 +64,11 @@ public class SkillDetection {
         return needed_date.toString();
     }
 
-//    public static void main(String[] args) {
-//        SkillDetection test = new SkillDetection();
-//        System.out.print(test.parseInfo("course 2021-03-05_date_").toString());
-//    }
+    public static void main(String[] args) {
+        SkillDetection test = new SkillDetection();
+        List<Document> results = test.parseInfo("time");
+        for(int i = 0; i<results.size();i++){
+            System.out.println(results.get(i));
+        }
+    }
 }
