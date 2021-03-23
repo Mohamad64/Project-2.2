@@ -20,8 +20,9 @@ public class SkillDetection {
 
     String collectionName;
 
-    public List<Document> parseInfo(String inquiry) {
+    public String parseInfo(String inquiry) {
         SkillsDatabase db = new SkillsDatabase();
+        String needed = null;
         db.useSkill("calendar");
         //db.load("courses");
         //db.listing("courses", "lectures", "course_id");
@@ -30,15 +31,18 @@ public class SkillDetection {
             if(keywords[i].equals("course")) {
                 db.load("courses");
                 db.listing("courses", "lectures", "course_id", "_id");
+                needed = "course_name";
             } else if(keywords[i].equals("time")) {
                 db.load("lectures");
                 db.listing("lectures", "courses", "_id", "course_id");
+                needed = "start_time";
             } else if(keywords[i].contains("_date_")) {
                 keywords[i] = keywords[i].replaceAll("_date_", "");
                 db.contains("lectures.start_time",keywords[i]);
             } else if(keywords[i].contains("_weekday_")) {
                 keywords[i] = keywords[i].replaceAll("_weekday_", "");
-                keywords[i] = getDate(Integer.parseInt(keywords[i]));
+                keywords[i] = getDate((keywords[i]).toLowerCase(Locale.ROOT));
+                System.out.println(keywords[i]);
                 db.contains("lectures.start_time",keywords[i]);
             } else if(keywords[i].contains("_course_")) {
                 keywords[i] = keywords[i].replaceAll("_course_", "");
@@ -47,18 +51,22 @@ public class SkillDetection {
             }
         }
         List<Document> results = db.get();
-        return results;
+        String fResult = "";
+        for (Document result : results) {
+            fResult += result.get(needed) + " _ ";
+        }
+        return fResult;
     }
 
-    public String getDate(int weekday) {
+    public String getDate(String weekday) {
         LocalDate needed_date = switch (weekday) {
-            case 1 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
-            case 2 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
-            case 3 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.WEDNESDAY));
-            case 4 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.THURSDAY));
-            case 5 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
-            case 6 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
-            case 7 -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+            case "monday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
+            case "tuesday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
+            case "wednesday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.WEDNESDAY));
+            case "thursday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.THURSDAY));
+            case "friday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
+            case "saturday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+            case "sunday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
             default -> throw new IllegalStateException("Unexpected value: " + weekday);
         };
         return needed_date.toString();
@@ -66,9 +74,8 @@ public class SkillDetection {
 
     public static void main(String[] args) {
         SkillDetection test = new SkillDetection();
-        List<Document> results = test.parseInfo("time");
-        for(int i = 0; i<results.size();i++){
-            System.out.println(results.get(i));
-        }
+        String results = test.parseInfo("course 2021-03-05_date_");
+        System.out.println(results);
+
     }
 }
