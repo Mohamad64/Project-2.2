@@ -30,6 +30,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import project.Database.SkillDetection;
 import project.Database.TextEditor;
 
 import javax.imageio.ImageIO;
@@ -48,8 +49,6 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     Pane box;
-    private final static String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
-    public static String inquiry;
     public Stage newStage = new Stage();
 
 
@@ -150,6 +149,7 @@ public class Controller implements Initializable {
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
             TextEditor.inquire(message);
+            String answer = SkillDetection.parseInfo(TextEditor.inquiry);
             txtField.clear();
 
             txtArea.appendText(message + "\n");

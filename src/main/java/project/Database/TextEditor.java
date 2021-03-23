@@ -12,7 +12,7 @@ public class TextEditor {
     public static String inquire(String message) {
         message.toLowerCase(Locale.ENGLISH);
         if(message.contains("time") && message.contains("course")) {
-            inquiry += "time ";
+            inquiry = "time ";
             String[] split = message.split(" ");
             int index = 0;
             for(String s : split) {
@@ -29,7 +29,7 @@ public class TextEditor {
             }
             inquiry+= split[index+1]+ "_date_ ";
         } else if(message.contains("courses") && message.contains("date")){
-            inquiry+="course ";
+            inquiry ="course ";
             String[] split = message.split(" ");
             int index=0;
             for(String s:split){
@@ -41,12 +41,13 @@ public class TextEditor {
                 inquiry+= split[index+1]+"_date_ ";
             }
         } else if(message.contains("course") && !message.contains("date")) {
-            inquiry += "course ";
+            inquiry = "course ";
             for(String s:weekdays){
                 if(message.contains(s))
                     inquiry+= s+"_weekday_ ";
             }
         }
+
         return inquiry;
     }
 
@@ -59,6 +60,11 @@ public class TextEditor {
             return false;
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        inquire("Which courses do I have on the date 2021-03-05 ?");
+        System.out.println(inquiry);
     }
 
 }

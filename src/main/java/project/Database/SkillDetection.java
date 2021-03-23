@@ -20,7 +20,7 @@ public class SkillDetection {
 
     String collectionName;
 
-    public String parseInfo(String inquiry) {
+    public static String parseInfo(String inquiry) {
         SkillsDatabase db = new SkillsDatabase();
         String needed = null;
         db.useSkill("calendar");
@@ -53,12 +53,12 @@ public class SkillDetection {
         List<Document> results = db.get();
         String fResult = "";
         for (Document result : results) {
-            fResult += result.get(needed) + " _ ";
+            fResult += result.get(needed) + "_";
         }
         return fResult;
     }
 
-    public String getDate(String weekday) {
+    public static String getDate(String weekday) {
         LocalDate needed_date = switch (weekday) {
             case "monday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.MONDAY));
             case "tuesday" -> LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.TUESDAY));
