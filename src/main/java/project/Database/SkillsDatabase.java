@@ -36,12 +36,12 @@ public class SkillsDatabase {
         this.collection = skill.getCollection(collectionName);
     }
 
-    protected void listing(String leftCollection, String rightCollection, String rKeyName, String lKeyName){
+    protected void listing(String rightCollection, String rKeyName, String lKeyName){
         this.commands.add(lookup(rightCollection, lKeyName, rKeyName, rightCollection));
     }
 
-    protected void contains(String key, Object value) {
-        this.commands.add(match(gte(key, value)));
+    protected void contains(String key, String value) {
+        this.commands.add(match(regex(key, value + ".*")));
     }
 
     protected void show(String fieldName) {

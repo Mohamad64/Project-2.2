@@ -10,6 +10,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.regex.Pattern;
 
 
 public class SkillDetection {
@@ -18,7 +19,6 @@ public class SkillDetection {
 
     }
 
-    String collectionName;
 
     public static String parseInfo(String inquiry) {
         SkillsDatabase db = new SkillsDatabase();
@@ -30,14 +30,15 @@ public class SkillDetection {
         for(int i = 0; i< keywords.length; i++){
             if(keywords[i].equals("course")) {
                 db.load("courses");
-                db.listing("courses", "lectures", "course_id", "_id");
+                db.listing("lectures", "course_id", "_id");
                 needed = "course_name";
             } else if(keywords[i].equals("time")) {
                 db.load("lectures");
-                db.listing("lectures", "courses", "_id", "course_id");
+                db.listing("courses", "_id", "course_id");
                 needed = "start_time";
             } else if(keywords[i].contains("_date_")) {
-                keywords[i] = keywords[i].replaceAll("_date_", "");
+                keywords[i] = keywords[i].replaceAll("_date_", "");;
+                System.out.println(keywords[i]);
                 db.contains("lectures.start_time",keywords[i]);
             } else if(keywords[i].contains("_weekday_")) {
                 keywords[i] = keywords[i].replaceAll("_weekday_", "");
@@ -74,8 +75,7 @@ public class SkillDetection {
 
     public static void main(String[] args) {
         SkillDetection test = new SkillDetection();
-        String results = test.parseInfo("course 2021-03-05_date_");
+        String results = test.parseInfo("time Mathematical_course_");
         System.out.println(results);
-
     }
 }
