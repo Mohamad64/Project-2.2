@@ -63,7 +63,10 @@ public class TextEditor {
     }
 
     public static void main(String[] args) {
-        inquire("Which courses do I have on the date 2021-03-05 ?");
+        //Which courses do I have on the date 2021-03-26 ?
+        //Which course do I have on Monday ?
+        //What time is the course Human Computer Interaction ?
+        inquire("Which courses do I have on the date 2021-03-26 ?");
         System.out.println(inquiry);
     }
 
