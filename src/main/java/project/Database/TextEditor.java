@@ -6,7 +6,7 @@ import java.util.Locale;
 
 public class TextEditor {
 
-    private final static String[] weekdays = {"monday","tuesday","wednesday","thursday","friday","saturday","sunday"};
+    private final static String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     public static String inquiry;
 
     public static String inquire(String message) {
@@ -22,12 +22,14 @@ public class TextEditor {
             }
             inquiry+= split[index+1] + "_course_ ";
             index=0;
-            for (String ss:split){
-                if(ss.equals("on"))
-                    break;
-                index++;
-            }
-            inquiry+= split[index+1]+ "_date_ ";
+//            if(split.contains("on")) {
+//                for (String ss : split) {
+//                    if (ss.equals("on"))
+//                        break;
+//                    index++;
+//                }
+//                inquiry+= split[index+1]+ "_date_ ";
+//            }
         } else if(message.contains("courses") && message.contains("date")){
             inquiry ="course ";
             String[] split = message.split(" ");
@@ -66,8 +68,7 @@ public class TextEditor {
         //Which courses do I have on the date 2021-03-26 ?
         //Which course do I have on Monday ?
         //What time is the course Human Computer Interaction ?
-        inquire("Which courses do I have on the date 2021-03-26 ?");
+        inquire("Which courses do I have on Tuesday ?");
         System.out.println(inquiry);
     }
-
 }

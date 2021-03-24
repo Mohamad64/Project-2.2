@@ -75,7 +75,7 @@ public class SkillDetection {
 
     public static void main(String[] args) {
         SkillDetection test = new SkillDetection();
-        String results = test.parseInfo("course 2021-03-26_date_");
+        String results = test.parseInfo("course Tuesday_weekday_");
         System.out.println(results);
     }
 }

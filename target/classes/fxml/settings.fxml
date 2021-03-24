@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.Controller">
    <children>
       <Pane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
          <children>
@@ -15,8 +19,45 @@
                </image>
             </ImageView>
             <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+            <TextField layoutX="277.0" layoutY="238.0" prefHeight="24.0" prefWidth="203.0" promptText="Add new keyword...">
+               <font>
+                  <Font name="Times Roman" size="15.0" />
+               </font>
+            </TextField>
+            <JFXCheckBox layoutX="289.0" layoutY="289.0" text="Course" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="289.0" layoutY="329.0" text="Date" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox layoutX="289.0" layoutY="369.0" text="Weekdays" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <Line endX="400.0" layoutX="320.0" layoutY="210.0" startX="-70.0" />
+            <JFXTextField alignment="CENTER" blendMode="ADD" editable="false" focusColor="BLACK" layoutX="260.0" layoutY="178.0" prefHeight="28.0" prefWidth="215.0" promptText="Skill editor" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="BLACK">
+               <font>
+                  <Font name="Times Italic" size="15.0" />
+               </font>
+            </JFXTextField>
+            <Button layoutX="626.0" layoutY="238.0" mnemonicParsing="false" text="Confirm">
+               <font>
+                  <Font name="Times Roman" size="15.0" />
+               </font>
+            </Button>
+            <JFXCheckBox layoutX="420.0" layoutY="289.0" text="yyyy-mm-dd" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
 <!--            <ColorPicker fx:id = "colorPicker" layoutX="381.0" layoutY="265.0" />-->
          </children>
       </Pane>
+      <Line endX="400.0" layoutX="330.0" layoutY="420.0" startX="-70.0" />
    </children>
 </AnchorPane>

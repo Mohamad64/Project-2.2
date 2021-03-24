@@ -23,19 +23,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="GUI edits">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/GUI/ChatApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/GUI/ClientApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_03_2021,_12_45_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_03_2021__12_45__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021,_17_43_[Default_Changelist]/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021,_17_43_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021__17_43__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2021,_12_48_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2021__12_48__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillsDatabase.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Connections.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Connections.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.508046" />
@@ -80,7 +81,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApp">
+  <component name="RunManager" selected="Application.SkillDetection">
     <configuration name="ChatApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.GUI.ChatApp" />
       <module name="project-example" />
@@ -134,8 +135,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SkillsDatabase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.Database.SkillsDatabase" />
+    <configuration name="TextEditor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.Database.TextEditor" />
       <module name="project-example" />
       <extension name="coverage">
         <pattern>
@@ -149,25 +150,25 @@
     </configuration>
     <list>
       <item itemvalue="Application.MainApp" />
-      <item itemvalue="Application.SkillsDatabase" />
       <item itemvalue="Application.SkillDetection" />
       <item itemvalue="Application.ChatApp" />
       <item itemvalue="Application.ClientApp" />
+      <item itemvalue="Application.TextEditor" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SkillDetection" />
+        <item itemvalue="Application.TextEditor" />
         <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.ChatApp" />
         <item itemvalue="Application.ClientApp" />
-        <item itemvalue="Application.SkillDetection" />
-        <item itemvalue="Application.SkillsDatabase" />
       </list>
     </recent_temporary>
   </component>
   <component name="SliceToolwindowSettings">
     <option name="autoScroll" value="true" />
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -270,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616239912648</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="GUI edits">
+      <created>1616587217504</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1616587217504</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
