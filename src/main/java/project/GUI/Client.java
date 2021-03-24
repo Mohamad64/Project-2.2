@@ -3,7 +3,9 @@ package project.GUI;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.Socket;
 import java.util.function.Consumer;
 
 public class Client extends Connections {
@@ -13,12 +15,14 @@ public class Client extends Connections {
     public static ImageView image;
     public static String Name;
     public static String email="";
+//    public static Socket socket;
 
     public Client(String ip, int port, Consumer<Serializable> onReceiveCallback) {
         super(onReceiveCallback);
         this.ip = ip;
         this.port = port;
         Name = "";
+//        socket = new Socket(ip,port);
     }
 
     @Override

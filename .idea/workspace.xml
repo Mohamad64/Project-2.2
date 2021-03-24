@@ -23,14 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="GUI edits">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_03_2021,_17_23_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/GUI/ChatApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/GUI/ClientApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/profile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/profile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillsDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillsDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Connections.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Connections.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +81,32 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.MainApp">
+    <configuration name="ChatApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.GUI.ChatApp" />
+      <module name="project-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.GUI.ClientApp" />
+      <module name="project-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.GUI.MainApp" />
       <module name="project-example" />
@@ -84,6 +114,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="project.GUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SkillDetection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.Database.SkillDetection" />
+      <module name="project-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.Database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,10 +150,16 @@
     <list>
       <item itemvalue="Application.MainApp" />
       <item itemvalue="Application.SkillsDatabase" />
+      <item itemvalue="Application.SkillDetection" />
+      <item itemvalue="Application.ChatApp" />
+      <item itemvalue="Application.ClientApp" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
+        <item itemvalue="Application.ChatApp" />
+        <item itemvalue="Application.ClientApp" />
+        <item itemvalue="Application.SkillDetection" />
         <item itemvalue="Application.SkillsDatabase" />
       </list>
     </recent_temporary>
@@ -214,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616066247850</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="GUI edits">
+      <created>1616239912648</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1616239912648</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

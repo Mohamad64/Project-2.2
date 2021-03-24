@@ -33,8 +33,8 @@ public abstract class Connections {
     protected abstract String getIP();
     protected abstract int getPort();
 
-    private class ConnectionThread extends Thread {
-        private Socket socket;
+    public class ConnectionThread extends Thread {
+        public Socket socket;
         private ObjectOutputStream out;
 
         @Override

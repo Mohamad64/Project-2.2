@@ -37,8 +37,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.event.IIOReadUpdateListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -50,11 +49,13 @@ public class Controller implements Initializable {
 
     Pane box;
     public Stage newStage = new Stage();
+    public static String answer;
+    public static boolean check = false;
 
 
     /*
-        Primary fxml components
-     */
+            Primary fxml components
+         */
     public TextArea txtArea;
     public TextField txtField;
     public JFXHamburger ham;
@@ -91,9 +92,9 @@ public class Controller implements Initializable {
 
 
     //    @Override
-    public void stop() throws Exception {
-        connection.closeConnection();
-    }
+//    public void stop() throws Exception {
+//        connection.closeConnection();
+//    }
 
     private Server createServer() {
         return new Server(55555, data -> {
@@ -145,11 +146,10 @@ public class Controller implements Initializable {
 
         txtField.setOnAction(event -> {
             if(Client.getName().equals(""))
-                Client.setName("Client: ");
+                Client.setName("Client");
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
             TextEditor.inquire(message);
-            String answer = SkillDetection.parseInfo(TextEditor.inquiry);
             txtField.clear();
 
             txtArea.appendText(message + "\n");
@@ -157,11 +157,25 @@ public class Controller implements Initializable {
             txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+
                     "\t"+strDate);
             txtArea.appendText("\n");
+//            answer = SkillDetection.parseInfo(TextEditor.inquiry);
+            check = true;
+
+//            try {
+//                BufferedReader input = new BufferedReader(new InputStreamReader(Client.socket.getInputStream()));
+//                PrintWriter out = new PrintWriter(Client.socket.getOutputStream(),true);
+//                String response = input.readLine();
+//                System.out.println(response);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
 
 
             try {
-                connection.send(message);
+//                connection.send(answer);
+                answer = SkillDetection.parseInfo(TextEditor.inquiry);
+                txtArea.appendText(answer + "\n");
             } catch (Exception e) {
+                System.out.println(e);
                 txtArea.appendText("Failed to send\n");
             }
         });
@@ -195,17 +209,7 @@ public class Controller implements Initializable {
         image.setImage(im);
     }
 
-    public void getBackAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+"primary" + ".fxml"));
-        Scene mainViewScene = new Scene(fxmlLoader.load());
-        newStage.setScene(mainViewScene);
-        MainApp.stage.hide();
-        newStage.showAndWait();
+    public void setCheck(boolean check) {
+        this.check = check;
     }
-
-//    public void changeColor(ActionEvent actionEvent) {
-//        Color selectedColor = colorSel.getValue();
-//        box.setBackground(new Background(new BackgroundFill(Paint.valueOf(colorSel.toString()), CornerRadii.EMPTY, Insets.EMPTY)));
-//
-//    }
 }
