@@ -22,19 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="GUI edits">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_03_2021,_12_45_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_03_2021__12_45__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021,_17_43_[Default_Changelist]/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021,_17_43_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_03_2021__17_43__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2021,_12_48_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_03_2021__12_48__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="text editor fixes">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_03_2021,_21_01_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_03_2021,_10_08_[Default_Changelist]/SkillsDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_03_2021,_10_08_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_03_2021,_12_10_[Default_Changelist]/SkillsDatabase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_03_2021,_12_10_[Default_Changelist]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
     </list>
@@ -81,7 +77,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SkillDetection">
+  <component name="RunManager" selected="Application.MainApp">
     <configuration name="ChatApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.GUI.ChatApp" />
       <module name="project-example" />
@@ -157,9 +153,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.SkillDetection" />
         <item itemvalue="Application.TextEditor" />
-        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.ChatApp" />
         <item itemvalue="Application.ClientApp" />
       </list>
@@ -278,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616587217504</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="text editor fixes">
+      <created>1616627170779</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1616627170779</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +307,7 @@
     <MESSAGE value="trim" />
     <MESSAGE value="opencv" />
     <MESSAGE value="GUI edits" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI edits" />
+    <MESSAGE value="text editor fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="text editor fixes" />
   </component>
 </project>

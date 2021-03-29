@@ -54,7 +54,7 @@ public class SkillDetection {
         List<Document> results = db.get();
         String fResult = "";
         for (Document result : results) {
-            fResult += result.get(needed) + "_";
+            fResult += result.get(needed) + " - ";
         }
         return fResult;
     }
@@ -75,7 +75,7 @@ public class SkillDetection {
 
     public static void main(String[] args) {
         SkillDetection test = new SkillDetection();
-        String results = test.parseInfo("course Tuesday_weekday_");
+        String results = test.parseInfo("course 2021-03-26_date_");
         System.out.println(results);
     }
 }
