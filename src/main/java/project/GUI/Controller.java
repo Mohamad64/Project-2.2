@@ -66,14 +66,13 @@ public class Controller implements Initializable {
     public Button update;
     private boolean isServer = false;
     private Connections connection = isServer ? createServer() : createClient();
-    private DateFormat df = new SimpleDateFormat("hh:mm");
+    private DateFormat df = new SimpleDateFormat("hh:mm a");
 
 
     /*
      Profile fxml components
      */
     public JFXButton edit;
-    public Button backButton;
     public JFXTextField username;
     public JFXTextField email;
     public JFXButton confirm;
@@ -149,31 +148,21 @@ public class Controller implements Initializable {
                 Client.setName("Client");
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
-            TextEditor.inquire(message);
+            String response = TextEditor.inquire(txtField.getText());
             txtField.clear();
 
-            txtArea.appendText(message + "\n");
+            txtArea.appendText(message + "\n\n");
             String strDate = df.format(new Date().getTime());
             txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+
                     "\t"+strDate);
             txtArea.appendText("\n");
-//            answer = SkillDetection.parseInfo(TextEditor.inquiry);
             check = true;
 
-//            try {
-//                BufferedReader input = new BufferedReader(new InputStreamReader(Client.socket.getInputStream()));
-//                PrintWriter out = new PrintWriter(Client.socket.getOutputStream(),true);
-//                String response = input.readLine();
-//                System.out.println(response);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-
             try {
-//                connection.send(answer);
-                answer = SkillDetection.parseInfo(TextEditor.inquiry);
-                txtArea.appendText(answer + "\n");
+                txtArea.appendText("Server: " + response + "\n\n");
+                txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+
+                        "\t"+strDate);
+                txtArea.appendText("\n");
             } catch (Exception e) {
                 System.out.println(e);
                 txtArea.appendText("Failed to send\n");

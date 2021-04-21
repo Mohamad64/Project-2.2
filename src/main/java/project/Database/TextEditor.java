@@ -1,5 +1,7 @@
 package project.Database;
 
+import project.GUI.Client;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -8,6 +10,7 @@ public class TextEditor {
 
     private final static String[] weekdays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
     public static String inquiry;
+    public static String response;
 
     public static String inquire(String message) {
         message.toLowerCase(Locale.ENGLISH);
@@ -21,15 +24,7 @@ public class TextEditor {
                 index++;
             }
             inquiry+= split[index+1] + "_course_ ";
-            index=0;
-//            if(split.contains("on")) {
-//                for (String ss : split) {
-//                    if (ss.equals("on"))
-//                        break;
-//                    index++;
-//                }
-//                inquiry+= split[index+1]+ "_date_ ";
-//            }
+
         } else if(message.contains("courses") && message.contains("date")){
             inquiry ="course ";
             String[] split = message.split(" ");
@@ -49,8 +44,22 @@ public class TextEditor {
                     inquiry+= s+"_weekday_ ";
             }
         }
-
-        return inquiry;
+        else{
+            inquiry = "null";
+        }
+        System.out.println(inquiry);
+        if(message.equals("hi")||message.equals("hello")){
+            response = "hi " + Client.getName()+ "!\n"+
+            "How are you today?";
+        }
+        else if(inquiry.equals("null")){
+            response = "Sorry I don't understand your question.";
+        }
+        else{
+            response = SkillDetection.parseInfo(inquiry);
+        }
+        System.out.println(response);
+        return response;
     }
 
     public static boolean isValidDate(String inDate) {
@@ -64,11 +73,11 @@ public class TextEditor {
         return true;
     }
 
-    public static void main(String[] args) {
-        //Which courses do I have on the date 2021-03-26 ?
-        //Which course do I have on Monday ?
-        //What time is the course Mathematical Modeling ?
-        inquire("Which courses do I have on the date 2021-03-26 ?");
-        System.out.println(inquiry);
-    }
+//    public static void main(String[] args) {
+//        //Which courses do I have on the date 2021-03-26 ?
+//        //Which course do I have on Monday ?
+//        //What time is the course Mathematical Modeling ?
+//        inquire("Which courses do I have on the date 2021-03-26 ?");
+//        System.out.println(inquiry);
+//    }
 }

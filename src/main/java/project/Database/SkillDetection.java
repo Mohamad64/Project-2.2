@@ -15,11 +15,6 @@ import java.util.regex.Pattern;
 
 public class SkillDetection {
 
-    public SkillDetection() {
-
-    }
-
-
     public static String parseInfo(String inquiry) {
         SkillsDatabase db = new SkillsDatabase();
         String needed = null;
@@ -73,9 +68,8 @@ public class SkillDetection {
         return needed_date.toString();
     }
 
-    public static void main(String[] args) {
-        SkillDetection test = new SkillDetection();
-        String results = test.parseInfo("course 2021-03-26_date_");
-        System.out.println(results);
-    }
+//    public static void main(String[] args) {
+//        String results = parseInfo("course 2021-03-26_date_");
+//        System.out.println(results);
+//    }
 }

@@ -23,16 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="text editor fixes">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_03_2021,_21_01_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_03_2021,_10_08_[Default_Changelist]/SkillsDatabase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_03_2021,_10_08_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_03_2021,_12_10_[Default_Changelist]/SkillsDatabase.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_03_2021,_12_10_[Default_Changelist]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/SkillDetection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/AssetFinder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/ChatApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/ClientApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/AssetFinder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/ChatApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/ClientApp.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616627170779</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="text editor fixes">
+      <created>1617046255567</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1617046255567</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
