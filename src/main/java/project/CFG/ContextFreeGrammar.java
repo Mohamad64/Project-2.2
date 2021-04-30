@@ -17,10 +17,35 @@ public class ContextFreeGrammar {
         this.rules = rules;
     }
 
-    /* Produce random sentences recursively
-            to check a context free grammar.
+    public class CNFException extends Exception{
+        public CNFException(String message){
+            super(message);
+        }
+    }
+
+    /* Cocke-Younger-Kasami algorithm
+        @param  word    is in the CFG defined by this class.
      */
-    public String produce(String symbol, List<String> expansion){
+    public boolean accepts(String word) throws CNFException{
+        if(rules instanceof TreeMap){
+            // construct CYK table
+            int length = rules.keySet().size();
+            String[][] table = new String[length][length];
+
+            // last column of first row contains the start symbol
+            return table[0][word.length() - 1].indexOf(this.start) >= 0;
+        }
+        else{
+            throw new CNFException("CYK algorithm expects Chomsky normal form");
+        }
+    }
+
+    /* Construct a word from this grammar
+        by randomly expanding the production rules.
+        @param  symbol  the starting symbol to expand from.
+        @param  expansion   random construction from production rules
+     */
+    private String produce(String symbol, List<String> expansion){
         if(rules.containsKey(symbol)){
             // symbol is non-terminal
             List<String> disjunctions =  rules.get(symbol);
@@ -42,22 +67,21 @@ public class ContextFreeGrammar {
         return String.join(" ", expansion);
     }
 
+    public String produceRandom(){
+        return produce(this.start, new ArrayList());
+    }
+
     public static void main(String[] args){
         Map<String, List<String>> rules = new HashMap<String, List<String>>();
-
-        String start = "S";
 
         rules.put("S", new LinkedList<String>(Arrays.asList("The N V")));
         rules.put("N", new LinkedList<String>(Arrays.asList("cat","dog")));
         rules.put("V", new LinkedList<String>(Arrays.asList("meows","barks")));
 
-        ContextFreeGrammar grammar = new ContextFreeGrammar(start, rules);
+        ContextFreeGrammar grammar = new ContextFreeGrammar("S", rules);
 
         for(int i=0; i<3; i++) {
-            ArrayList<String> expansion = new ArrayList<>();
-            String result = grammar.produce(start, expansion);
-
-            System.out.println(result);
+            System.out.println(grammar.produceRandom());
         }
     }
 }
