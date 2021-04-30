@@ -29,11 +29,10 @@ public class ContextFreeGrammar {
     public boolean accepts(String word) throws CNFException{
         if(rules instanceof TreeMap){
             // construct CYK table
-            int length = rules.keySet().size();
-            String[][] table = new String[length][length];
+            String[][] tableCYK = new String[word.length()][word.length()];
 
             // last column of first row contains the start symbol
-            return table[0][word.length() - 1].indexOf(this.start) >= 0;
+            return tableCYK[0][word.length() - 1].contains(this.start);
         }
         else{
             throw new CNFException("CYK algorithm expects Chomsky normal form");
@@ -68,7 +67,7 @@ public class ContextFreeGrammar {
     }
 
     public String produceRandom(){
-        return produce(this.start, new ArrayList());
+        return produce(this.start, new ArrayList<String>());
     }
 
     public static void main(String[] args){
