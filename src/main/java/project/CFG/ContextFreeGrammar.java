@@ -2,6 +2,8 @@ package project.CFG;
 
 import java.util.*;
 
+import static java.lang.System.out;
+
 public class ContextFreeGrammar {
 
     // starting symbol
@@ -11,6 +13,8 @@ public class ContextFreeGrammar {
     private Map<String, List<String>> rules;
 
     private Random random = new Random();
+
+    private final PrettyPrinter pretty = new PrettyPrinter(out);
 
     public ContextFreeGrammar(String start, Map<String, List<String>> rules){
         this.start = start;
@@ -26,10 +30,76 @@ public class ContextFreeGrammar {
     /* Cocke-Younger-Kasami algorithm
         @param  word    is in the CFG defined by this class.
      */
-    public boolean accepts(String word) throws CNFException{
+    public boolean accepts(String phrase) throws CNFException{
+        if(phrase.isEmpty()){
+            // "S -> " exist as a production rule
+            List<String> rule = rules.get(this.start);
+
+            // accept if rule exists
+            return rule.isEmpty();
+        }
+
         if(rules instanceof TreeMap){
+            // split sentence into tokens
+            String[] words = phrase.split("\\s+");
+
             // construct CYK table
-            String[][] tableCYK = new String[word.length()][word.length()];
+            String[][] tableCYK = new String[words.length][words.length];
+
+            // retrieve all non-terminal symbols from the rules
+            List<String> nonterminals = List.copyOf(rules.keySet());
+
+            // create diagonal non-terminal line in CYK table
+            for(int i=0; i<words.length; i++){
+                // for each variable A
+                for(String A: nonterminals){
+                    // match string words to the rules
+                    List<String> right = rules.get(A);
+                    for(String S: right) {
+                        if(words[i].equals(S)){
+                            if(tableCYK[i][i] == null) {//
+                                tableCYK[i][i] = A;
+                            }
+                            else {
+                                tableCYK[i][i] += " " + A;
+                            }
+                        }
+                    }
+                }
+            }
+
+            pretty.print(tableCYK);
+
+            for(int l=1; l<words.length+1; l++) {
+                for(int i=0; i<words.length-l+1; i++){
+                    int j = i+l-1;
+                    for(int k = i; k<j; k++){
+                        for(String A: nonterminals){
+                            List<String> right = rules.get(A);
+                            for(String S: right) {
+                                String[] split =  S.split("\\s+");
+                                System.out.println(l +" "+ i + " " + j + " " + k);
+                                if(split.length == 2) {// always size 2
+                                    if(tableCYK[i][k] != null && tableCYK[k+1][j] != null) {
+                                        if (tableCYK[i][k].contains(split[0]) && tableCYK[k + 1][j].contains(split[1])) {
+                                            if(tableCYK[i][j] == null) {//
+                                                tableCYK[i][j] = A;
+                                            }
+                                            else {
+                                                // already in?
+                                                if(!tableCYK[i][j].contains(A)) {
+                                                    tableCYK[i][j] += " " + A;
+                                                }
+                                            }
+                                            pretty.print(tableCYK);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             // last column of first row contains the start symbol
             return tableCYK[0][word.length() - 1].contains(this.start);
@@ -71,16 +141,38 @@ public class ContextFreeGrammar {
     }
 
     public static void main(String[] args){
-        Map<String, List<String>> rules = new HashMap<String, List<String>>();
+        Map<String, List<String>> rulesAnimals = new HashMap<String, List<String>>();
 
-        rules.put("S", new LinkedList<String>(Arrays.asList("The N V")));
-        rules.put("N", new LinkedList<String>(Arrays.asList("cat","dog")));
-        rules.put("V", new LinkedList<String>(Arrays.asList("meows","barks")));
+        rulesAnimals.put("S", new LinkedList<String>(Arrays.asList("The N V")));
+        rulesAnimals.put("N", new LinkedList<String>(Arrays.asList("cat","dog","chicken")));
+        rulesAnimals.put("V", new LinkedList<String>(Arrays.asList("meows","barks","clucks")));
 
-        ContextFreeGrammar grammar = new ContextFreeGrammar("S", rules);
+        ContextFreeGrammar grammar = new ContextFreeGrammar("S", rulesAnimals);
 
         for(int i=0; i<3; i++) {
             System.out.println(grammar.produceRandom());
+        }
+
+        Map<String, List<String>> rules = new TreeMap<String, List<String>>();
+
+        rules.put("S", new LinkedList<String>(Arrays.asList("A B","B C")));
+        rules.put("A" ,new LinkedList<String>(Arrays.asList("B A", "a")));
+        rules.put("B" ,new LinkedList<String>(Arrays.asList("C C", "b")));
+        rules.put("C", new LinkedList<String>(Arrays.asList("A B","a")));
+
+
+        ContextFreeGrammar geekGrammar = new ContextFreeGrammar("S", rules);
+
+        for(int i=0; i<3; i++) {
+            System.out.println(geekGrammar.produceRandom());
+        }
+
+        // Check if baaba is in L(G)
+        try {
+            System.out.println(geekGrammar.accepts("b a a b a"));
+        }
+        catch(CNFException e){
+            System.out.println("Sorry, not in chomsky normal form");
         }
     }
 }
