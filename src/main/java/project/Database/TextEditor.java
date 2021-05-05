@@ -48,7 +48,7 @@ public class TextEditor {
             inquiry = "null";
         }
         System.out.println(inquiry);
-        if(message.equals("hi")||message.equals("hello")){
+        if(message.equalsIgnoreCase("hi")||message.equalsIgnoreCase("hello")){
             response = "hi " + Client.getName()+ "!\n"+
             "How are you today?";
         }

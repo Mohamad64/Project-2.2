@@ -22,18 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="text editor fixes">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="server fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/SkillDetection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/AssetFinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/ChatApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/ClientApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/AssetFinder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/ChatApp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/ClientApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.508046" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
@@ -289,7 +281,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617046255567</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="server fixed">
+      <created>1619021180712</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1619021180712</updated>
+    </task>
+    <task id="LOCAL-00018" summary="server fixed">
+      <created>1619021196363</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1619021196363</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -316,6 +322,7 @@
     <MESSAGE value="opencv" />
     <MESSAGE value="GUI edits" />
     <MESSAGE value="text editor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="text editor fixes" />
+    <MESSAGE value="server fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="server fixed" />
   </component>
 </project>
