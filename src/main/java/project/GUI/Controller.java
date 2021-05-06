@@ -41,9 +41,7 @@ import java.io.*;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -86,8 +84,17 @@ public class Controller implements Initializable {
     /*
     Setting fxml components
      */
-//    public static JFXColorPicker colorSel;
-
+    public HashMap<JFXCheckBox,String> hashMap;
+    List<JFXCheckBox> checkBoxes = new ArrayList<>();
+    public JFXCheckBox WhatTime;
+    public JFXCheckBox When;
+    public JFXCheckBox What;
+    public JFXCheckBox How;
+    public JFXCheckBox Why;
+    public JFXCheckBox Where;
+    public JFXCheckBox Do;
+    public JFXCheckBox Can;
+    public JFXCheckBox Is;
 
 
     //    @Override
@@ -113,7 +120,26 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        colorSel.setValue(Color.web(" #E9B637"));
+
+        hashMap = new HashMap<>();
+
+        checkBoxes.add(WhatTime);
+        checkBoxes.add(When);
+        checkBoxes.add(What);
+        checkBoxes.add(How);
+        checkBoxes.add(Where);
+        checkBoxes.add(Why);
+        checkBoxes.add(Do);
+        checkBoxes.add(Can);
+
+        hashMap.put(WhatTime,"might be in the afternoon, I'm not sure though");
+        hashMap.put(When,"I'm not sure when is ");
+        hashMap.put(What,"I don't know that. Google might have an idea");
+        hashMap.put(How, Is.isSelected()?  "is great" : "I don't know how, I am not google :(");
+        hashMap.put(Why,"It's good question, you seem like a curious person.");
+        hashMap.put(Where,Is.isSelected()? "could be anywhere": "hmm...\n" + "I don't know where you can");
+        hashMap.put(Do,"NO I DO NOT");
+        hashMap.put(Can,"yes"+"subject" + "could");
 
         try {
             connection.startConnection();

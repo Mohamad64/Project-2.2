@@ -24,17 +24,17 @@
                   <Font name="Times Roman" size="15.0" />
                </font>
             </TextField>
-            <JFXCheckBox layoutX="289.0" layoutY="289.0" text="Course" textFill="WHITE">
+            <JFXCheckBox fx:id="WhatTime" layoutX="256.0" layoutY="289.0" text="What time" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox layoutX="289.0" layoutY="329.0" text="Date" textFill="WHITE">
+            <JFXCheckBox fx:id="When" layoutX="259.0" layoutY="330.0" text="When" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox layoutX="289.0" layoutY="369.0" text="Weekdays" textFill="WHITE">
+            <JFXCheckBox fx:id="What" layoutX="249.0" layoutY="366.0" text="What " textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
@@ -50,7 +50,32 @@
                   <Font name="Times Roman" size="15.0" />
                </font>
             </Button>
-            <JFXCheckBox layoutX="420.0" layoutY="289.0" text="yyyy-mm-dd" textFill="WHITE">
+            <JFXCheckBox fx:id="How" layoutX="395.0" layoutY="290.0" text="How" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="Why" layoutX="406.0" layoutY="330.0" text="Why " textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="Where" layoutX="404.0" layoutY="376.0" text="Where " textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="Do" layoutX="497.0" layoutY="290.0" text="Do/Does " textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="Can" layoutX="504.0" layoutY="331.0" text="Can/May" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXCheckBox fx:id="Is" layoutX="519.0" layoutY="377.0" text="Is/Are" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
