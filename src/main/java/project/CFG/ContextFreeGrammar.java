@@ -102,7 +102,11 @@ public class ContextFreeGrammar {
             }
 
             // last column of first row contains the start symbol
-            return tableCYK[0][word.length() - 1].contains(this.start);
+            if(tableCYK[0][words.length - 1].isEmpty()){
+                return false;
+            } else {
+                return tableCYK[0][words.length - 1].contains(this.start);
+            }
         }
         else{
             throw new CNFException("CYK algorithm expects Chomsky normal form");
