@@ -89,7 +89,7 @@ public class Controller implements Initializable {
     public Button SettingConfirmBtn;
     public TextField keyWord;
     public static String subject = "";
-    public HashMap<JFXCheckBox,String> hashMap = new HashMap<>();
+    public HashMap<Integer,String> hashMap = new HashMap<>();
     JFXCheckBox[] checkBoxes = new JFXCheckBox[9];
     static int[] responsesArray = new int[9];
     public JFXCheckBox WhatTime;
@@ -123,15 +123,15 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        hashMap.put(WhatTime," subject might be in the afternoon, I'm not sure though");
-        hashMap.put(When,"I'm not sure when is ");
-        hashMap.put(What,"I don't know that. Google might have an idea");
-        hashMap.put(How, "I don't know how, I am not google :(");
-        hashMap.put(Why,"It's a good question, you seem like a curious person.");
-        hashMap.put(Where,"hmm...\n" + "I don't know where you can");
-        hashMap.put(Do,"NO I DO NOT");
-        hashMap.put(Can,"yes "+ "subject" + " could");
-        hashMap.put(Is,"I don't know "+ "subject" + " might be");
+        hashMap.put(0," subject might be in the afternoon, I'm not sure though");
+        hashMap.put(1,"I'm not sure when is ");
+        hashMap.put(2,"I don't know that. Google might have an idea");
+//        hashMap.put(3, "I don't know how, I am not google :(");
+        hashMap.put(4,"It's a good question, you seem like a curious person.");
+//        hashMap.put(5,"hmm...\n" + "I don't know where you can");
+        hashMap.put(6,"NO I DO NOT");
+        hashMap.put(7,"yes "+ "subject" + " could");
+        hashMap.put(8,"I don't know "+ "subject" + " might be");
 
 
         checkBoxes[0] = WhatTime;
@@ -197,12 +197,9 @@ public class Controller implements Initializable {
             else {
                 for (int i = 0; i < responsesArray.length; i++) {
                     if (responsesArray[i] == 1) {
-                        response = hashMap.get(checkBoxes[i]);
-                        System.out.println(hashMap.get(Why));
-                        if (response.contains("subject")) {
-                            String newResponse = response.replace("subject", subject);
-                            response = newResponse;
-                        }
+                        response = hashMap.get(i);
+                        if (response.contains("subject"))
+                            response = response.replace("subject", subject);
                         responsesArray[i] = 0;
                         break;
                     } else {
@@ -269,8 +266,6 @@ public class Controller implements Initializable {
                 responsesArray[i]=1;
             }
         }
-//        System.out.println(hashMap.get(Why));
-//        System.out.println(Why.getText());
         subject = keyWord.getText();
     }
 }
