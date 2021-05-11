@@ -22,13 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="server fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__nu_pattern_opencv_2_4_9_4.xml" beforeDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="Skill editor + openCV">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Connections.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Connections$ConnectionThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620235442734</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Skill editor + openCV">
+      <created>1620299417471</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1620299417471</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,6 +341,7 @@
     <MESSAGE value="GUI edits" />
     <MESSAGE value="text editor fixes" />
     <MESSAGE value="server fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="server fixed" />
+    <MESSAGE value="Skill editor + openCV" />
+    <option name="LAST_COMMIT_MESSAGE" value="Skill editor + openCV" />
   </component>
 </project>
