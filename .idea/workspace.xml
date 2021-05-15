@@ -22,9 +22,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="new Skill editor">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="updates">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/opencv-452.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +57,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -316,7 +323,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620760505936</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="updates">
+      <created>1620763083788</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1620763083788</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -332,6 +346,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="haha" />
     <MESSAGE value="username, email and profile picture all set" />
     <MESSAGE value="time setup" />
@@ -346,6 +361,7 @@
     <MESSAGE value="server fixed" />
     <MESSAGE value="Skill editor + openCV" />
     <MESSAGE value="new Skill editor" />
-    <option name="LAST_COMMIT_MESSAGE" value="new Skill editor" />
+    <MESSAGE value="updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates" />
   </component>
 </project>

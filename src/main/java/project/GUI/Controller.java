@@ -47,6 +47,42 @@ import java.util.List;
 
 public class Controller implements Initializable {
 
+    class Key {
+
+        private final String x;
+        private final int y;
+
+        public Key(String x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o)
+                return true;
+            if (!(o instanceof Key))
+                return false;
+            Key key = (Key) o;
+            return x.equals(key.x) && y == key.y;
+        }
+
+        @Override
+        public String toString() {
+            return "Key{" +
+                    "x='" + x + '\'' +
+                    ", y=" + y +
+                    '}';
+        }
+
+        //        @Override
+//        public int hashCode() {
+//            int result = x;
+//            result = 31 * result + y;
+//            return result;
+//        }
+    }
+
     Pane box;
     public Stage newStage = new Stage();
     public static String answer;
@@ -89,7 +125,8 @@ public class Controller implements Initializable {
     public Button SettingConfirmBtn;
     public TextField keyWord;
     public static String subject = "";
-    public HashMap<Integer,String> hashMap = new HashMap<>();
+    public static String res = "";
+    public static HashMap<Key,String> hashMap = new HashMap<>();
     JFXCheckBox[] checkBoxes = new JFXCheckBox[9];
     static int[] responsesArray = new int[9];
     public JFXCheckBox WhatTime;
@@ -101,6 +138,8 @@ public class Controller implements Initializable {
     public JFXCheckBox Do;
     public JFXCheckBox Can;
     public JFXCheckBox Is;
+    public TextField Resp;
+    public TextField CFG;
 
 
 
@@ -123,15 +162,15 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        hashMap.put(0," subject might be in the afternoon, I'm not sure though");
-        hashMap.put(1,"I'm not sure when is ");
-        hashMap.put(2,"I don't know that. Google might have an idea");
-//        hashMap.put(3, "I don't know how, I am not google :(");
-        hashMap.put(4,"It's a good question, you seem like a curious person.");
-//        hashMap.put(5,"hmm...\n" + "I don't know where you can");
-        hashMap.put(6,"NO I DO NOT");
-        hashMap.put(7,"yes "+ "subject" + " could");
-        hashMap.put(8,"I don't know "+ "subject" + " might be");
+//        hashMap.put(0," subject might be in the afternoon, I'm not sure though");
+//        hashMap.put(1,"I'm not sure when is ");
+//        hashMap.put(2,"I don't know that. Google might have an idea");
+////        hashMap.put(3, "I don't know how, I am not google :(");
+//        hashMap.put(4,"It's a good question, you seem like a curious person.");
+////        hashMap.put(5,"hmm...\n" + "I don't know where you can");
+//        hashMap.put(6,"NO I DO NOT");
+//        hashMap.put(7,"yes "+ "subject" + " could");
+//        hashMap.put(8,"I don't know "+ "subject" + " might be");
 
 
         checkBoxes[0] = WhatTime;
@@ -178,35 +217,47 @@ public class Controller implements Initializable {
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
             String response = "";
-            if(responsesArray[3]==1 && responsesArray[8]==1){
-                response = subject + " is great";
-                responsesArray[3]=0;responsesArray[8]=0;
-            }
-            else if(responsesArray[5]==1 && responsesArray[8]==1){
-                response = subject + " could be anywhere";
-                responsesArray[5]=0;responsesArray[8]=0;
-            }
-            else if(responsesArray[3]==1 && responsesArray[7]==1){
-                response = "I don't know how, I am not google :(";
-                responsesArray[3]=0;responsesArray[7]=0;
-            }
-            else if(responsesArray[5]==1 && responsesArray[7]==1){
-                response = "hmm...\n" + "I don't know where you can";
-                responsesArray[5]=0;responsesArray[7]=0;
-            }
-            else {
-                for (int i = 0; i < responsesArray.length; i++) {
-                    if (responsesArray[i] == 1) {
-                        response = hashMap.get(i);
-                        if (response.contains("subject"))
-                            response = response.replace("subject", subject);
-                        responsesArray[i] = 0;
-                        break;
-                    } else {
-                        response = TextEditor.inquire(txtField.getText());
+            for(int i=0;i<responsesArray.length;i++){
+                if(responsesArray[i]==1 && !subject.equals("")){
+                    for(Key key : hashMap.keySet()){
+                        if(key.equals(new Key(subject,responsesArray[i]))){
+                            response = hashMap.get(key);
+                            break;
+                        }
                     }
+                    responsesArray[i]=0; subject = "";
+                    break;
+                }
+                else{
+                    response = TextEditor.inquire(txtField.getText());
                 }
             }
+//            if(responsesArray[3]==1 && responsesArray[8]==1){
+//                response = subject + " is great";
+//                responsesArray[3]=0;responsesArray[8]=0;
+//            }
+//            else if(responsesArray[5]==1 && responsesArray[8]==1){
+//                response = subject + " could be anywhere";
+//                responsesArray[5]=0;responsesArray[8]=0;
+//            }
+//            else if(responsesArray[3]==1 && responsesArray[7]==1){
+//                response = "I don't know how, I am not google :(";
+//                responsesArray[3]=0;responsesArray[7]=0;
+//            }
+//            else if(responsesArray[5]==1 && responsesArray[7]==1){
+//                response = "hmm...\n" + "I don't know where you can";
+//                responsesArray[5]=0;responsesArray[7]=0;
+//            }
+//            else {
+//                for (int i = 0; i < responsesArray.length; i++) {
+//                    if (responsesArray[i] == 1) {
+//                        response = hashMap.get(i);
+//                        if (response.contains("subject"))
+//                            response = response.replace("subject", subject);
+//                        responsesArray[i] = 0;
+//                        break;
+//                    } else {
+
             txtField.clear();
 
             txtArea.appendText(message + "\n\n");
@@ -261,11 +312,18 @@ public class Controller implements Initializable {
     }
 
     public void SettingConfirmBtn(ActionEvent actionEvent) {
+        int position = 0;
         for(int i=0;i<checkBoxes.length;i++){
             if(checkBoxes[i].isSelected()){
                 responsesArray[i]=1;
+                position = i;
             }
         }
         subject = keyWord.getText();
+        Key key = new Key(subject,position);
+        if(!Resp.getText().equals(" ")) {
+            res = Resp.getText();
+            hashMap.put(key,res);
+        }
     }
 }
