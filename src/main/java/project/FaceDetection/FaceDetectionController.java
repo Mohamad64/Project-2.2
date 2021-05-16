@@ -47,6 +47,9 @@ public class FaceDetectionController
     private CascadeClassifier faceCascade;
     private int absoluteFaceSize;
 
+    // face detection boolean
+    private boolean faceDetected;
+
     /**
      * Init the controller, at start time
      */
@@ -55,6 +58,7 @@ public class FaceDetectionController
         this.capture = new VideoCapture();
         this.faceCascade = new CascadeClassifier();
         this.absoluteFaceSize = 0;
+        this.faceDetected = false;
 
         // set a fixed width for the frame
         originalFrame.setFitWidth(600);
@@ -191,6 +195,14 @@ public class FaceDetectionController
 
         // each rectangle in faces is a face: draw them!
         Rect[] facesArray = faces.toArray();
+
+        // sets value of boolean depending on face detection
+        if (facesArray.length > 0){
+            this.faceDetected = true;
+        }
+        else{
+            this.faceDetected = false;
+        }
 
         for (int i = 0; i < facesArray.length; i++){
 

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="windows_opencv-3414">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/Assets/windows_opencv-3414.jar" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/Assets" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/Assets/windows_opencv-3414.jar" />
+    </SOURCES>
+  </library>
+</component>
