@@ -54,7 +54,7 @@ public abstract class Connections {
                 }
             }
             catch (Exception e) {
-                onReceiveCallback.accept("How may I help you?");
+                onReceiveCallback.accept("How may I help you? \n");
             }
         }
     }

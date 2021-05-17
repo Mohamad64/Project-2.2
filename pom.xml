@@ -24,12 +24,6 @@
             <artifactId>javafx-controls</artifactId>
             <version>14</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/nu.pattern/opencv -->
-        <dependency>
-            <groupId>nu.pattern</groupId>
-            <artifactId>opencv</artifactId>
-            <version>2.4.9-4</version>
-        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>

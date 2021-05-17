@@ -16,7 +16,6 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:14" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:14" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:14" level="project" />
@@ -30,6 +29,5 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-commons:1.4.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.jupiter:junit-jupiter-engine:5.4.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.4.2" level="project" />
-    <orderEntry type="library" name="windows_opencv-3414" level="project" />
   </component>
 </module>
