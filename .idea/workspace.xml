@@ -22,15 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="skill editor answer setting">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="hmm...">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/opencv_4521.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/libopencv_java452.dylib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/windows_opencv_3414.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/Drawer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/Drawer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,12 +96,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ClientApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.GUI.ClientApp" />
+    <configuration name="FaceDetection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.FaceDetection.FaceDetection" />
       <module name="project-example" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;$PROJECT_DIR$/Assets/javafx-sdk-15.0.1/lib&quot; --add-modules javafx.controls,javafx.fxml,javafx.swing" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="project.GUI.*" />
+          <option name="PATTERN" value="project.FaceDetection.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -155,16 +154,16 @@
       <item itemvalue="Application.MainApp" />
       <item itemvalue="Application.SkillDetection" />
       <item itemvalue="Application.ChatApp" />
-      <item itemvalue="Application.ClientApp" />
       <item itemvalue="Application.TextEditor" />
+      <item itemvalue="Application.FaceDetection" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApp" />
+        <item itemvalue="Application.FaceDetection" />
         <item itemvalue="Application.SkillDetection" />
         <item itemvalue="Application.TextEditor" />
         <item itemvalue="Application.ChatApp" />
-        <item itemvalue="Application.ClientApp" />
       </list>
     </recent_temporary>
   </component>
@@ -344,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621089831146</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="hmm...">
+      <created>1621268811531</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1621268811532</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -377,6 +383,7 @@
     <MESSAGE value="new Skill editor" />
     <MESSAGE value="updates" />
     <MESSAGE value="skill editor answer setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="skill editor answer setting" />
+    <MESSAGE value="hmm..." />
+    <option name="LAST_COMMIT_MESSAGE" value="hmm..." />
   </component>
 </project>
