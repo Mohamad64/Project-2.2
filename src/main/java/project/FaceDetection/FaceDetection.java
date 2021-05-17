@@ -9,7 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.opencv.core.Core;
-import project.FaceDetection.FaceDetectionController;
 
 
 public class FaceDetection extends Application

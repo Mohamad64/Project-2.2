@@ -1,9 +1,7 @@
 package project.FaceDetection;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.opencv.core.*;
@@ -11,7 +9,9 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
+import project.GUI.MainApp;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -30,11 +30,10 @@ public class FaceDetectionController
     // the FXML area for showing the current frame
     @FXML
     private ImageView originalFrame;
-    // checkboxes for enabling/disabling a classifier
+
     @FXML
-    private CheckBox haarClassifier;
-    @FXML
-    private CheckBox lbpClassifier;
+    private Button mainPage;
+
 
     // a timer for acquiring the video stream
     private ScheduledExecutorService timer;
@@ -42,13 +41,11 @@ public class FaceDetectionController
     private VideoCapture capture;
     // a flag to change the button behavior
     private boolean cameraActive;
+    private boolean faceDetected;
 
     // face cascade classifier
     private CascadeClassifier faceCascade;
     private int absoluteFaceSize;
-
-    // face detection boolean
-    private boolean faceDetected;
 
     /**
      * Init the controller, at start time
@@ -57,13 +54,21 @@ public class FaceDetectionController
     {
         this.capture = new VideoCapture();
         this.faceCascade = new CascadeClassifier();
+        this.faceCascade.load("resources/haarcascades/haarcascade_frontalface_alt.xml");
         this.absoluteFaceSize = 0;
         this.faceDetected = false;
+        this.cameraButton.setDisable(false);
 
         // set a fixed width for the frame
         originalFrame.setFitWidth(600);
         // preserve image ratio
         originalFrame.setPreserveRatio(true);
+    }
+
+    @FXML
+    protected void goToMain() throws IOException {
+        MainApp mainApp = new MainApp();
+        mainApp.start(MainApp.stage);
     }
 
     /**
@@ -74,9 +79,6 @@ public class FaceDetectionController
     {
         if (!this.cameraActive)
         {
-            // disable setting checkboxes
-            this.haarClassifier.setDisable(true);
-            this.lbpClassifier.setDisable(true);
 
             // start the video capture
             this.capture.open(0);
@@ -118,9 +120,7 @@ public class FaceDetectionController
             this.cameraActive = false;
             // update again the button content
             this.cameraButton.setText("Start Camera");
-            // enable classifiers checkboxes
-            this.haarClassifier.setDisable(false);
-            this.lbpClassifier.setDisable(false);
+
 
             // stop the timer
             this.stopAcquisition();
@@ -195,13 +195,13 @@ public class FaceDetectionController
 
         // each rectangle in faces is a face: draw them!
         Rect[] facesArray = faces.toArray();
-
-        // sets value of boolean depending on face detection
-        if (facesArray.length > 0){
+        if (facesArray.length > 0) {
             this.faceDetected = true;
-        }
-        else{
+            this.mainPage.setDisable(false);
+//            System.out.println("face detected");
+        } else {
             this.faceDetected = false;
+            this.mainPage.setDisable(true);
         }
 
         for (int i = 0; i < facesArray.length; i++){
@@ -210,48 +210,8 @@ public class FaceDetectionController
         }
     }
 
-    /**
-     * The action triggered by selecting the Haar Classifier checkbox. It loads
-     * the trained set to be used for frontal face detection.
-     */
-    @FXML
-    protected void haarSelected(Event event)
-    {
-        // check whether the lpb checkbox is selected and deselect it
-        if (this.lbpClassifier.isSelected())
-            this.lbpClassifier.setSelected(false);
 
-        this.checkboxSelection("resources/haarcascades/haarcascade_frontalface_alt.xml");
-    }
 
-    /**
-     * The action triggered by selecting the LBP Classifier checkbox. It loads
-     * the trained set to be used for frontal face detection.
-     */
-    @FXML
-    protected void lbpSelected(Event event)
-    {
-        // check whether the haar checkbox is selected and deselect it
-        if (this.haarClassifier.isSelected())
-            this.haarClassifier.setSelected(false);
-
-        this.checkboxSelection("resources/lbpcascades/lbpcascade_frontalface.xml");
-    }
-
-    /**
-     * Method for loading a classifier trained set from disk
-     *
-     * @param classifierPath
-     *            the path on disk where a classifier trained set is located
-     */
-    private void checkboxSelection(String classifierPath)
-    {
-        // load the classifier(s)
-        this.faceCascade.load(classifierPath);
-
-        // now the video capture can start
-        this.cameraButton.setDisable(false);
-    }
 
     /**
      * Stop the acquisition from the camera and release all the resources
