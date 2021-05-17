@@ -22,13 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="hmm...">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/opencv_4521.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/libopencv_java452.dylib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/windows_opencv_3414.xml" beforeDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="Dylib">
+      <change afterPath="$PROJECT_DIR$/Assets/opencv4/libopencv_java452.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/opencv4/opencv-452.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_4521.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/Database/TextEditor.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +71,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.508046" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
@@ -82,7 +82,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainApp">
+  <component name="RunManager" selected="Application.FaceDetection">
     <configuration name="ChatApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.GUI.ChatApp" />
       <module name="project-example" />
@@ -159,8 +159,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.FaceDetection" />
+        <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.SkillDetection" />
         <item itemvalue="Application.TextEditor" />
         <item itemvalue="Application.ChatApp" />
@@ -350,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621268811532</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Dylib">
+      <created>1621282194127</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1621282194127</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -384,6 +391,7 @@
     <MESSAGE value="updates" />
     <MESSAGE value="skill editor answer setting" />
     <MESSAGE value="hmm..." />
-    <option name="LAST_COMMIT_MESSAGE" value="hmm..." />
+    <MESSAGE value="Dylib" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dylib" />
   </component>
 </project>
