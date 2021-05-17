@@ -102,11 +102,8 @@ public class ContextFreeGrammar {
             }
 
             // last column of first row contains the start symbol
-            if(tableCYK[0][words.length - 1].isEmpty()){
-                return false;
-            } else {
-                return tableCYK[0][words.length - 1].contains(this.start);
-            }
+            return tableCYK[0][words.length-1] != null ? tableCYK[0][words.length-1].contains(this.start) : false;
+
         }
         else{
             throw new CNFException("CYK algorithm expects Chomsky normal form");
@@ -173,7 +170,7 @@ public class ContextFreeGrammar {
 
         // Check if baaba is in L(G)
         try {
-            System.out.println(geekGrammar.accepts("b a a b a"));
+            System.out.println(geekGrammar.accepts("b a b b a"));
         }
         catch(CNFException e){
             System.out.println("Sorry, not in chomsky normal form");
