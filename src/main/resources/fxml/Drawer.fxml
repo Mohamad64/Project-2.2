@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.image.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane blendMode="SRC_ATOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="230.0" style="-fx-background-color:  linear-gradient(to top right, #092378, #203e9f);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.DrawerController">
+<Pane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="230.0" style="-fx-background-color:  linear-gradient(to top right, #092378, #203e9f);" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.GUI.DrawerController">
     <children>
         <JFXButton fx:id="profile" layoutY="120.0" onAction="#profileAction" prefHeight="50.0" prefWidth="230.0" ripplerFill="WHITE" style="-fx-background-color: #FFFFFF" text="Profile" textFill="#7e1b8a">
             <font>

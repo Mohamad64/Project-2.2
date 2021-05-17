@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -18,86 +19,86 @@
                   <Image url="@../MaAssistlogo.png" />
                </image>
             </ImageView>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
-            <TextField fx:id="keyWord" layoutX="177.0" layoutY="230.0" onAction="#SettingConfirmBtn" prefHeight="24.0" prefWidth="203.0" promptText="Add new keyword...">
+            <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" focusTraversable="true" layoutY="145.0" prefHeight="650.0" prefWidth="230.0" />
+            <TextField fx:id="keyWord" layoutX="563.0" layoutY="280.0" onAction="#SettingConfirmBtn" prefHeight="20.0" prefWidth="200.0" promptText="Add new keyword...">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
             </TextField>
-            <JFXCheckBox fx:id="WhatTime" layoutX="156.0" layoutY="280.0" text="What time" textFill="WHITE">
+            <JFXCheckBox fx:id="When" layoutX="250.0" layoutY="325.0" text="When" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="When" layoutX="156.0" layoutY="320.0" text="When" textFill="WHITE">
+            <JFXCheckBox fx:id="What" layoutX="250.0" layoutY="365.0" text="What " textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="What" layoutX="156.0" layoutY="360.0" text="What " textFill="WHITE">
-               <font>
-                  <Font name="Times Roman" size="16.0" />
-               </font>
-            </JFXCheckBox>
-            <Line endX="470.0" layoutX="220.0" layoutY="185.0" startX="-70.0" />
-            <JFXTextField alignment="CENTER" blendMode="ADD" editable="false" focusColor="BLACK" layoutX="450.0" layoutY="190.0" prefHeight="28.0" prefWidth="215.0" promptText="Skill editor" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="BLACK">
+            <JFXTextField alignment="CENTER" blendMode="ADD" editable="false" focusColor="BLACK" layoutX="233.0" layoutY="234.0" prefHeight="28.0" prefWidth="215.0" promptText="Skill editor" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="BLACK">
                <font>
                   <Font name="Times Italic" size="15.0" />
                </font>
             </JFXTextField>
-            <Button fx:id="SettingConfirmBtn" layoutX="710.0" layoutY="218.0" mnemonicParsing="false" onAction="#SettingConfirmBtn" text="Confirm">
+            <Button fx:id="SettingConfirmBtn" layoutX="705.0" layoutY="204.0" mnemonicParsing="false" onAction="#SettingConfirmBtn" text="Confirm">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
             </Button>
-            <JFXCheckBox fx:id="How" layoutX="295.0" layoutY="280.0" text="How" textFill="WHITE">
+            <JFXCheckBox fx:id="How" layoutX="363.0" layoutY="285.0" text="How" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="Why" layoutX="295.0" layoutY="320.0" text="Why " textFill="WHITE">
+            <JFXCheckBox fx:id="Why" layoutX="363.0" layoutY="325.0" text="Why " textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="Where" layoutX="295.0" layoutY="360.0" text="Where " textFill="WHITE">
+            <JFXCheckBox fx:id="Where" layoutX="363.0" layoutY="365.0" text="Where " textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="Do" layoutX="397.0" layoutY="280.0" text="Do/Does " textFill="WHITE">
+            <JFXCheckBox fx:id="Do" layoutX="455.0" layoutY="285.0" text="Do/Does " textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="Can" layoutX="397.0" layoutY="320.0" text="Can/May" textFill="WHITE">
+            <JFXCheckBox fx:id="Can" layoutX="455.0" layoutY="325.0" text="Can/May" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXCheckBox fx:id="Is" layoutX="397.0" layoutY="360.0" text="Is/Are" textFill="WHITE">
+            <JFXCheckBox fx:id="Is" layoutX="455.0" layoutY="365.0" text="Is/Are" textFill="WHITE">
                <font>
                   <Font name="Times Roman" size="16.0" />
                </font>
             </JFXCheckBox>
-            <JFXTextField alignment="CENTER" blendMode="ADD" editable="false" focusColor="BLACK" layoutX="450.0" layoutY="410.0" prefHeight="28.0" prefWidth="215.0" promptText="CFG Rule" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="BLACK">
+            <JFXTextField alignment="CENTER" blendMode="ADD" editable="false" focusColor="BLACK" layoutX="233.0" layoutY="411.0" prefHeight="28.0" prefWidth="215.0" promptText="CFG Rule" style="-fx-text-inner-color: white; -fx-prompt-text-fill: #FFE7E2;" unFocusColor="BLACK">
                <font>
                   <Font name="Times Italic" size="15.0" />
                </font>
             </JFXTextField>
-            <TextField fx:id="Resp" alignment="TOP_LEFT" layoutX="512.0" layoutY="274.0" onAction="#SettingConfirmBtn" prefHeight="122.0" prefWidth="254.0" promptText="Reesponse">
+            <TextField fx:id="Resp" alignment="TOP_LEFT" layoutX="562.0" layoutY="330.0" onAction="#SettingConfirmBtn" prefHeight="60.0" prefWidth="200.0" promptText="Reesponse">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="CFG" alignment="TOP_LEFT" layoutX="155.0" layoutY="446.0" onAction="#SettingConfirmBtn" prefHeight="335.0" prefWidth="617.0" promptText="CFG">
+            <TextField fx:id="CFG" alignment="TOP_LEFT" layoutX="250.0" layoutY="450.0" onAction="#SettingConfirmBtn" prefHeight="330.0" prefWidth="510.0" promptText="CFG">
                <font>
                   <Font name="Times Roman" size="15.0" />
                </font>
             </TextField>
+            <JFXCheckBox fx:id="WhatTime" layoutX="250.0" layoutY="285.0" text="What time" textFill="WHITE">
+               <font>
+                  <Font name="Times Roman" size="16.0" />
+               </font>
+            </JFXCheckBox>
+            <JFXNodesList layoutX="685.0" layoutY="319.0" prefHeight="9.0" prefWidth="26.0" />
 <!--            <ColorPicker fx:id = "colorPicker" layoutX="381.0" layoutY="265.0" />-->
          </children>
       </Pane>
-      <Line endX="520.0" layoutX="220.0" layoutY="405.0" startX="-70.0" />
+      <Line endX="470.0" layoutX="310.0" layoutY="405.0" startX="-70.0" />
    </children>
 </AnchorPane>

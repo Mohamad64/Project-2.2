@@ -22,14 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="updates">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/opencv-452.jar" afterDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="skill editor answer setting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/Database/TextEditor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/Drawer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/Drawer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/Drawer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
@@ -47,6 +46,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1pRBRwDEw1AVbaYc4F6o82NBk8H" />
   <component name="ProjectLevelVcsManager">
@@ -330,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620763083788</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="skill editor answer setting">
+      <created>1621089831146</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1621089831146</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,6 +376,7 @@
     <MESSAGE value="Skill editor + openCV" />
     <MESSAGE value="new Skill editor" />
     <MESSAGE value="updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="updates" />
+    <MESSAGE value="skill editor answer setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="skill editor answer setting" />
   </component>
 </project>

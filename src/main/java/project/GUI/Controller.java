@@ -3,16 +3,15 @@ package project.GUI;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -20,37 +19,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import project.Database.SkillDetection;
 import project.Database.TextEditor;
 
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
-import javax.imageio.event.IIOReadUpdateListener;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.List;
 
 public class Controller implements Initializable {
 
-    class Key {
+    public class Key {
 
-        private final String x;
-        private final int y;
+        public final String x;
+        public final int y;
 
         public Key(String x, int y) {
             this.x = x;
@@ -74,13 +63,6 @@ public class Controller implements Initializable {
                     ", y=" + y +
                     '}';
         }
-
-        //        @Override
-//        public int hashCode() {
-//            int result = x;
-//            result = 31 * result + y;
-//            return result;
-//        }
     }
 
     Pane box;
@@ -92,13 +74,21 @@ public class Controller implements Initializable {
     /*
             Primary fxml components
          */
+    @FXML
     public TextArea txtArea;
+    @FXML
     public TextField txtField;
+    @FXML
     public JFXHamburger ham;
+    @FXML
     public JFXDrawer drawer;
+    @FXML
     public ImageView image;
+    @FXML
     public Label label;
+    @FXML
     public Label label1;
+    @FXML
     public Button update;
     private boolean isServer = false;
     private Connections connection = isServer ? createServer() : createClient();
@@ -108,37 +98,55 @@ public class Controller implements Initializable {
     /*
      Profile fxml components
      */
+    @FXML
     public JFXButton edit;
+    @FXML
     public JFXTextField username;
+    @FXML
     public JFXTextField email;
+    @FXML
     public JFXButton confirm;
     public ImageView profile;
     public FileChooser fileChooser;
     public File file;
     public static Image im;
+    @FXML
     public Circle circle;
 
 
     /*
     Setting fxml components
      */
+    @FXML
     public Button SettingConfirmBtn;
+    @FXML
     public TextField keyWord;
     public static String subject = "";
-    public static String res = "";
+//    public static String res = "";
     public static HashMap<Key,String> hashMap = new HashMap<>();
-    JFXCheckBox[] checkBoxes = new JFXCheckBox[9];
+    public static JFXCheckBox[] checkBoxes = new JFXCheckBox[9];
     static int[] responsesArray = new int[9];
+    @FXML
     public JFXCheckBox WhatTime;
+    @FXML
     public JFXCheckBox When;
+    @FXML
     public JFXCheckBox What;
+    @FXML
     public JFXCheckBox How;
+    @FXML
     public JFXCheckBox Why;
+    @FXML
     public JFXCheckBox Where;
+    @FXML
     public JFXCheckBox Do;
+    @FXML
     public JFXCheckBox Can;
+    @FXML
     public JFXCheckBox Is;
+    @FXML
     public TextField Resp;
+    @FXML
     public TextField CFG;
 
 
@@ -161,17 +169,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-//        hashMap.put(0," subject might be in the afternoon, I'm not sure though");
-//        hashMap.put(1,"I'm not sure when is ");
-//        hashMap.put(2,"I don't know that. Google might have an idea");
-////        hashMap.put(3, "I don't know how, I am not google :(");
-//        hashMap.put(4,"It's a good question, you seem like a curious person.");
-////        hashMap.put(5,"hmm...\n" + "I don't know where you can");
-//        hashMap.put(6,"NO I DO NOT");
-//        hashMap.put(7,"yes "+ "subject" + " could");
-//        hashMap.put(8,"I don't know "+ "subject" + " might be");
-
 
         checkBoxes[0] = WhatTime;
         checkBoxes[1] = When;
@@ -220,7 +217,7 @@ public class Controller implements Initializable {
             for(int i=0;i<responsesArray.length;i++){
                 if(responsesArray[i]==1 && !subject.equals("")){
                     for(Key key : hashMap.keySet()){
-                        if(key.equals(new Key(subject,responsesArray[i]))){
+                        if(key.equals(new Key(subject,i))){
                             response = hashMap.get(key);
                             break;
                         }
@@ -232,34 +229,7 @@ public class Controller implements Initializable {
                     response = TextEditor.inquire(txtField.getText());
                 }
             }
-//            if(responsesArray[3]==1 && responsesArray[8]==1){
-//                response = subject + " is great";
-//                responsesArray[3]=0;responsesArray[8]=0;
-//            }
-//            else if(responsesArray[5]==1 && responsesArray[8]==1){
-//                response = subject + " could be anywhere";
-//                responsesArray[5]=0;responsesArray[8]=0;
-//            }
-//            else if(responsesArray[3]==1 && responsesArray[7]==1){
-//                response = "I don't know how, I am not google :(";
-//                responsesArray[3]=0;responsesArray[7]=0;
-//            }
-//            else if(responsesArray[5]==1 && responsesArray[7]==1){
-//                response = "hmm...\n" + "I don't know where you can";
-//                responsesArray[5]=0;responsesArray[7]=0;
-//            }
-//            else {
-//                for (int i = 0; i < responsesArray.length; i++) {
-//                    if (responsesArray[i] == 1) {
-//                        response = hashMap.get(i);
-//                        if (response.contains("subject"))
-//                            response = response.replace("subject", subject);
-//                        responsesArray[i] = 0;
-//                        break;
-//                    } else {
-
             txtField.clear();
-
             txtArea.appendText(message + "\n\n");
             String strDate = df.format(new Date().getTime());
             txtArea.appendText("\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+"\t"+
@@ -321,9 +291,15 @@ public class Controller implements Initializable {
         }
         subject = keyWord.getText();
         Key key = new Key(subject,position);
-        if(!Resp.getText().equals(" ")) {
-            res = Resp.getText();
-            hashMap.put(key,res);
+        for(Key keys:hashMap.keySet()){
+            if(key.equals(keys) && !Resp.getText().equals("")){
+                hashMap.replace(keys,Resp.getText());
+//                res = Resp.getText();
+            }
+        }
+        if(!Resp.getText().equals("")) {
+//            res = Resp.getText();
+            hashMap.put(key,Resp.getText());
         }
     }
 }
