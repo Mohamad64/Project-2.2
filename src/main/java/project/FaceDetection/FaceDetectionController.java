@@ -1,9 +1,14 @@
 package project.FaceDetection;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
@@ -47,6 +52,8 @@ public class FaceDetectionController
     private CascadeClassifier faceCascade;
     private int absoluteFaceSize;
 
+    public static Stage newStage = new Stage();
+
     /**
      * Init the controller, at start time
      */
@@ -67,8 +74,24 @@ public class FaceDetectionController
 
     @FXML
     protected void goToMain() throws IOException {
-        MainApp mainApp = new MainApp();
-        mainApp.start(MainApp.stage);
+        StageChanger();
+        FaceDetection.stage.hide();
+        newStage.showAndWait();
+    }
+
+    public void StageChanger() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+"primary" + ".fxml"));
+        Scene type2ViewScene = new Scene(fxmlLoader.load());
+        newStage.setScene(type2ViewScene);
+        newStage.setTitle("MaAssist");
+        newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                System.exit(0);
+
+            }
+        });
     }
 
     /**

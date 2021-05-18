@@ -34,6 +34,7 @@ public class DrawerController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+"profile" + ".fxml"));
         Scene type2ViewScene = new Scene(fxmlLoader.load());
         newStage.setScene(type2ViewScene);
+        newStage.setTitle("MaAssist");
         newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
@@ -45,7 +46,7 @@ public class DrawerController implements Initializable {
 
     public void profileAction(ActionEvent actionEvent) throws IOException {
         StageChanger();
-        MainApp.stage.hide();
+//        MainApp.stage.hide();
         newStage.showAndWait();
     }
 
@@ -56,7 +57,7 @@ public class DrawerController implements Initializable {
 
     public void SettingAction(ActionEvent actionEvent) throws IOException {
         StageChanger2();
-        MainApp.stage.hide();
+//        MainApp.stage.hide();
         newStage.showAndWait();
     }
 
@@ -64,6 +65,7 @@ public class DrawerController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/fxml/"+"settings" + ".fxml"));
         Scene type3ViewScene = new Scene(fxmlLoader.load());
         newStage.setScene(type3ViewScene);
+        newStage.setTitle("MaAssist");
         newStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {

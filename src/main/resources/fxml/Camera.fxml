@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.FaceDetection.FaceDetectionController">
+   <children>
+      <Pane fx:id="background" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
+         <children>
+            <ImageView fitHeight="145.0" fitWidth="464.0" layoutX="189.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../MaAssistlogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="mainPage" layoutX="450.0" layoutY="720.0" mnemonicParsing="false" onAction="#goToMain" text="mainPage">
+               <font>
+                  <Font name="Times Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="cameraButton" layoutX="250.0" layoutY="720.0" mnemonicParsing="false" onAction="#startCamera" text="cameraButton">
+               <font>
+                  <Font name="Times Italic" size="15.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="originalFrame" fitHeight="500.0" fitWidth="600.0" layoutX="100.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

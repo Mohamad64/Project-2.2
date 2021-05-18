@@ -22,13 +22,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="Dylib">
-      <change afterPath="$PROJECT_DIR$/Assets/opencv4/libopencv_java452.dylib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/opencv4/opencv-452.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/opencv_452.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_4521.xml" beforeDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="bla bla">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Camera.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/FaceDetection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/FaceDetection.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -357,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621282194127</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="bla bla">
+      <created>1621283456433</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1621283456433</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -392,6 +402,7 @@
     <MESSAGE value="skill editor answer setting" />
     <MESSAGE value="hmm..." />
     <MESSAGE value="Dylib" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dylib" />
+    <MESSAGE value="bla bla" />
+    <option name="LAST_COMMIT_MESSAGE" value="bla bla" />
   </component>
 </project>
