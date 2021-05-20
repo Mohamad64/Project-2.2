@@ -7,7 +7,9 @@ import static java.lang.System.out;
 public class ContextFreeGrammar {
 
     // starting symbol
-    private String start;
+    protected String start;
+
+    protected String response;
 
     // production rules
     private Map<String, List<String>> rules;
@@ -55,7 +57,7 @@ public class ContextFreeGrammar {
                 for(String A: nonterminals){
                     // match string words to the rules
                     List<String> right = rules.get(A);
-                    for(String S: right) {
+                    for(String S: right) {// right: Which lectures are there <TIMEEXPRESSION>
                         if(words[i].equals(S)){
                             if(tableCYK[i][i] == null) {//
                                 tableCYK[i][i] = A;
@@ -170,10 +172,27 @@ public class ContextFreeGrammar {
 
         // Check if baaba is in L(G)
         try {
-            System.out.println(geekGrammar.accepts("b a b b a"));
+            System.out.println(geekGrammar.accepts("b a a b a"));
         }
         catch(CNFException e){
             System.out.println("Sorry, not in chomsky normal form");
         }
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<Map.Entry<String, List<String>>> iter = this.rules.entrySet().iterator();
+        while (iter.hasNext()) {
+            Map.Entry<String, List<String>> entry = iter.next();
+            sb.append(entry.getKey());
+            sb.append(" -> ").append('"');
+            sb.append(entry.getValue());
+            sb.append('"');
+            if (iter.hasNext()) {
+                sb.append(',').append(' ');
+            }
+        }
+        return sb.toString();
+
     }
 }

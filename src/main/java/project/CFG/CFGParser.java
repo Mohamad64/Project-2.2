@@ -12,27 +12,35 @@ import java.util.stream.Collectors;
 public class CFGParser {
 
     // formatting of the .cfg file
-    private static final String DEV = "->";
     private static final String ACTION_INDICATOR = "Action";
     private static final String RULE_INDICATOR = "Rule";
+    public static String DEFAULT_RESPONSE = "I have no idea";
 
     private List<String> grammar;
+    private Map<String, List<String>> baseRules;
+    private List<ContextFreeGrammar> languages;
 
     public CFGParser(Path path){
         try {
             this.grammar = Files.readAllLines(path);
+            this.baseRules = this.parseRules();
+            this.languages = this.parseActions();
         }
         catch(IOException e){}
     }
+    
+    public CFGParser(String text){
 
-    public List<String> getRules() {
+    }
+
+    private List<String> getRules() {
         // take all lines where a rule is defined and remove the indicator
         return this.grammar.stream().filter(line -> line.startsWith(RULE_INDICATOR))
                 .map(line -> line.substring(RULE_INDICATOR.length()))
                 .collect(Collectors.toList());
     }
 
-    public List<String> getActions() {
+    private List<String> getActions() {
         // take all lines where an action is defined and remove the indicator
         return this.grammar.stream().filter(line -> line.startsWith(ACTION_INDICATOR))
                 .map(line -> line.substring(ACTION_INDICATOR.length()))
@@ -84,11 +92,29 @@ public class CFGParser {
     }
 
 
+    public String response(String question){
+        for(ContextFreeGrammar language: languages){
+            try {
+                // first suitable answer
+                if (language.accepts(question)) {
+                    return language.response;
+                }
+            } catch(ContextFreeGrammar.CNFException e){
+                System.out.println(e);
+            }
+        }
+        return DEFAULT_RESPONSE;
+    }
 
     public static void main(String[] args){
-        CFGParser chatbotDefinition = new CFGParser(Paths.get("datasets/manual.cfg"));
-        List<String> rules = chatbotDefinition.getRules();
-        System.out.println(rules);
+        CFGParser chatbotCFG = new CFGParser(Paths.get("datasets/manual.cfg"));
+        try {
+            chatbotCFG.languages.get(3).accepts("Where is DeepSpace");
+        }
+        catch(ContextFreeGrammar.CNFException e){}
+        System.out.println(chatbotCFG.languages.get(3).produceRandom());
+        //String response = chatbotCFG.response("Where is DeepSpace");
+        //System.out.println(response);
     }
 
 }
