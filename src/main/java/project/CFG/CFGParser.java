@@ -19,6 +19,7 @@ public class CFGParser {
     private List<String> grammar;
     private Map<String, List<String>> baseRules;
     private List<ContextFreeGrammar> languages;
+    private int ruleID;
 
     public CFGParser(Path path){
         try {
@@ -49,48 +50,56 @@ public class CFGParser {
                 .collect(Collectors.toList());
     }
 
-    public static Map<String, List<String>> parse(String input) {
-        String[] arr = input.split(" ");
+    public Map<String, List<String>> parseRules() {
         Map<String, List<String>> rules = new TreeMap<String, List<String>>();
-        int index = 0;
-        //Traverse the whole CFG
-        while(index != arr.length){
-
-            while(arr[index] != "Rule" || arr[index] != "Action") {
-                index++;
+        List<String> inputs = this.getRules();
+        // for each rule in the definition
+        for(int i = 0; i<inputs.size(); i++){
+            String[] arr = inputs.get(i).trim().split(" ");
+            String nonTerminal = arr[0];
+            inputs.set(i, inputs.get(i).substring(nonTerminal.length()+1));
+            //inputs.get(i).replaceAll(nonTerminal, " ");
+            String[] rules_arr = inputs.get(i).split(" \\| ");
+            System.out.println(Arrays.deepToString(rules_arr));
+            LinkedList<String> condition_list = new LinkedList<String>();
+            for (int k = 0; k < rules_arr.length; k++) {
+                rules_arr[k].trim();
+                condition_list.add(rules_arr[k]);
             }
-            if(arr[index] == "Rule"){
-                int index_i = index + 1;
-                while(arr[index_i] != "Rule"){
-                    index_i++;
-                }
-                String conditions = " ";
-                for(int i = index + 2; i< index_i; i++) {
-                    conditions += " " + arr[i];
-                }
-                String[] rules_arr = conditions.split(" | ");
-                LinkedList<String> condition_list = new LinkedList<String>();
-                for(int i = 0; i<rules_arr.length; i++){
-                    rules_arr[i].trim();
-                    condition_list.add(rules_arr[i]);
-                }
-                rules.put(arr[index + 1], condition_list);
-                index = index_i;
-            }
-
-            if(arr[index] == "Action") {
-                int index_i = index + 1;
-                while(arr[index_i] != "Action"){
-                    index_i++;
-                }
-                String actions = " ";
-                for(int i = index + 2; i< index_i; i++) {
-                    actions += " " + arr[i];
-                }
-            }
+            rules.put(nonTerminal, condition_list);
         }
-
         return rules;
+    }
+
+
+    public List<ContextFreeGrammar> parseActions() {
+        List<String> actions = this.getActions();
+        List<ContextFreeGrammar> languages = new LinkedList<>();
+        for(String action: actions){
+            TreeMap<String, List<String>> rules = new TreeMap<>();
+            rules.putAll(baseRules);
+            ContextFreeGrammar language = new ContextFreeGrammar("S", rules);
+            String[] arr = action.trim().split(" ");
+            language.start = arr[0];
+            String response = "";
+            for(int i = 2; i<arr.length; i++){
+                // replace rule with specific value
+                if(arr[i].contains("<") && arr[i].contains(">")){
+                    String nonTerminal = arr[i];
+                    List<String> value = Arrays.asList(arr[i+1]);
+                    language.rules.replace(nonTerminal, value);
+                    i++; // jump
+                }
+                else{
+                    // the rest is the response
+                    response +=arr[i] + " ";
+
+                }
+            }
+            language.response = response.trim();
+            languages.add(language);
+        }
+        return languages;
     }
 
 
@@ -108,16 +117,104 @@ public class CFGParser {
         return DEFAULT_RESPONSE;
     }
 
+
+    public void convertCFGtoCNF() {
+        // retrieve all non-terminal symbols from the rules
+        List<String> nonTerminals = List.copyOf(this.baseRules.keySet());
+
+        // eliminate the start symbol from right-hand sides
+        // baseRules.put("START", Arrays.asList());
+
+        // Eliminate rules with nonsolitary terminals
+        for(String nonTerminal: nonTerminals){
+            List<String> rightSide = baseRules.get(nonTerminal);
+            List<String> collectedRules = new LinkedList<>();
+            for(String rule: rightSide) {
+                String[] arr = rule.trim().split(" ");
+                if(arr.length>1){// 1?
+                    for(int i = 0; i<arr.length; i++){
+                        if(!arr[i].contains(">") && !arr[i].contains("<")){
+                            String newKey = "<" + arr[i].toUpperCase(Locale.ROOT) + ">";
+                            if(!baseRules.containsKey(newKey)) {
+                                // <IS> -> is
+                                baseRules.put(newKey, new LinkedList<String>(Arrays.asList(arr[i])));
+                            }
+                            arr[i] = newKey;
+                        }
+                    }
+                    collectedRules.add(String.join(" ", arr));
+                    baseRules.replace(nonTerminal, collectedRules);
+                }
+            }
+        }
+
+        nonTerminals = List.copyOf(this.baseRules.keySet());
+
+        ruleID = 0;
+        // <0>, <1>
+        // Eliminate right-hand sides with more than 2 nonterminals
+        TreeMap<String, List<String>> chomskyRules = new TreeMap<>();
+
+        for(String nonTerminal: nonTerminals){
+            List<String> rightSide = baseRules.get(nonTerminal);
+            for(int ruleIdx=0; ruleIdx<rightSide.size(); ruleIdx++){
+                String[] symbols = rightSide.get(ruleIdx).split(" ");
+                // symbols: <WHERE> <IS> <HAMSTER>
+
+                //Traverse symbols, while incrementing the index by 2
+                while(symbols.length>2){
+                    if(symbols.length%2 == 0){
+                        String arr[] = new String[(symbols.length)/2];
+                        for(int p = 0; p< symbols.length; p+=2) {
+                            chomskyRules.put("<" + ruleID + ">", Arrays.asList(symbols[p] + " " + symbols[p+1]));
+                            arr[p/2] = "<" + ruleID + ">";
+                            ruleID++;
+                        }
+                        symbols = arr;
+                    } else {
+                        String arr[] = new String[(symbols.length + 1)/2];
+                        for (int p = 0; p<symbols.length-1; p+=2){//int m = 0, m<symbols.length-1; m+=2){
+                            chomskyRules.put("<" + ruleID + ">", Arrays.asList(symbols[p] + " " + symbols[p+1]));
+                            arr[p/2] = "<" + ruleID + ">";
+                            ruleID++;
+                        }
+                        chomskyRules.put("<" + ruleID + ">", Arrays.asList(symbols[symbols.length-1]));
+                        arr[arr.length-1] = "<" + ruleID + ">";
+                        ruleID++;
+                        symbols = arr;
+                    }
+                }
+                rightSide.remove(ruleIdx);
+                rightSide.add(ruleIdx, String.join(" ", symbols));
+                baseRules.replace(nonTerminal, rightSide);
+                baseRules.putAll(chomskyRules);
+
+                // read list into binary tree
+                // rules: List<Map<String, List<String>>>
+                //    <1> -> <WHERE> <IS>
+                //    <2> -> <HAMSTER>
+                //    <3> -> <1> <2>
+                //
+                //    [<WHERE> <IS> <HAMSTER>]
+                //     [<1> <2>]
+                //      [<3>]
+
+
+                // reduce rules with > 2 non terminals
+
+            } }
+    }
+
     public static void main(String[] args){
         CFGParser chatbotCFG = new CFGParser(Paths.get("datasets/manual.cfg"));
-        chatbotCFG.baseRules = chatbotCFG.parseRules();
-        chatbotCFG.convertCFGtoCNF();
-        System.out.println(chatbotCFG.baseRules);
-        /*try {
+        //chatbotCFG.baseRules = chatbotCFG.parseRules();
+        //chatbotCFG.convertCFGtoCNF();
+        //System.out.println(chatbotCFG.baseRules);
+        try {
             chatbotCFG.languages.get(3).accepts("Where is DeepSpace");
         }
         catch(ContextFreeGrammar.CNFException e){}
-        System.out.println(chatbotCFG.languages.get(3).produceRandom());*/
+        //System.out.println(chatbotCFG.languages.get(3).produceRandom());*/
 
         //String response = chatbotCFG.response("Where is DeepSpace");
         //System.out.println(response);

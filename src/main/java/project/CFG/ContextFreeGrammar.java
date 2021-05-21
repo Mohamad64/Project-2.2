@@ -12,7 +12,7 @@ public class ContextFreeGrammar {
     protected String response;
 
     // production rules
-    private Map<String, List<String>> rules;
+    protected Map<String, List<String>> rules;
 
     private Random random = new Random();
 
