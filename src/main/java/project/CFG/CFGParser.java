@@ -24,11 +24,13 @@ public class CFGParser {
         try {
             this.grammar = Files.readAllLines(path);
             this.baseRules = this.parseRules();
+            this.convertCFGtoCNF();
+
             this.languages = this.parseActions();
         }
         catch(IOException e){}
     }
-    
+
     public CFGParser(String text){
 
     }
@@ -108,11 +110,15 @@ public class CFGParser {
 
     public static void main(String[] args){
         CFGParser chatbotCFG = new CFGParser(Paths.get("datasets/manual.cfg"));
-        try {
+        chatbotCFG.baseRules = chatbotCFG.parseRules();
+        chatbotCFG.convertCFGtoCNF();
+        System.out.println(chatbotCFG.baseRules);
+        /*try {
             chatbotCFG.languages.get(3).accepts("Where is DeepSpace");
         }
         catch(ContextFreeGrammar.CNFException e){}
-        System.out.println(chatbotCFG.languages.get(3).produceRandom());
+        System.out.println(chatbotCFG.languages.get(3).produceRandom());*/
+
         //String response = chatbotCFG.response("Where is DeepSpace");
         //System.out.println(response);
     }
