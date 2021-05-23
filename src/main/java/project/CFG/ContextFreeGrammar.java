@@ -2,6 +2,7 @@ package project.CFG;
 
 import java.util.*;
 
+import static java.lang.System.err;
 import static java.lang.System.out;
 
 public class ContextFreeGrammar {
@@ -134,6 +135,9 @@ public class ContextFreeGrammar {
                     List<String> right = rules.get(A);
                     for(String S: right) {// right: Which lectures are there <TIMEEXPRESSION>
                         if(words[i].equals(S)){
+                            System.out.println(i);
+                            System.out.println(S);
+                            System.out.println(A);
                             if(tableCYK[i][i] == null) {//
                                 tableCYK[i][i] = A;
                             }
@@ -156,7 +160,6 @@ public class ContextFreeGrammar {
                             List<String> right = rules.get(A);
                             for(String S: right) {
                                 String[] split =  S.split("\\s+");
-                                System.out.println(l +" "+ i + " " + j + " " + k);
                                 if(split.length == 2) {// always size 2
                                     if(tableCYK[i][k] != null && tableCYK[k+1][j] != null) {
                                         if (tableCYK[i][k].contains(split[0]) && tableCYK[k + 1][j].contains(split[1])) {
@@ -174,6 +177,9 @@ public class ContextFreeGrammar {
                                     }
                                 }
                             }
+                        }
+                        if(tableCYK[i][j] == null){
+
                         }
                     }
                 }

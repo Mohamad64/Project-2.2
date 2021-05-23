@@ -22,16 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="bla bla">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/fxml/Camera.fxml" afterDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="lock screen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/DrawerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/FaceDetection.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/FaceDetection.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/DrawerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/CFG/ContextFreeGrammar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/CFG/ContextFreeGrammar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,13 +79,13 @@
       <recent name="$PROJECT_DIR$/src/main/resources/fxml" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FaceDetection">
-    <configuration name="ChatApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.GUI.ChatApp" />
+  <component name="RunManager" selected="Application.CFGParser">
+    <configuration name="CFGParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.CFG.CFGParser" />
       <module name="project-example" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="project.GUI.*" />
+          <option name="PATTERN" value="project.CFG.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,17 +150,17 @@
     <list>
       <item itemvalue="Application.MainApp" />
       <item itemvalue="Application.SkillDetection" />
-      <item itemvalue="Application.ChatApp" />
       <item itemvalue="Application.TextEditor" />
       <item itemvalue="Application.FaceDetection" />
+      <item itemvalue="Application.CFGParser" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CFGParser" />
         <item itemvalue="Application.FaceDetection" />
         <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.SkillDetection" />
         <item itemvalue="Application.TextEditor" />
-        <item itemvalue="Application.ChatApp" />
       </list>
     </recent_temporary>
   </component>
@@ -367,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621283456433</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="lock screen">
+      <created>1621365903241</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1621365903241</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -403,6 +404,7 @@
     <MESSAGE value="hmm..." />
     <MESSAGE value="Dylib" />
     <MESSAGE value="bla bla" />
-    <option name="LAST_COMMIT_MESSAGE" value="bla bla" />
+    <MESSAGE value="lock screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="lock screen" />
   </component>
 </project>

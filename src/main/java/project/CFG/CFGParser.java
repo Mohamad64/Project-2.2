@@ -92,11 +92,11 @@ public class CFGParser {
                 }
                 else{
                     // the rest is the response
-                    response +=arr[i] + " ";
+                    response.append(arr[i]).append(" ");
 
                 }
             }
-            language.response = response.trim();
+            language.response = response.toString().trim();
             languages.add(language);
         }
         return languages;
