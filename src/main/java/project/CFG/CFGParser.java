@@ -63,8 +63,7 @@ public class CFGParser {
             System.out.println(Arrays.deepToString(rules_arr));
             LinkedList<String> condition_list = new LinkedList<String>();
             for (int k = 0; k < rules_arr.length; k++) {
-                rules_arr[k].trim();
-                condition_list.add(rules_arr[k]);
+                condition_list.add(rules_arr[k].trim());
             }
             rules.put(nonTerminal, condition_list);
         }
@@ -78,10 +77,11 @@ public class CFGParser {
         for(String action: actions){
             TreeMap<String, List<String>> rules = new TreeMap<>();
             rules.putAll(baseRules);
-            ContextFreeGrammar language = new ContextFreeGrammar("S", rules);
             String[] arr = action.trim().split(" ");
-            language.start = arr[0];
-            String response = "";
+            ContextFreeGrammar language = new ContextFreeGrammar(arr[0], rules);//arr[0]
+            System.out.println(arr[0]);//arr[0]="<LOCATION>"
+            System.out.println(language.start);
+            StringBuilder response = new StringBuilder();
             for(int i = 2; i<arr.length; i++){
                 // replace rule with specific value
                 if(arr[i].contains("<") && arr[i].contains(">")){
@@ -101,22 +101,6 @@ public class CFGParser {
         }
         return languages;
     }
-
-
-    public String response(String question){
-        for(ContextFreeGrammar language: languages){
-            try {
-                // first suitable answer
-                if (language.accepts(question)) {
-                    return language.response;
-                }
-            } catch(ContextFreeGrammar.CNFException e){
-                System.out.println(e);
-            }
-        }
-        return DEFAULT_RESPONSE;
-    }
-
 
     public void convertCFGtoCNF() {
         // retrieve all non-terminal symbols from the rules
@@ -174,7 +158,7 @@ public class CFGParser {
                     } else {
                         String arr[] = new String[(symbols.length + 1)/2];
                         for (int p = 0; p<symbols.length-1; p+=2){//int m = 0, m<symbols.length-1; m+=2){
-                            chomskyRules.put("<" + ruleID + ">", Arrays.asList(symbols[p] + " " + symbols[p+1]));
+                            chomskyRules.put("<" + ruleID + ">", Arrays.asList(symbols[p].trim() + " " + symbols[p+1].trim()));
                             arr[p/2] = "<" + ruleID + ">";
                             ruleID++;
                         }
@@ -189,20 +173,51 @@ public class CFGParser {
                 baseRules.replace(nonTerminal, rightSide);
                 baseRules.putAll(chomskyRules);
 
-                // read list into binary tree
-                // rules: List<Map<String, List<String>>>
-                //    <1> -> <WHERE> <IS>
-                //    <2> -> <HAMSTER>
-                //    <3> -> <1> <2>
-                //
-                //    [<WHERE> <IS> <HAMSTER>]
-                //     [<1> <2>]
-                //      [<3>]
 
+            }
+        }
 
-                // reduce rules with > 2 non terminals
+        this.baseRules = eliminateUnitary(this.baseRules);
 
-            } }
+    }
+
+    public Map<String, List<String>> eliminateUnitary(Map<String, List<String>> rules){
+        // A -> B where B -> X1,X2 transforms to A -> X1,X2
+        List<String> nonTerminals = List.copyOf(rules.keySet());
+
+        // eliminate unitary rules
+        for(String nonTerminal: nonTerminals){
+            List<String> list = rules.get(nonTerminal);
+
+            // eliminate A -> B by  B -> X1X2 make A -> X1,X2
+            if(list != null) {
+                if (list.size() == 1) {
+                    if (list.get(0).contains("<") && list.get(0).contains(">")) {//list.contains("<") && list.contains(">")
+                        String room = list.get(0);
+                        // list.get(0) //B
+                        List<String> deepspace = rules.get(room); //X1,X2
+                        if(deepspace != null) {
+                            rules.replace(nonTerminal, deepspace);
+                        }
+                    }
+                }
+            }
+        }
+        return rules;
+    }
+
+    public String response(String question){
+        for(ContextFreeGrammar language: languages){
+            try {
+                // first suitable answer
+                if (language.accepts(question)) {
+                    return language.response;
+                }
+            } catch(ContextFreeGrammar.CNFException e){
+                System.out.println(e);
+            }
+        }
+        return DEFAULT_RESPONSE;
     }
 
     public static void main(String[] args){
@@ -210,10 +225,11 @@ public class CFGParser {
         //chatbotCFG.baseRules = chatbotCFG.parseRules();
         //chatbotCFG.convertCFGtoCNF();
         //System.out.println(chatbotCFG.baseRules);
-        try {
-            chatbotCFG.languages.get(3).accepts("Where is DeepSpace");
+        System.out.println(chatbotCFG.response("Where is DeepSpace"));
+        /*try {
+            System.out.println(chatbotCFG.languages.get(0).accepts("Where is DeepSpace"));
         }
-        catch(ContextFreeGrammar.CNFException e){}
+        catch(ContextFreeGrammar.CNFException e){}*/
         //System.out.println(chatbotCFG.languages.get(3).produceRandom());*/
 
         //String response = chatbotCFG.response("Where is DeepSpace");
