@@ -20,6 +20,7 @@ public class CFGParser {
     private Map<String, List<String>> baseRules;
     private List<ContextFreeGrammar> languages;
     private int ruleID;
+    public static String textField;
 
     public CFGParser(Path path){
         try {

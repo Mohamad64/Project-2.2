@@ -24,6 +24,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import project.CFG.CFGParser;
 import project.Database.TextEditor;
 
 import javax.imageio.ImageIO;
@@ -35,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Controller implements Initializable {
+
 
     public class Key {
 
@@ -147,7 +149,9 @@ public class Controller implements Initializable {
     @FXML
     public TextField Resp;
     @FXML
-    public TextField CFG;
+    public TextArea CFGcfg;
+    //    public TextArea CFG;
+    public static boolean CFGCheck = false;
 
 
 
@@ -214,20 +218,28 @@ public class Controller implements Initializable {
             String message = isServer ? "Server: " : Client.getName()+": ";
             message += txtField.getText();
             String response = "";
-            for(int i=0;i<responsesArray.length;i++){
-                if(responsesArray[i]==1 && !subject.equals("")){
-                    for(Key key : hashMap.keySet()){
-                        if(key.equals(new Key(subject,i))){
-                            response = hashMap.get(key);
-                            break;
+            System.out.println(CFGCheck);
+            if(!CFGCheck){
+                for(int i=0;i<responsesArray.length;i++){
+                    if(responsesArray[i]==1 && !subject.equals("")){
+                        for(Key key : hashMap.keySet()){
+                            if(key.equals(new Key(subject,i))){
+                                response = hashMap.get(key);
+                                break;
+                            }
                         }
+                        responsesArray[i]=0; subject = "";
+                        break;
                     }
-                    responsesArray[i]=0; subject = "";
-                    break;
+                    else{
+                        response = TextEditor.inquire(txtField.getText());
+                    }
                 }
-                else{
-                    response = TextEditor.inquire(txtField.getText());
-                }
+            }
+            else{
+                System.out.println("im here");
+                response = CFGParser.getRespond(txtField.getText());
+                CFGCheck = false;
             }
             txtField.clear();
             txtArea.appendText(message + "\n\n");
@@ -300,6 +312,11 @@ public class Controller implements Initializable {
         if(!Resp.getText().equals("")) {
 //            res = Resp.getText();
             hashMap.put(key,Resp.getText());
+        }
+        if(!CFGcfg.getText().equals("")) {
+            CFGParser.textField = CFGcfg.getText();
+            CFGCheck = true;
+            System.out.println(CFGCheck);
         }
     }
 }
