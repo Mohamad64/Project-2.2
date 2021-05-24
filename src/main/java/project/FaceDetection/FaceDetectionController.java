@@ -14,6 +14,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
+import project.GUI.DrawerController;
 import project.GUI.MainApp;
 
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class FaceDetectionController
     @FXML
     protected void goToMain() throws IOException {
         StageChanger();
-        FaceDetection.stage.hide();
+        FaceDetection.stage.close();
         newStage.showAndWait();
     }
 

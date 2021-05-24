@@ -22,24 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="Please dont screw us up">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_mac_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_controls_mac_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_fxml_mac_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_mac_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_swing_mac_14.xml" afterDir="false" />
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" afterDir="false" />
     </list>
     <list id="3ba39ab2-c487-45f3-96ef-471af51b622a" name="Changes by ramon" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" afterDir="false" />
@@ -66,15 +51,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java">
-      <ranges>
-        <range start1="22" end1="22" start2="22" end2="23" changelist="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" />
-        <range start1="34" end1="36" start2="35" end2="40" changelist="3ba39ab2-c487-45f3-96ef-471af51b622a" />
-        <range start1="38" end1="38" start2="42" end2="48" changelist="3ba39ab2-c487-45f3-96ef-471af51b622a" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="1pRBRwDEw1AVbaYc4F6o82NBk8H" />
   <component name="ProjectLevelVcsManager">
@@ -401,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621776267757</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE">
+      <created>1621779102611</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1621779102611</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -439,6 +422,7 @@
     <MESSAGE value="bla bla" />
     <MESSAGE value="lock screen" />
     <MESSAGE value="Please dont screw us up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Please dont screw us up" />
+    <MESSAGE value="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE" />
   </component>
 </project>
