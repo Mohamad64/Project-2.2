@@ -33,8 +33,16 @@ public class CFGParser {
         catch(IOException e){}
     }
 
-    public CFGParser(String text){
+    public CFGParser(){
+        this.grammar = Arrays.asList(textField.split("\n"));
+        this.baseRules = this.parseRules();
+        this.convertCFGtoCNF();
+        this.languages = this.parseActions();
+    }
 
+    public static String getRespond(String question){
+        CFGParser chatbotCFG = new CFGParser();
+        return chatbotCFG.response(question);
     }
 
     private List<String> getRules() {
