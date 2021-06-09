@@ -22,13 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE">
+    <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="get response">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/FaceDetection/FaceDetectionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasets/manual.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/manual.cfg" afterDir="false" />
     </list>
-    <list id="3ba39ab2-c487-45f3-96ef-471af51b622a" name="Changes by ramon" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/CFG/CFGParser.java" afterDir="false" />
-    </list>
+    <list id="3ba39ab2-c487-45f3-96ef-471af51b622a" name="Changes by ramon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -384,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621779102611</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="get response">
+      <created>1621868665055</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1621868665055</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,6 +428,7 @@
     <MESSAGE value="lock screen" />
     <MESSAGE value="Please dont screw us up" />
     <MESSAGE value="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE" />
+    <MESSAGE value="get response" />
+    <option name="LAST_COMMIT_MESSAGE" value="get response" />
   </component>
 </project>
