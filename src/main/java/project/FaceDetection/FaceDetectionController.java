@@ -278,7 +278,7 @@ public class FaceDetectionController
         if (descriptorsFirst.cols() == descriptorsSecond.cols())
         {
             MatOfDMatch matrix = new MatOfDMatch();
-            DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING).match(descriptorsFirst, descriptorsFirst, matrix);
+            DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING).match(descriptorsFirst, descriptorsSecond, matrix);
 
             for (DMatch match : matrix.toList())
                 if (match.distance <= 50)
