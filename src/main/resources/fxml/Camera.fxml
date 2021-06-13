@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import java.lang.*?>
-<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.FaceDetection.FaceDetectionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.6" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.FaceDetection.FaceDetectionController">
    <children>
       <Pane fx:id="background" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to top right, #092378, #203e9f);">
          <children>
@@ -18,18 +15,41 @@
                   <Image url="@../MaAssistlogo.png" />
                </image>
             </ImageView>
-            <Button fx:id="mainPage" layoutX="450.0" layoutY="720.0" mnemonicParsing="false" onAction="#goToMain" text="mainPage">
+            <Button fx:id="mainPage" layoutX="270.0" layoutY="720.0" mnemonicParsing="false" onAction="#goToMain" text="Go Main">
                <font>
-                  <Font name="Times Italic" size="15.0" />
+                  <Font name="LiSong Pro" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="cameraButton" layoutX="250.0" layoutY="720.0" mnemonicParsing="false" onAction="#startCamera" text="cameraButton">
+            <Button fx:id="cameraButton" layoutX="100.0" layoutY="720.0" mnemonicParsing="false" onAction="#startCamera" text="Open Camera">
                <font>
-                  <Font name="Times Italic" size="15.0" />
+                  <Font name="LiSong Pro" size="20.0" />
                </font>
             </Button>
-            <ImageView fx:id="originalFrame" fitHeight="500.0" fitWidth="600.0" layoutX="100.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="capturePhoto" layoutX="400.0" layoutY="720.0" mnemonicParsing="false" onAction="#saveImage" text="Save Photo">
+               <font>
+                  <Font name="LiSong Pro" size="20.0" />
+               </font>
+            </Button>
+            <TextField fx:id="textField" layoutX="550.0" layoutY="720.0" prefHeight="34.0" prefWidth="189.0" promptText="Write your name">
+               <font>
+                  <Font name="LiSong Pro" size="20.0" />
+               </font>
+            </TextField>
+
+            <ImageView fx:id="originalFrame" fitHeight="549.0" fitWidth="781.0" layoutX="12.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../main.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="S_RESIZE" />
+               </cursor></ImageView>
+            <Text fill="WHITE" layoutX="560.0" layoutY="704.0" strokeType="OUTSIDE" strokeWidth="0.0" text="For Registration : ">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
+
    </children>
 </AnchorPane>

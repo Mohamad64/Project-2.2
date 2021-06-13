@@ -1,44 +1,48 @@
 package project.FaceDetection;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.opencv.core.*;
+import org.opencv.features2d.DescriptorMatcher;
+import org.opencv.features2d.ORB;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
 import org.opencv.videoio.VideoCapture;
-import project.GUI.DrawerController;
 import project.GUI.MainApp;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-/**
- * The controller associated with the only view of our application. The
- * application logic is implemented here. It handles the button for
- * starting/stopping the camera, the acquired video stream, the relative
- * controls and the face detection/tracking.
- */
+
 public class FaceDetectionController
 {
-    // FXML buttons
     @FXML
     private Button cameraButton;
-    // the FXML area for showing the current frame
+
     @FXML
     private ImageView originalFrame;
 
     @FXML
     private Button mainPage;
+
+    @FXML
+    private Button capturePhoto;
 
 
     // a timer for acquiring the video stream
@@ -52,12 +56,15 @@ public class FaceDetectionController
     // face cascade classifier
     private CascadeClassifier faceCascade;
     private int absoluteFaceSize;
+    private static final File FOLDER = new File("/Users/irfankaradeniz/Documents/LastVersion/Project-2.2/resources/PhotoDatabase");
+    private boolean saveable;
+
+    @FXML
+    private TextField textField;
+
 
     public static Stage newStage = new Stage();
 
-    /**
-     * Init the controller, at start time
-     */
     protected void init()
     {
         this.capture = new VideoCapture();
@@ -66,17 +73,14 @@ public class FaceDetectionController
         this.absoluteFaceSize = 0;
         this.faceDetected = false;
         this.cameraButton.setDisable(false);
-
-        // set a fixed width for the frame
         originalFrame.setFitWidth(600);
-        // preserve image ratio
         originalFrame.setPreserveRatio(true);
     }
 
     @FXML
     protected void goToMain() throws IOException {
         StageChanger();
-        FaceDetection.stage.close();
+        FaceDetection.stage.hide();
         newStage.showAndWait();
     }
 
@@ -95,19 +99,15 @@ public class FaceDetectionController
         });
     }
 
-    /**
-     * The action triggered by pushing the button on the GUI
-     */
+
     @FXML
     protected void startCamera()
     {
         if (!this.cameraActive)
         {
 
-            // start the video capture
             this.capture.open(0);
 
-            // is the video stream available?
             if (this.capture.isOpened())
             {
                 this.cameraActive = true;
@@ -118,9 +118,10 @@ public class FaceDetectionController
                     @Override
                     public void run()
                     {
-                        // effectively grab and process a single frame
+                        // grab and process a single frame
                         Mat frame = grabFrame();
-                        // convert and show the frame
+                        // Utils face is for converting the image
+                        // Update the image in original frame
                         Image imageToShow = UtilsFace.mat2Image(frame);
                         updateImageView(originalFrame, imageToShow);
                     }
@@ -129,33 +130,22 @@ public class FaceDetectionController
                 this.timer = Executors.newSingleThreadScheduledExecutor();
                 this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 
-                // update the button content
+                // change the button after starting the camera
                 this.cameraButton.setText("Stop Camera");
             }
             else
             {
-                // log the error
-                System.err.println("Failed to open the camera connection...");
+                System.err.println("Unsuccessful attempt");
             }
         }
         else
         {
-            // the camera is not active at this point
             this.cameraActive = false;
-            // update again the button content
             this.cameraButton.setText("Start Camera");
-
-
-            // stop the timer
             this.stopAcquisition();
         }
     }
 
-    /**
-     * Get a frame from the opened video stream (if any)
-     *
-     * @return the {@link Image} to show
-     */
     private Mat grabFrame()
     {
         Mat frame = new Mat();
@@ -179,27 +169,23 @@ public class FaceDetectionController
             catch (Exception e)
             {
                 // log the (full) error
-                System.err.println("Exception during the image elaboration: " + e);
+                System.err.println("Failed to grab " + e);
             }
         }
 
         return frame;
     }
 
-    /**
-     * Method for face detection and tracking
-     *
-     * @param frame
-     *            it looks for faces in this frame
-     */
+
     private void detectAndDisplay(Mat frame)
     {
         MatOfRect faces = new MatOfRect();
         Mat grayFrame = new Mat();
+        boolean saveable = isSaveable();
+        String name = getFileName();
 
         // convert the frame in gray scale
         Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
-        // equalize the frame histogram to improve the result
         Imgproc.equalizeHist(grayFrame, grayFrame);
 
         // compute minimum face size (20% of the frame height, in our case)
@@ -217,43 +203,105 @@ public class FaceDetectionController
                 new Size(this.absoluteFaceSize, this.absoluteFaceSize), new Size());
 
 
-        // each rectangle in faces is a face: draw them!
+        // each rectangle in facesArray is a face
         Rect[] facesArray = faces.toArray();
         if (facesArray.length > 0) {
             this.faceDetected = true;
             this.mainPage.setDisable(false);
-//            System.out.println("face detected");
         } else {
             this.faceDetected = false;
             this.mainPage.setDisable(true);
         }
 
-        for (int i = 0; i < facesArray.length; i++){
+        //Selecting color for the rectangle on face
+        java.awt.Color defaultColor = Color.YELLOW;
+        Scalar color = new Scalar(defaultColor.getBlue(), defaultColor.getGreen(), defaultColor.getRed());
 
-            Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
+        for (Rect face : facesArray){
+
+            Mat cropped = new Mat(frame, face);
+
+            if (saveable)
+                savePhoto(cropped, name);
+
+            Imgproc.putText(frame, "Name: " + recognizeFace(cropped), face.tl(), Font.BOLD, 3.0, color);
+            Imgproc.rectangle(frame, face.tl(), face.br(), color);
         }
+    }
+
+    private static String recognizeFace(Mat img)
+    {
+        int errThreshold = 3;
+
+        int mostRecognized = -1;
+
+        File mostSimilar = null;
+
+        for (File capture : Objects.requireNonNull(FOLDER.listFiles()))
+        {
+            int similarity = matchFace(img, capture.getAbsolutePath());
+            if (similarity > mostRecognized)
+            {
+                mostRecognized = similarity;
+                mostSimilar = capture;
+            }
+        }
+
+        if (mostSimilar != null && mostRecognized > errThreshold)
+        {
+            String faceName = mostSimilar.getName();
+            String delimiter = faceName.contains(" (") ? "(" : ".";
+            return faceName.substring(0, faceName.indexOf(delimiter)).trim();
+        }
+        else
+            return "Not Recognized";
+    }
+
+    private static int matchFace(Mat currImg, String file)
+    {
+        Mat compImg = Imgcodecs.imread(file);
+        ORB orb = ORB.create();
+        int similarity = 0;
+
+        MatOfKeyPoint keyPointsFirst = new MatOfKeyPoint();
+        MatOfKeyPoint keyPointsSecond = new MatOfKeyPoint();
+
+        orb.detect(currImg, keyPointsFirst);
+        orb.detect(compImg, keyPointsSecond);
+
+        Mat descriptorsFirst = new Mat();
+        Mat descriptorsSecond = new Mat();
+
+        orb.compute(currImg, keyPointsFirst, descriptorsFirst);
+        orb.compute(compImg, keyPointsSecond, descriptorsSecond);
+
+        if (descriptorsFirst.cols() == descriptorsSecond.cols())
+        {
+            MatOfDMatch matrix = new MatOfDMatch();
+            DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING).match(descriptorsFirst, descriptorsFirst, matrix);
+
+            for (DMatch match : matrix.toList())
+                if (match.distance <= 50)
+                    similarity++;
+        }
+
+        return similarity;
     }
 
 
 
-
-    /**
-     * Stop the acquisition from the camera and release all the resources
-     */
     private void stopAcquisition()
     {
         if (this.timer!=null && !this.timer.isShutdown())
         {
             try
             {
-                // stop the timer
                 this.timer.shutdown();
                 this.timer.awaitTermination(33, TimeUnit.MILLISECONDS);
             }
             catch (InterruptedException e)
             {
-                // log any exception
-                System.err.println("Exception in stopping the frame capture, trying to release the camera now... " + e);
+                System.err.println("Error in stopping " + e);
             }
         }
 
@@ -264,25 +312,53 @@ public class FaceDetectionController
         }
     }
 
-    /**
-     * Update the {@link ImageView} in the JavaFX main thread
-     *
-     * @param view
-     *            the {@link ImageView} to update
-     * @param image
-     *            the {@link Image} to show
-     */
     private void updateImageView(ImageView view, Image image)
     {
         UtilsFace.onFXThread(view.imageProperty(), image);
     }
 
-    /**
-     * On application close, stop the acquisition from the camera
-     */
     protected void setClosed()
     {
         this.stopAcquisition();
+    }
+
+    private static void savePhoto(Mat img, String format)
+    {
+        File path;
+        String type = ".png";
+        String fileName = FOLDER + File.separator + format;
+        File file = new File(fileName + type);
+
+        if (!file.exists())
+            path = file;
+        else
+        {
+            int index = 0;
+
+            do
+                path = new File(fileName + " (" + index++ + ")" + type);
+            while (path.exists());
+        }
+
+        Imgcodecs.imwrite(path.toString(), img);
+    }
+
+
+
+    boolean isSaveable()
+    {
+        boolean previous = saveable;
+        saveable = false;
+        return previous;
+    }
+
+    public void saveImage(ActionEvent actionEvent) {
+        saveable = true;
+    }
+
+    String getFileName()
+    {
+        return textField.getText();
     }
 
 }
