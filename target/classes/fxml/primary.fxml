@@ -36,6 +36,7 @@
                                     <Font name="Times Roman" size="13.0" />
                                  </font>
                               </Label>
+                              <ComboBox fx:id="combo" layoutX="264.0" layoutY="23.0" prefHeight="27.0" prefWidth="101.0" promptText="Classifier" />
                            </children>
                         </Pane>
                         <TextArea fx:id="txtArea" editable="false" prefHeight="440.0" prefWidth="500.0">

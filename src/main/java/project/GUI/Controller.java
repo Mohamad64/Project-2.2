@@ -31,12 +31,16 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.pmml4s.model.Model;
 
 public class Controller implements Initializable {
 
+
+    public Pane CFG;
 
     public class Key {
 
@@ -76,6 +80,15 @@ public class Controller implements Initializable {
     /*
             Primary fxml components
          */
+    @FXML
+    public ComboBox combo;
+    private ObservableList<String> observableList = FXCollections.observableArrayList("None","SVM-non_linear","SVC_Linear",
+            "Naive Bayes","Logistic Regression");
+    private final Model model1 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/svc_tfidf.pmml")));
+    private final Model model2 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/nonlinear_svc.pmml")));
+    private final Model model3 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/log_reg.pmml")));
+    private final Model model4 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/svc_tfidf.pmml")));
+
     @FXML
     public TextArea txtArea;
     @FXML
@@ -174,6 +187,8 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        combo.setItems(observableList);
+
         checkBoxes[0] = WhatTime;
         checkBoxes[1] = When;
         checkBoxes[2] = What;
@@ -209,6 +224,24 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+    public Object getRegressionValue(String input) {
+        Object[] valuesMap = {input};
+        Object[] result = null;
+        if(combo.getValue().equals("SVC_Linear")){
+            result= model1.predict(valuesMap);
+            System.out.println("1");
+        }
+        if(combo.getValue().equals("SVM-non_linear")) {
+            result = model2.predict(valuesMap);
+            System.out.println("2");
+        }
+
+        if(combo.getValue().equals("Logistic Regression")){
+            result = model3.predict(valuesMap);
+            System.out.println("3");
+        }
+        return result[0];
+    }
 
     public void setTxtFieldAction() {
 
@@ -219,27 +252,40 @@ public class Controller implements Initializable {
             message += txtField.getText();
             String response = "";
             System.out.println(CFGCheck);
-            if(!CFGCheck){
-                for(int i=0;i<responsesArray.length;i++){
-                    if(responsesArray[i]==1 && !subject.equals("")){
-                        for(Key key : hashMap.keySet()){
-                            if(key.equals(new Key(subject,i))){
-                                response = hashMap.get(key);
-                                break;
-                            }
-                        }
-                        responsesArray[i]=0; subject = "";
-                        break;
-                    }
-                    else{
-                        response = TextEditor.inquire(txtField.getText());
-                    }
-                }
+            if(!combo.getValue().equals("None")){
+                String input = txtField.getText();
+                String result = getRegressionValue(input).toString();
+                if(result.equals("0"))
+                    response = "<Location>";
+                if(result.equals("1"))
+                    response = "<Schedule>";
+                if(result.equals("2"))
+                    response = "<Travel>";
+                if (result.equals("3"))
+                    response = "<Sport>";
             }
-            else{
-                System.out.println("im here");
-                response = CFGParser.getRespond(txtField.getText());
-                CFGCheck = false;
+            else {
+                if (!CFGCheck) {
+                    for (int i = 0; i < responsesArray.length; i++) {
+                        if (responsesArray[i] == 1 && !subject.equals("")) {
+                            for (Key key : hashMap.keySet()) {
+                                if (key.equals(new Key(subject, i))) {
+                                    response = hashMap.get(key);
+                                    break;
+                                }
+                            }
+                            responsesArray[i] = 0;
+                            subject = "";
+                            break;
+                        } else {
+                            response = TextEditor.inquire(txtField.getText());
+                        }
+                    }
+                } else {
+                    System.out.println("im here");
+                    response = CFGParser.getRespond(txtField.getText());
+                    CFGCheck = false;
+                }
             }
             txtField.clear();
             txtArea.appendText(message + "\n\n");

@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.6.19"/>
+		<Timestamp>2021-06-20T12:54:58Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension>PMMLPipeline(steps=[('tfidf', TfidfVectorizer(ngram_range=(1, 2), norm=None, stop_words='english')),
+       ('clf', LinearSVC())])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="y" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+			<Value value="2"/>
+			<Value value="3"/>
+		</DataField>
+		<DataField name="x" optype="categorical" dataType="string"/>
+	</DataDictionary>
+	<TransformationDictionary>
+		<DefineFunction name="tf-idf(lowercase(x))" optype="continuous" dataType="double">
+			<ParameterField name="document"/>
+			<ParameterField name="term"/>
+			<ParameterField name="weight"/>
+			<Apply function="*">
+				<TextIndex textField="document" x-wordRE="(?u)\b\w\w+\b">
+					<TextIndexNormalization recursive="true">
+						<InlineTable>
+							<row>
+								<string>(?u)\b(about|above|across|after|afterwards|again|against|all|almost|alone|along|already|also|although|always|am|among|amongst|amoungst|amount|an|and|another|any|anyhow|anyone|anything|anyway|anywhere|are|around|as|at|back|be|became|because|become|becomes|becoming|been|before|beforehand|behind|being|below|beside|besides|between|beyond|bill|both|bottom|but|by|call|can|cannot|cant|co|con|could|couldnt|cry|de|describe|detail|do|done|down|due|during|each|eg|eight|either|eleven|else|elsewhere|empty|enough|etc|even|ever|every|everyone|everything|everywhere|except|few|fifteen|fifty|fill|find|fire|first|five|for|former|formerly|forty|found|four|from|front|full|further|get|give|go|had|has|hasnt|have|he|hence|her|here|hereafter|hereby|herein|hereupon|hers|herself|him|himself|his|how|however|hundred|ie|if|in|inc|indeed|interest|into|is|it|its|itself|keep|last|latter|latterly|least|less|ltd|made|many|may|me|meanwhile|might|mill|mine|more|moreover|most|mostly|move|much|must|my|myself|name|namely|neither|never|nevertheless|next|nine|no|nobody|none|noone|nor|not|nothing|now|nowhere|of|off|often|on|once|one|only|onto|or|other|others|otherwise|our|ours|ourselves|out|over|own|part|per|perhaps|please|put|rather|re|same|see|seem|seemed|seeming|seems|serious|several|she|should|show|side|since|sincere|six|sixty|so|some|somehow|someone|something|sometime|sometimes|somewhere|still|such|system|take|ten|than|that|the|their|them|themselves|then|thence|there|thereafter|thereby|therefore|therein|thereupon|these|they|thick|thin|third|this|those|though|three|through|throughout|thru|thus|to|together|too|top|toward|towards|twelve|twenty|two|un|under|until|up|upon|us|very|via|was|we|well|were|what|whatever|when|whence|whenever|where|whereafter|whereas|whereby|wherein|whereupon|wherever|whether|which|while|whither|who|whoever|whole|whom|whose|why|will|with|within|without|would|yet|you|your|yours|yourself|yourselves)\b</string>
+								<stem> </stem>
+								<regex>true</regex>
+							</row>
+						</InlineTable>
+					</TextIndexNormalization>
+					<FieldRef field="term"/>
+				</TextIndex>
+				<FieldRef field="weight"/>
+			</Apply>
+		</DefineFunction>
+	</TransformationDictionary>
+	<MiningModel functionName="classification" algorithmName="sklearn.svm._classes.LinearSVC">
+		<MiningSchema>
+			<MiningField name="y" usageType="target"/>
+			<MiningField name="x"/>
+		</MiningSchema>
+		<LocalTransformations>
+			<DerivedField name="lowercase(x)" optype="categorical" dataType="string">
+				<Apply function="lowercase">
+					<FieldRef field="x"/>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">12</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">15</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">18</Constant>
+					<Constant dataType="double">3.6288008294480694</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), amsterdam)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">amsterdam</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">cafeteria</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">deepspace</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), deepspace located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">deepspace located</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does</Constant>
+					<Constant dataType="double">2.3966571481554375</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does cafeteria</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does deepspace</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does play)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does play</Constant>
+					<Constant dataType="double">2.8021222562636017</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does spacebox</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), la)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">la</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures</Constant>
+					<Constant dataType="double">2.3966571481554375</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">located</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), munich)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">munich</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place cafeteria</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place deepspace</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place spacebox</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play</Constant>
+					<Constant dataType="double">2.2788741124990537</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), shanghai)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">shanghai</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">spacebox</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), spacebox located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">spacebox located</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sydney)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sydney</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), thursday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">thursday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+		</LocalTransformations>
+		<Segmentation multipleModelMethod="modelChain" missingPredictionTreatment="returnMissing">
+			<Segment id="1">
+				<True/>
+				<RegressionModel functionName="regression" normalizationMethod="logit">
+					<MiningSchema>
+						<MiningField name="tf-idf(lowercase(x), 12)"/>
+						<MiningField name="tf-idf(lowercase(x), 15)"/>
+						<MiningField name="tf-idf(lowercase(x), 18)"/>
+						<MiningField name="tf-idf(lowercase(x), amsterdam)"/>
+						<MiningField name="tf-idf(lowercase(x), basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace located)"/>
+						<MiningField name="tf-idf(lowercase(x), does)"/>
+						<MiningField name="tf-idf(lowercase(x), does cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), does deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), does play)"/>
+						<MiningField name="tf-idf(lowercase(x), does spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), field)"/>
+						<MiningField name="tf-idf(lowercase(x), field hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), football)"/>
+						<MiningField name="tf-idf(lowercase(x), friday)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), la)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures friday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures monday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), located)"/>
+						<MiningField name="tf-idf(lowercase(x), monday)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), munich)"/>
+						<MiningField name="tf-idf(lowercase(x), new)"/>
+						<MiningField name="tf-idf(lowercase(x), new york)"/>
+						<MiningField name="tf-idf(lowercase(x), place)"/>
+						<MiningField name="tf-idf(lowercase(x), place cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), place deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), place spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), play)"/>
+						<MiningField name="tf-idf(lowercase(x), play basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), play field)"/>
+						<MiningField name="tf-idf(lowercase(x), play football)"/>
+						<MiningField name="tf-idf(lowercase(x), play poker)"/>
+						<MiningField name="tf-idf(lowercase(x), play volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), play waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), poker)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), shanghai)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox located)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), sydney)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), york)"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="decisionFunction(0)" optype="continuous" dataType="double" isFinalResult="false"/>
+					</Output>
+					<RegressionTable intercept="-0.14378623629856974">
+						<NumericPredictor name="tf-idf(lowercase(x), 12)" coefficient="-9.072835400629502E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 15)" coefficient="-9.428094364088723E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 18)" coefficient="-0.0010592318605279734"/>
+						<NumericPredictor name="tf-idf(lowercase(x), amsterdam)" coefficient="-0.2247642777798103"/>
+						<NumericPredictor name="tf-idf(lowercase(x), basketball)" coefficient="-0.05567523314348933"/>
+						<NumericPredictor name="tf-idf(lowercase(x), cafeteria)" coefficient="0.33500263337075903"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace)" coefficient="0.3350053876449874"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace located)" coefficient="6.869218663324199E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does)" coefficient="0.0013758460207773883"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does cafeteria)" coefficient="0.002133821429097843"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does deepspace)" coefficient="0.0019886353820826154"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does play)" coefficient="-0.003113931628242787"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does spacebox)" coefficient="0.0030642808723349174"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field)" coefficient="-0.02928405454734188"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field hockey)" coefficient="-0.02928405454734188"/>
+						<NumericPredictor name="tf-idf(lowercase(x), football)" coefficient="-0.05831299102816925"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday)" coefficient="-0.0464872484283918"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 15)" coefficient="-3.4941347781074585E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 18)" coefficient="-3.282346605305735E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), hockey)" coefficient="-0.02928405454734188"/>
+						<NumericPredictor name="tf-idf(lowercase(x), la)" coefficient="-0.2247643081723106"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures)" coefficient="-0.19248452554362935"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures friday)" coefficient="-0.0464872484283918"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures monday)" coefficient="-0.04940155757618628"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures saturday)" coefficient="-0.049032579939040394"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures sunday)" coefficient="-0.046487230010632784"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures thursday)" coefficient="-0.043570799215394015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures tuesday)" coefficient="-0.04940161186921637"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures wednesday)" coefficient="-0.04648737383255772"/>
+						<NumericPredictor name="tf-idf(lowercase(x), located)" coefficient="0.0019852771954630465"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday)" coefficient="-0.04940155757618628"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 15)" coefficient="1.3552527156068805E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 18)" coefficient="1.3552527156068805E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), munich)" coefficient="-0.21422501254077916"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new)" coefficient="-0.07178753141611827"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new york)" coefficient="-0.07178753141611827"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place)" coefficient="0.0022250078332685212"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place cafeteria)" coefficient="6.018892865197628E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place deepspace)" coefficient="5.999992855687375E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place spacebox)" coefficient="0.0013913390557326844"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play)" coefficient="-0.18042726303100862"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play basketball)" coefficient="-0.05567523314348933"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play field)" coefficient="-0.02928405454734188"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play football)" coefficient="-0.05831299102816925"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play poker)" coefficient="-0.052447387523283436"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play volleyball)" coefficient="-0.05567510854098356"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play waterpolo)" coefficient="-0.05831318197254676"/>
+						<NumericPredictor name="tf-idf(lowercase(x), poker)" coefficient="-0.052447387523283436"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday)" coefficient="-0.049032579939040394"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 12)" coefficient="-4.901461946301469E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 15)" coefficient="-4.617854917329863E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 18)" coefficient="-4.407145510772916E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), shanghai)" coefficient="-0.1889283301690375"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox)" coefficient="0.3338377203283881"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox located)" coefficient="0.0014781906474427683"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday)" coefficient="-0.046487230010632784"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 15)" coefficient="-3.494737852573072E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 18)" coefficient="-3.281634311200816E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sydney)" coefficient="-0.20250036388071338"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday)" coefficient="-0.043570799215394015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday 12)" coefficient="-2.4971854628415865E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday)" coefficient="-0.04940161186921637"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 12)" coefficient="2.371692252312041E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 18)" coefficient="-6.776263578034403E-21"/>
+						<NumericPredictor name="tf-idf(lowercase(x), volleyball)" coefficient="-0.05567510854098356"/>
+						<NumericPredictor name="tf-idf(lowercase(x), waterpolo)" coefficient="-0.05831318197254676"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday)" coefficient="-0.04648737383255772"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 12)" coefficient="-3.7707283434116907E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 18)" coefficient="-3.277955148156773E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), york)" coefficient="-0.07178753141611827"/>
+					</RegressionTable>
+				</RegressionModel>
+			</Segment>
+			<Segment id="2">
+				<True/>
+				<RegressionModel functionName="regression" normalizationMethod="logit">
+					<MiningSchema>
+						<MiningField name="tf-idf(lowercase(x), 12)"/>
+						<MiningField name="tf-idf(lowercase(x), 15)"/>
+						<MiningField name="tf-idf(lowercase(x), 18)"/>
+						<MiningField name="tf-idf(lowercase(x), amsterdam)"/>
+						<MiningField name="tf-idf(lowercase(x), basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace located)"/>
+						<MiningField name="tf-idf(lowercase(x), does)"/>
+						<MiningField name="tf-idf(lowercase(x), does cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), does deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), does play)"/>
+						<MiningField name="tf-idf(lowercase(x), does spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), field)"/>
+						<MiningField name="tf-idf(lowercase(x), field hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), football)"/>
+						<MiningField name="tf-idf(lowercase(x), friday)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), la)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures friday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures monday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), located)"/>
+						<MiningField name="tf-idf(lowercase(x), monday)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), munich)"/>
+						<MiningField name="tf-idf(lowercase(x), new)"/>
+						<MiningField name="tf-idf(lowercase(x), new york)"/>
+						<MiningField name="tf-idf(lowercase(x), place)"/>
+						<MiningField name="tf-idf(lowercase(x), place cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), place deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), place spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), play)"/>
+						<MiningField name="tf-idf(lowercase(x), play basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), play field)"/>
+						<MiningField name="tf-idf(lowercase(x), play football)"/>
+						<MiningField name="tf-idf(lowercase(x), play poker)"/>
+						<MiningField name="tf-idf(lowercase(x), play volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), play waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), poker)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), shanghai)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox located)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), sydney)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), york)"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="decisionFunction(1)" optype="continuous" dataType="double" isFinalResult="false"/>
+					</Output>
+					<RegressionTable intercept="-0.33089073680030845">
+						<NumericPredictor name="tf-idf(lowercase(x), 12)" coefficient="0.0014103072575737752"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 15)" coefficient="0.0014655907158517751"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 18)" coefficient="0.0016466722421930348"/>
+						<NumericPredictor name="tf-idf(lowercase(x), amsterdam)" coefficient="-0.17564748714517378"/>
+						<NumericPredictor name="tf-idf(lowercase(x), basketball)" coefficient="-0.043512408739310185"/>
+						<NumericPredictor name="tf-idf(lowercase(x), cafeteria)" coefficient="-0.19597036005265722"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace)" coefficient="-0.19597246422656675"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace located)" coefficient="-4.024092654439178E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does)" coefficient="-0.0017238090812233815"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does cafeteria)" coefficient="-7.310173977696135E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does deepspace)" coefficient="-6.802374952294737E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does play)" coefficient="-2.465576617758974E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does spacebox)" coefficient="-0.0012764694059951016"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field)" coefficient="-0.02288652582636563"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field hockey)" coefficient="-0.02288652582636563"/>
+						<NumericPredictor name="tf-idf(lowercase(x), football)" coefficient="-0.04557401133489015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday)" coefficient="0.07225924719564013"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 15)" coefficient="5.431251495987083E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 18)" coefficient="5.104351974366113E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), hockey)" coefficient="-0.02288652582636563"/>
+						<NumericPredictor name="tf-idf(lowercase(x), la)" coefficient="-0.1756474673460694"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures)" coefficient="0.299196188134867"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures friday)" coefficient="0.07225924719564013"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures monday)" coefficient="0.07678968754506386"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures saturday)" coefficient="0.07621575636669495"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures sunday)" coefficient="0.07225928204962942"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures thursday)" coefficient="0.06772589907671529"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures tuesday)" coefficient="0.07678916298679082"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures wednesday)" coefficient="0.07225977086587035"/>
+						<NumericPredictor name="tf-idf(lowercase(x), located)" coefficient="-0.00116368197080012"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday)" coefficient="0.07678968754506386"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 15)" coefficient="-3.3034284942917713E-19"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 18)" coefficient="-5.421010862427522E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), munich)" coefficient="-0.16741137083861904"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new)" coefficient="-0.05610057046265204"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new york)" coefficient="-0.05610057046265204"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place)" coefficient="-0.001304335306363186"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place cafeteria)" coefficient="-3.529619711023468E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place deepspace)" coefficient="-3.5149149799755514E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place spacebox)" coefficient="-8.157381912749899E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play)" coefficient="-0.14098570722374615"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play basketball)" coefficient="-0.043512408739310185"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play field)" coefficient="-0.02288652582636563"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play football)" coefficient="-0.04557401133489015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play poker)" coefficient="-0.04094345132201617"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play volleyball)" coefficient="-0.04351235092291033"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play waterpolo)" coefficient="-0.04557373815098579"/>
+						<NumericPredictor name="tf-idf(lowercase(x), poker)" coefficient="-0.04094345132201617"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday)" coefficient="0.07621575636669495"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 12)" coefficient="7.617980070757398E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 15)" coefficient="7.179283538180137E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 18)" coefficient="6.850030564034498E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), shanghai)" coefficient="-0.14764286786683237"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox)" coefficient="-0.19528751583964493"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox located)" coefficient="-8.66684240889473E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday)" coefficient="0.07225928204962942"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 15)" coefficient="5.432042266054047E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 18)" coefficient="5.102403622472507E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sydney)" coefficient="-0.15824880238864192"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday)" coefficient="0.06772589907671529"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday 12)" coefficient="3.880715203046132E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday)" coefficient="0.07678916298679082"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 18)" coefficient="6.396792817664476E-18"/>
+						<NumericPredictor name="tf-idf(lowercase(x), volleyball)" coefficient="-0.04351235092291033"/>
+						<NumericPredictor name="tf-idf(lowercase(x), waterpolo)" coefficient="-0.04557373815098579"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday)" coefficient="0.07225977086587035"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 12)" coefficient="5.863299065147669E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 18)" coefficient="5.094706804340131E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), york)" coefficient="-0.05610057046265204"/>
+					</RegressionTable>
+				</RegressionModel>
+			</Segment>
+			<Segment id="3">
+				<True/>
+				<RegressionModel functionName="regression" normalizationMethod="logit">
+					<MiningSchema>
+						<MiningField name="tf-idf(lowercase(x), 12)"/>
+						<MiningField name="tf-idf(lowercase(x), 15)"/>
+						<MiningField name="tf-idf(lowercase(x), 18)"/>
+						<MiningField name="tf-idf(lowercase(x), amsterdam)"/>
+						<MiningField name="tf-idf(lowercase(x), basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace located)"/>
+						<MiningField name="tf-idf(lowercase(x), does)"/>
+						<MiningField name="tf-idf(lowercase(x), does cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), does deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), does play)"/>
+						<MiningField name="tf-idf(lowercase(x), does spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), field)"/>
+						<MiningField name="tf-idf(lowercase(x), field hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), football)"/>
+						<MiningField name="tf-idf(lowercase(x), friday)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), la)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures friday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures monday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), located)"/>
+						<MiningField name="tf-idf(lowercase(x), monday)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), munich)"/>
+						<MiningField name="tf-idf(lowercase(x), new)"/>
+						<MiningField name="tf-idf(lowercase(x), new york)"/>
+						<MiningField name="tf-idf(lowercase(x), place)"/>
+						<MiningField name="tf-idf(lowercase(x), place cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), place deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), place spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), play)"/>
+						<MiningField name="tf-idf(lowercase(x), play basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), play field)"/>
+						<MiningField name="tf-idf(lowercase(x), play football)"/>
+						<MiningField name="tf-idf(lowercase(x), play poker)"/>
+						<MiningField name="tf-idf(lowercase(x), play volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), play waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), poker)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), shanghai)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox located)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), sydney)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), york)"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="decisionFunction(2)" optype="continuous" dataType="double" isFinalResult="false"/>
+					</Output>
+					<RegressionTable intercept="-0.06609818149749265">
+						<NumericPredictor name="tf-idf(lowercase(x), 12)" coefficient="-9.895179674540195E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 15)" coefficient="-0.0010283421369771306"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 18)" coefficient="-0.0011554328352891606"/>
+						<NumericPredictor name="tf-idf(lowercase(x), amsterdam)" coefficient="0.2798608739214476"/>
+						<NumericPredictor name="tf-idf(lowercase(x), basketball)" coefficient="-0.06073197082045383"/>
+						<NumericPredictor name="tf-idf(lowercase(x), cafeteria)" coefficient="-0.27352344832271386"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace)" coefficient="-0.27352654154125505"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace located)" coefficient="-5.615988951555037E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does)" coefficient="-0.0024060139090828496"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does cafeteria)" coefficient="-0.0010201687861279129"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does deepspace)" coefficient="-9.495306919863983E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does play)" coefficient="-3.4421452599324817E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does spacebox)" coefficient="-0.0017815882759774622"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field)" coefficient="-0.03194197403319932"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field hockey)" coefficient="-0.03194197403319932"/>
+						<NumericPredictor name="tf-idf(lowercase(x), football)" coefficient="-0.06360943061376985"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday)" coefficient="-0.050705135215698076"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 15)" coefficient="-3.811288397919073E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 18)" coefficient="-3.5799498256084523E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), hockey)" coefficient="-0.03194197403319932"/>
+						<NumericPredictor name="tf-idf(lowercase(x), la)" coefficient="0.2798609230781591"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures)" coefficient="-0.20994910970315964"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures friday)" coefficient="-0.050705135215698076"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures monday)" coefficient="-0.05388395571799233"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures saturday)" coefficient="-0.05348147912740029"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures sunday)" coefficient="-0.050705093788156776"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures thursday)" coefficient="-0.04752405331210751"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures tuesday)" coefficient="-0.053883698011172106"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures wednesday)" coefficient="-0.050705476138448696"/>
+						<NumericPredictor name="tf-idf(lowercase(x), located)" coefficient="-0.0016241182767395372"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday)" coefficient="-0.05388395571799233"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 15)" coefficient="1.0842021724855044E-19"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 18)" coefficient="1.9481757786848908E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), munich)" coefficient="0.26673815964578346"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new)" coefficient="0.08938402394550922"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new york)" coefficient="0.08938402394550922"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place)" coefficient="-0.0018204605657873472"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place cafeteria)" coefficient="-4.927347489584727E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place deepspace)" coefficient="-4.905852835137344E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place spacebox)" coefficient="-0.0011384112099853928"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play)" coefficient="-0.1967785090174875"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play basketball)" coefficient="-0.06073197082045383"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play field)" coefficient="-0.03194197403319932"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play football)" coefficient="-0.06360943061376985"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play poker)" coefficient="-0.05714653149641346"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play volleyball)" coefficient="-0.06073198015368127"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play waterpolo)" coefficient="-0.06360921109602538"/>
+						<NumericPredictor name="tf-idf(lowercase(x), poker)" coefficient="-0.05714653149641346"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday)" coefficient="-0.05348147912740029"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 12)" coefficient="-5.344862110693107E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 15)" coefficient="-5.037080134939634E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 18)" coefficient="-4.8079216403479813E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), shanghai)" coefficient="0.2352405306009591"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox)" coefficient="-0.2725703095119317"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox located)" coefficient="-0.001209639304152782"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday)" coefficient="-0.050705093788156776"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 15)" coefficient="-3.8113339999191754E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 18)" coefficient="-3.580652050075236E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sydney)" coefficient="0.2521394368169405"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday)" coefficient="-0.04752405331210751"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday 12)" coefficient="-2.722284396816732E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday)" coefficient="-0.053883698011172106"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 12)" coefficient="-1.3552527156068805E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 18)" coefficient="2.710505431213761E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), volleyball)" coefficient="-0.06073198015368127"/>
+						<NumericPredictor name="tf-idf(lowercase(x), waterpolo)" coefficient="-0.06360921109602538"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday)" coefficient="-0.050705476138448696"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 12)" coefficient="-4.114599886380829E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 18)" coefficient="-3.574680326766601E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), york)" coefficient="0.08938402394550922"/>
+					</RegressionTable>
+				</RegressionModel>
+			</Segment>
+			<Segment id="4">
+				<True/>
+				<RegressionModel functionName="regression" normalizationMethod="logit">
+					<MiningSchema>
+						<MiningField name="tf-idf(lowercase(x), 12)"/>
+						<MiningField name="tf-idf(lowercase(x), 15)"/>
+						<MiningField name="tf-idf(lowercase(x), 18)"/>
+						<MiningField name="tf-idf(lowercase(x), amsterdam)"/>
+						<MiningField name="tf-idf(lowercase(x), basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), deepspace located)"/>
+						<MiningField name="tf-idf(lowercase(x), does)"/>
+						<MiningField name="tf-idf(lowercase(x), does cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), does deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), does play)"/>
+						<MiningField name="tf-idf(lowercase(x), does spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), field)"/>
+						<MiningField name="tf-idf(lowercase(x), field hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), football)"/>
+						<MiningField name="tf-idf(lowercase(x), friday)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), friday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), hockey)"/>
+						<MiningField name="tf-idf(lowercase(x), la)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures friday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures monday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), lectures wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), located)"/>
+						<MiningField name="tf-idf(lowercase(x), monday)"/>
+						<MiningField name="tf-idf(lowercase(x), monday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), munich)"/>
+						<MiningField name="tf-idf(lowercase(x), new)"/>
+						<MiningField name="tf-idf(lowercase(x), new york)"/>
+						<MiningField name="tf-idf(lowercase(x), place)"/>
+						<MiningField name="tf-idf(lowercase(x), place cafeteria)"/>
+						<MiningField name="tf-idf(lowercase(x), place deepspace)"/>
+						<MiningField name="tf-idf(lowercase(x), place spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), play)"/>
+						<MiningField name="tf-idf(lowercase(x), play basketball)"/>
+						<MiningField name="tf-idf(lowercase(x), play field)"/>
+						<MiningField name="tf-idf(lowercase(x), play football)"/>
+						<MiningField name="tf-idf(lowercase(x), play poker)"/>
+						<MiningField name="tf-idf(lowercase(x), play volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), play waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), poker)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), saturday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), shanghai)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox)"/>
+						<MiningField name="tf-idf(lowercase(x), spacebox located)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 15)"/>
+						<MiningField name="tf-idf(lowercase(x), sunday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), sydney)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday)"/>
+						<MiningField name="tf-idf(lowercase(x), thursday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday)"/>
+						<MiningField name="tf-idf(lowercase(x), tuesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), volleyball)"/>
+						<MiningField name="tf-idf(lowercase(x), waterpolo)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 12)"/>
+						<MiningField name="tf-idf(lowercase(x), wednesday 18)"/>
+						<MiningField name="tf-idf(lowercase(x), york)"/>
+					</MiningSchema>
+					<Output>
+						<OutputField name="decisionFunction(3)" optype="continuous" dataType="double" isFinalResult="false"/>
+					</Output>
+					<RegressionTable intercept="-0.3324018276989205">
+						<NumericPredictor name="tf-idf(lowercase(x), 12)" coefficient="-7.074225488492503E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 15)" coefficient="-7.350834640701179E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), 18)" coefficient="-8.259263309828357E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), amsterdam)" coefficient="-0.1752507930036612"/>
+						<NumericPredictor name="tf-idf(lowercase(x), basketball)" coefficient="0.08664183441649015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), cafeteria)" coefficient="-0.19554069548954045"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace)" coefficient="-0.19553647311076894"/>
+						<NumericPredictor name="tf-idf(lowercase(x), deepspace located)" coefficient="-4.0028048382227015E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does)" coefficient="-1.5034917971203362E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does cafeteria)" coefficient="-0.0016171326335962539"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does deepspace)" coefficient="-0.001503757655608668"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does play)" coefficient="0.0032893756615766925"/>
+						<NumericPredictor name="tf-idf(lowercase(x), does spacebox)" coefficient="-0.002155237658452288"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field)" coefficient="0.04557018218940743"/>
+						<NumericPredictor name="tf-idf(lowercase(x), field hockey)" coefficient="0.04557018218940743"/>
+						<NumericPredictor name="tf-idf(lowercase(x), football)" coefficient="0.09074688188054124"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday)" coefficient="-0.03624655424170439"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 15)" coefficient="-2.724708705477324E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), friday 18)" coefficient="-2.56001402071053E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), hockey)" coefficient="0.04557018218940743"/>
+						<NumericPredictor name="tf-idf(lowercase(x), la)" coefficient="-0.17525084283887885"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures)" coefficient="-0.1500820476779724"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures friday)" coefficient="-0.03624655424170439"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures monday)" coefficient="-0.03851882018522162"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures saturday)" coefficient="-0.03823107285905015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures sunday)" coefficient="-0.036246453310925415"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures thursday)" coefficient="-0.03397253247941782"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures tuesday)" coefficient="-0.03851904518439726"/>
+						<NumericPredictor name="tf-idf(lowercase(x), lectures wednesday)" coefficient="-0.036246815297446555"/>
+						<NumericPredictor name="tf-idf(lowercase(x), located)" coefficient="-0.0011569608734784264"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday)" coefficient="-0.03851882018522162"/>
+						<NumericPredictor name="tf-idf(lowercase(x), monday 18)" coefficient="1.3552527156068805E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), munich)" coefficient="-0.1670332810007335"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new)" coefficient="-0.055973551456227955"/>
+						<NumericPredictor name="tf-idf(lowercase(x), new york)" coefficient="-0.055973551456227955"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place)" coefficient="-0.0012964728422667354"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place cafeteria)" coefficient="-3.506346953781277E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place deepspace)" coefficient="-3.499038552141135E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), place spacebox)" coefficient="-8.104894750246933E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play)" coefficient="0.28076212390847877"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play basketball)" coefficient="0.08664183441649015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play field)" coefficient="0.04557018218940743"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play football)" coefficient="0.09074688188054124"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play poker)" coefficient="0.08158560078089136"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play volleyball)" coefficient="0.08664152974254137"/>
+						<NumericPredictor name="tf-idf(lowercase(x), play waterpolo)" coefficient="0.0907471150149212"/>
+						<NumericPredictor name="tf-idf(lowercase(x), poker)" coefficient="0.08158560078089136"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday)" coefficient="-0.03823107285905015"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 12)" coefficient="-3.822208890121455E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 15)" coefficient="-3.6006584829254045E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), saturday 18)" coefficient="-3.435872631082122E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), shanghai)" coefficient="-0.14730920330924754"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox)" coefficient="-0.1948565216191762"/>
+						<NumericPredictor name="tf-idf(lowercase(x), spacebox located)" coefficient="-8.614830980296624E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday)" coefficient="-0.036246453310925415"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 15)" coefficient="-2.7240898524679666E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sunday 18)" coefficient="-2.558960085927511E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), sydney)" coefficient="-0.15789183998475875"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday)" coefficient="-0.03397253247941782"/>
+						<NumericPredictor name="tf-idf(lowercase(x), thursday 12)" coefficient="-1.9453354793041495E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday)" coefficient="-0.03851904518439726"/>
+						<NumericPredictor name="tf-idf(lowercase(x), tuesday 12)" coefficient="-1.0164395367051604E-20"/>
+						<NumericPredictor name="tf-idf(lowercase(x), volleyball)" coefficient="0.08664152974254137"/>
+						<NumericPredictor name="tf-idf(lowercase(x), waterpolo)" coefficient="0.0907471150149212"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday)" coefficient="-0.036246815297446555"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 12)" coefficient="-2.9413849950142335E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), wednesday 18)" coefficient="-2.555743968651809E-4"/>
+						<NumericPredictor name="tf-idf(lowercase(x), york)" coefficient="-0.055973551456227955"/>
+					</RegressionTable>
+				</RegressionModel>
+			</Segment>
+			<Segment id="5">
+				<True/>
+				<RegressionModel functionName="classification" normalizationMethod="simplemax">
+					<MiningSchema>
+						<MiningField name="y" usageType="target"/>
+						<MiningField name="decisionFunction(0)"/>
+						<MiningField name="decisionFunction(1)"/>
+						<MiningField name="decisionFunction(2)"/>
+						<MiningField name="decisionFunction(3)"/>
+					</MiningSchema>
+					<RegressionTable intercept="0.0" targetCategory="0">
+						<NumericPredictor name="decisionFunction(0)" coefficient="1.0"/>
+					</RegressionTable>
+					<RegressionTable intercept="0.0" targetCategory="1">
+						<NumericPredictor name="decisionFunction(1)" coefficient="1.0"/>
+					</RegressionTable>
+					<RegressionTable intercept="0.0" targetCategory="2">
+						<NumericPredictor name="decisionFunction(2)" coefficient="1.0"/>
+					</RegressionTable>
+					<RegressionTable intercept="0.0" targetCategory="3">
+						<NumericPredictor name="decisionFunction(3)" coefficient="1.0"/>
+					</RegressionTable>
+				</RegressionModel>
+			</Segment>
+		</Segmentation>
+	</MiningModel>
+</PMML>

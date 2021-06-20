@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.6.19"/>
+		<Timestamp>2021-06-20T14:03:18Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension>PMMLPipeline(steps=[('tfidf', TfidfVectorizer(ngram_range=(1, 2), norm=None, stop_words='english')),
+       ('clf', GridSearchCV(estimator=SVC(),
+             param_grid={'C': [0.1, 1, 5, 10, 20, 30, 40, 50, 60, 70, 100, 200],
+                         'gamma': [1, 0.1, 0.01, 0.001],
+                         'kernel': ['rbf', 'poly', 'sigmoid']}))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="y" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+			<Value value="2"/>
+			<Value value="3"/>
+		</DataField>
+		<DataField name="x" optype="categorical" dataType="string"/>
+	</DataDictionary>
+	<TransformationDictionary>
+		<DefineFunction name="tf-idf(lowercase(x))" optype="continuous" dataType="double">
+			<ParameterField name="document"/>
+			<ParameterField name="term"/>
+			<ParameterField name="weight"/>
+			<Apply function="*">
+				<TextIndex textField="document" x-wordRE="(?u)\b\w\w+\b">
+					<TextIndexNormalization recursive="true">
+						<InlineTable>
+							<row>
+								<string>(?u)\b(about|above|across|after|afterwards|again|against|all|almost|alone|along|already|also|although|always|am|among|amongst|amoungst|amount|an|and|another|any|anyhow|anyone|anything|anyway|anywhere|are|around|as|at|back|be|became|because|become|becomes|becoming|been|before|beforehand|behind|being|below|beside|besides|between|beyond|bill|both|bottom|but|by|call|can|cannot|cant|co|con|could|couldnt|cry|de|describe|detail|do|done|down|due|during|each|eg|eight|either|eleven|else|elsewhere|empty|enough|etc|even|ever|every|everyone|everything|everywhere|except|few|fifteen|fifty|fill|find|fire|first|five|for|former|formerly|forty|found|four|from|front|full|further|get|give|go|had|has|hasnt|have|he|hence|her|here|hereafter|hereby|herein|hereupon|hers|herself|him|himself|his|how|however|hundred|ie|if|in|inc|indeed|interest|into|is|it|its|itself|keep|last|latter|latterly|least|less|ltd|made|many|may|me|meanwhile|might|mill|mine|more|moreover|most|mostly|move|much|must|my|myself|name|namely|neither|never|nevertheless|next|nine|no|nobody|none|noone|nor|not|nothing|now|nowhere|of|off|often|on|once|one|only|onto|or|other|others|otherwise|our|ours|ourselves|out|over|own|part|per|perhaps|please|put|rather|re|same|see|seem|seemed|seeming|seems|serious|several|she|should|show|side|since|sincere|six|sixty|so|some|somehow|someone|something|sometime|sometimes|somewhere|still|such|system|take|ten|than|that|the|their|them|themselves|then|thence|there|thereafter|thereby|therefore|therein|thereupon|these|they|thick|thin|third|this|those|though|three|through|throughout|thru|thus|to|together|too|top|toward|towards|twelve|twenty|two|un|under|until|up|upon|us|very|via|was|we|well|were|what|whatever|when|whence|whenever|where|whereafter|whereas|whereby|wherein|whereupon|wherever|whether|which|while|whither|who|whoever|whole|whom|whose|why|will|with|within|without|would|yet|you|your|yours|yourself|yourselves)\b</string>
+								<stem> </stem>
+								<regex>true</regex>
+							</row>
+						</InlineTable>
+					</TextIndexNormalization>
+					<FieldRef field="term"/>
+				</TextIndex>
+				<FieldRef field="weight"/>
+			</Apply>
+		</DefineFunction>
+	</TransformationDictionary>
+	<SupportVectorMachineModel functionName="classification" algorithmName="sklearn.svm._classes.SVC" classificationMethod="OneAgainstOne">
+		<MiningSchema>
+			<MiningField name="y" usageType="target"/>
+			<MiningField name="x"/>
+		</MiningSchema>
+		<LocalTransformations>
+			<DerivedField name="lowercase(x)" optype="categorical" dataType="string">
+				<Apply function="lowercase">
+					<FieldRef field="x"/>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), amsterdam)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">amsterdam</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">cafeteria</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">deepspace</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), la)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">la</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures</Constant>
+					<Constant dataType="double">2.3966571481554375</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), munich)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">munich</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play</Constant>
+					<Constant dataType="double">2.2788741124990537</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), shanghai)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">shanghai</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">spacebox</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sydney)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sydney</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+		</LocalTransformations>
+		<PolynomialKernelType coef0="0.0" degree="3"/>
+		<VectorDictionary>
+			<VectorFields>
+				<FieldRef field="tf-idf(lowercase(x), amsterdam)"/>
+				<FieldRef field="tf-idf(lowercase(x), basketball)"/>
+				<FieldRef field="tf-idf(lowercase(x), cafeteria)"/>
+				<FieldRef field="tf-idf(lowercase(x), deepspace)"/>
+				<FieldRef field="tf-idf(lowercase(x), field)"/>
+				<FieldRef field="tf-idf(lowercase(x), field hockey)"/>
+				<FieldRef field="tf-idf(lowercase(x), football)"/>
+				<FieldRef field="tf-idf(lowercase(x), friday)"/>
+				<FieldRef field="tf-idf(lowercase(x), hockey)"/>
+				<FieldRef field="tf-idf(lowercase(x), la)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures friday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures monday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures saturday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures sunday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures thursday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures tuesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures wednesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), monday)"/>
+				<FieldRef field="tf-idf(lowercase(x), munich)"/>
+				<FieldRef field="tf-idf(lowercase(x), new)"/>
+				<FieldRef field="tf-idf(lowercase(x), new york)"/>
+				<FieldRef field="tf-idf(lowercase(x), play)"/>
+				<FieldRef field="tf-idf(lowercase(x), play basketball)"/>
+				<FieldRef field="tf-idf(lowercase(x), play field)"/>
+				<FieldRef field="tf-idf(lowercase(x), play football)"/>
+				<FieldRef field="tf-idf(lowercase(x), play poker)"/>
+				<FieldRef field="tf-idf(lowercase(x), play volleyball)"/>
+				<FieldRef field="tf-idf(lowercase(x), play waterpolo)"/>
+				<FieldRef field="tf-idf(lowercase(x), poker)"/>
+				<FieldRef field="tf-idf(lowercase(x), saturday)"/>
+				<FieldRef field="tf-idf(lowercase(x), shanghai)"/>
+				<FieldRef field="tf-idf(lowercase(x), spacebox)"/>
+				<FieldRef field="tf-idf(lowercase(x), sunday)"/>
+				<FieldRef field="tf-idf(lowercase(x), sydney)"/>
+				<FieldRef field="tf-idf(lowercase(x), thursday)"/>
+				<FieldRef field="tf-idf(lowercase(x), tuesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), volleyball)"/>
+				<FieldRef field="tf-idf(lowercase(x), waterpolo)"/>
+				<FieldRef field="tf-idf(lowercase(x), wednesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), york)"/>
+			</VectorFields>
+			<VectorInstance id="75">
+				<REAL-SparseArray n="41">
+					<Indices>33</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="77">
+				<REAL-SparseArray n="41">
+					<Indices>4</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="92">
+				<REAL-SparseArray n="41">
+					<Indices>3</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="33">
+				<REAL-SparseArray n="41">
+					<Indices>11 16 36</Indices>
+					<REAL-Entries>2.3966571481554375 4.476098689835274 4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="61">
+				<REAL-SparseArray n="41">
+					<Indices>11 18 40</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="63">
+				<REAL-SparseArray n="41">
+					<Indices>8 11 12</Indices>
+					<REAL-Entries>4.188416617383492 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="65">
+				<REAL-SparseArray n="41">
+					<Indices>11 15 34</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="67">
+				<REAL-SparseArray n="41">
+					<Indices>11 13 19</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="72">
+				<REAL-SparseArray n="41">
+					<Indices>11 17 37</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="94">
+				<REAL-SparseArray n="41">
+					<Indices>11 14 31</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="59">
+				<REAL-SparseArray n="41">
+					<Indices>21 22 41</Indices>
+					<REAL-Entries>3.9652730660692823 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="82">
+				<REAL-SparseArray n="41">
+					<Indices>1</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="85">
+				<REAL-SparseArray n="41">
+					<Indices>20</Indices>
+					<REAL-Entries>3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="86">
+				<REAL-SparseArray n="41">
+					<Indices>32</Indices>
+					<REAL-Entries>4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="89">
+				<REAL-SparseArray n="41">
+					<Indices>10</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="90">
+				<REAL-SparseArray n="41">
+					<Indices>35</Indices>
+					<REAL-Entries>4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="80">
+				<REAL-SparseArray n="41">
+					<Indices>23 27 30</Indices>
+					<REAL-Entries>2.2788741124990537 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="81">
+				<REAL-SparseArray n="41">
+					<Indices>5 6 9 23 25</Indices>
+					<REAL-Entries>3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="87">
+				<REAL-SparseArray n="41">
+					<Indices>2 23 24</Indices>
+					<REAL-Entries>3.9652730660692823 2.2788741124990537 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="91">
+				<REAL-SparseArray n="41">
+					<Indices>23 29 39</Indices>
+					<REAL-Entries>2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="93">
+				<REAL-SparseArray n="41">
+					<Indices>23 28 38</Indices>
+					<REAL-Entries>2.2788741124990537 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="95">
+				<REAL-SparseArray n="41">
+					<Indices>7 23 26</Indices>
+					<REAL-Entries>3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+		</VectorDictionary>
+		<SupportVectorMachine targetCategory="1" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.8956158521901681">
+				<Coefficient value="6.998448714641756E-5"/>
+				<Coefficient value="6.998253381025348E-5"/>
+				<Coefficient value="7.000106087265845E-5"/>
+				<Coefficient value="-1.9331344944262903E-5"/>
+				<Coefficient value="-2.7339322613192014E-5"/>
+				<Coefficient value="-2.7348390885730427E-5"/>
+				<Coefficient value="-2.7336293404365477E-5"/>
+				<Coefficient value="-3.620374063511976E-5"/>
+				<Coefficient value="-3.6207752468849255E-5"/>
+				<Coefficient value="-3.620123687780964E-5"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="2" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.23239388033765518">
+				<Coefficient value="5.170952058806333E-4"/>
+				<Coefficient value="5.170706615625813E-4"/>
+				<Coefficient value="5.170583421492572E-4"/>
+				<Coefficient value="-1.1742590285102202E-5"/>
+				<Coefficient value="-4.205113361941647E-4"/>
+				<Coefficient value="-3.170048512421601E-4"/>
+				<Coefficient value="-1.5323727400101155E-4"/>
+				<Coefficient value="-4.2045534035112676E-4"/>
+				<Coefficient value="-2.2827281751890642E-4"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.8960698006616199">
+				<Coefficient value="6.978935517844428E-5"/>
+				<Coefficient value="6.97893551846751E-5"/>
+				<Coefficient value="6.973137086825723E-5"/>
+				<Coefficient value="-2.863400869858659E-5"/>
+				<Coefficient value="-7.671997317075815E-6"/>
+				<Coefficient value="-3.804957648330038E-5"/>
+				<Coefficient value="-4.844243359119319E-5"/>
+				<Coefficient value="-3.806822513697953E-5"/>
+				<Coefficient value="-4.844384000424109E-5"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="2" alternateTargetCategory="1">
+			<SupportVectors>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="-0.8383762574391613">
+				<Coefficient value="1.8755361751999923E-5"/>
+				<Coefficient value="2.6514100179160896E-5"/>
+				<Coefficient value="2.6514778152441975E-5"/>
+				<Coefficient value="2.6521192960780555E-5"/>
+				<Coefficient value="3.512423491582399E-5"/>
+				<Coefficient value="3.511406115022647E-5"/>
+				<Coefficient value="3.511244098641285E-5"/>
+				<Coefficient value="-1.537217610076448E-6"/>
+				<Coefficient value="-5.522893249325576E-5"/>
+				<Coefficient value="-4.159839782321905E-5"/>
+				<Coefficient value="-2.0101009892328865E-5"/>
+				<Coefficient value="-5.522690819803641E-5"/>
+				<Coefficient value="-2.9963704079930108E-5"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="1">
+			<SupportVectors>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.001651374744341952">
+				<Coefficient value="1.0184865826211618E-5"/>
+				<Coefficient value="1.4392381708800729E-5"/>
+				<Coefficient value="1.4406763072217605E-5"/>
+				<Coefficient value="1.4395328881805106E-5"/>
+				<Coefficient value="1.906645252831737E-5"/>
+				<Coefficient value="1.908008177484657E-5"/>
+				<Coefficient value="1.9067061760259174E-5"/>
+				<Coefficient value="-1.511781578566138E-5"/>
+				<Coefficient value="-4.05258999289857E-6"/>
+				<Coefficient value="-2.0109437884693725E-5"/>
+				<Coefficient value="-2.5603661785385168E-5"/>
+				<Coefficient value="-2.010360010828737E-5"/>
+				<Coefficient value="-2.5605829995531962E-5"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="2">
+			<SupportVectors>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.8384969306947453">
+				<Coefficient value="1.5440417612636925E-6"/>
+				<Coefficient value="5.500917808665789E-5"/>
+				<Coefficient value="4.1470313322962425E-5"/>
+				<Coefficient value="2.004418138131314E-5"/>
+				<Coefficient value="5.500492977703805E-5"/>
+				<Coefficient value="2.988670986185727E-5"/>
+				<Coefficient value="-2.7750938276280036E-5"/>
+				<Coefficient value="-7.4423295930884836E-6"/>
+				<Coefficient value="-3.68920927583676E-5"/>
+				<Coefficient value="-4.6991894347407545E-5"/>
+				<Coefficient value="-3.689351774636388E-5"/>
+				<Coefficient value="-4.698858146958492E-5"/>
+			</Coefficients>
+		</SupportVectorMachine>
+	</SupportVectorMachineModel>
+</PMML>

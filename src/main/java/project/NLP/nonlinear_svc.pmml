@@ -1,0 +1,1731 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SkLearn" version="1.6.19"/>
+		<Timestamp>2021-06-20T13:55:54Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension>PMMLPipeline(steps=[('tfidf', TfidfVectorizer(ngram_range=(1, 2), norm=None, stop_words='english')),
+       ('clf', GridSearchCV(estimator=SVC(),
+             param_grid={'C': [0.1, 1, 5, 10, 20, 30, 40, 50, 60, 70, 100, 200],
+                         'gamma': [1, 0.1, 0.01, 0.001],
+                         'kernel': ['rbf', 'poly', 'sigmoid']}))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="y" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+			<Value value="2"/>
+			<Value value="3"/>
+		</DataField>
+		<DataField name="x" optype="categorical" dataType="string"/>
+	</DataDictionary>
+	<TransformationDictionary>
+		<DefineFunction name="tf-idf(lowercase(x))" optype="continuous" dataType="double">
+			<ParameterField name="document"/>
+			<ParameterField name="term"/>
+			<ParameterField name="weight"/>
+			<Apply function="*">
+				<TextIndex textField="document" x-wordRE="(?u)\b\w\w+\b">
+					<TextIndexNormalization recursive="true">
+						<InlineTable>
+							<row>
+								<string>(?u)\b(about|above|across|after|afterwards|again|against|all|almost|alone|along|already|also|although|always|am|among|amongst|amoungst|amount|an|and|another|any|anyhow|anyone|anything|anyway|anywhere|are|around|as|at|back|be|became|because|become|becomes|becoming|been|before|beforehand|behind|being|below|beside|besides|between|beyond|bill|both|bottom|but|by|call|can|cannot|cant|co|con|could|couldnt|cry|de|describe|detail|do|done|down|due|during|each|eg|eight|either|eleven|else|elsewhere|empty|enough|etc|even|ever|every|everyone|everything|everywhere|except|few|fifteen|fifty|fill|find|fire|first|five|for|former|formerly|forty|found|four|from|front|full|further|get|give|go|had|has|hasnt|have|he|hence|her|here|hereafter|hereby|herein|hereupon|hers|herself|him|himself|his|how|however|hundred|ie|if|in|inc|indeed|interest|into|is|it|its|itself|keep|last|latter|latterly|least|less|ltd|made|many|may|me|meanwhile|might|mill|mine|more|moreover|most|mostly|move|much|must|my|myself|name|namely|neither|never|nevertheless|next|nine|no|nobody|none|noone|nor|not|nothing|now|nowhere|of|off|often|on|once|one|only|onto|or|other|others|otherwise|our|ours|ourselves|out|over|own|part|per|perhaps|please|put|rather|re|same|see|seem|seemed|seeming|seems|serious|several|she|should|show|side|since|sincere|six|sixty|so|some|somehow|someone|something|sometime|sometimes|somewhere|still|such|system|take|ten|than|that|the|their|them|themselves|then|thence|there|thereafter|thereby|therefore|therein|thereupon|these|they|thick|thin|third|this|those|though|three|through|throughout|thru|thus|to|together|too|top|toward|towards|twelve|twenty|two|un|under|until|up|upon|us|very|via|was|we|well|were|what|whatever|when|whence|whenever|where|whereafter|whereas|whereby|wherein|whereupon|wherever|whether|which|while|whither|who|whoever|whole|whom|whose|why|will|with|within|without|would|yet|you|your|yours|yourself|yourselves)\b</string>
+								<stem> </stem>
+								<regex>true</regex>
+							</row>
+						</InlineTable>
+					</TextIndexNormalization>
+					<FieldRef field="term"/>
+				</TextIndex>
+				<FieldRef field="weight"/>
+			</Apply>
+		</DefineFunction>
+	</TransformationDictionary>
+	<SupportVectorMachineModel functionName="classification" algorithmName="sklearn.svm._classes.SVC" classificationMethod="OneAgainstOne">
+		<MiningSchema>
+			<MiningField name="y" usageType="target"/>
+			<MiningField name="x"/>
+		</MiningSchema>
+		<LocalTransformations>
+			<DerivedField name="lowercase(x)" optype="categorical" dataType="string">
+				<Apply function="lowercase">
+					<FieldRef field="x"/>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">12</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">15</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">18</Constant>
+					<Constant dataType="double">3.6288008294480694</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), amsterdam)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">amsterdam</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">cafeteria</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">deepspace</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), deepspace located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">deepspace located</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does</Constant>
+					<Constant dataType="double">2.3966571481554375</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does cafeteria</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does deepspace</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does play)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does play</Constant>
+					<Constant dataType="double">2.8021222562636017</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), does spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">does spacebox</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), field hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">field hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), friday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">friday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), hockey)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">hockey</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), la)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">la</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures</Constant>
+					<Constant dataType="double">2.3966571481554375</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures friday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures friday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), lectures wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">lectures wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">located</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), monday 15)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">monday 15</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), munich)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">munich</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), new york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">new york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place cafeteria)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place cafeteria</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place deepspace)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place deepspace</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), place spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">place spacebox</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play</Constant>
+					<Constant dataType="double">2.2788741124990537</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play basketball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play basketball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play field)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play field</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play football)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play football</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), play waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">play waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), poker)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">poker</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), saturday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">saturday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), shanghai)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">shanghai</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), spacebox)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">spacebox</Constant>
+					<Constant dataType="double">3.3774864011671637</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), spacebox located)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">spacebox located</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sunday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sunday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), sydney)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">sydney</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), thursday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">thursday</Constant>
+					<Constant dataType="double">4.476098689835274</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), thursday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">thursday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), tuesday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">tuesday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), volleyball)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">volleyball</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), waterpolo)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">waterpolo</Constant>
+					<Constant dataType="double">3.782951509275328</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday</Constant>
+					<Constant dataType="double">4.188416617383492</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday 12)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday 12</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), wednesday 18)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">wednesday 18</Constant>
+					<Constant dataType="double">4.881563797943437</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="tf-idf(lowercase(x), york)" optype="continuous" dataType="double">
+				<Apply function="tf-idf(lowercase(x))">
+					<FieldRef field="lowercase(x)"/>
+					<Constant dataType="string">york</Constant>
+					<Constant dataType="double">3.9652730660692823</Constant>
+				</Apply>
+			</DerivedField>
+		</LocalTransformations>
+		<SigmoidKernelType coef0="0.0"/>
+		<VectorDictionary>
+			<VectorFields>
+				<FieldRef field="tf-idf(lowercase(x), 12)"/>
+				<FieldRef field="tf-idf(lowercase(x), 15)"/>
+				<FieldRef field="tf-idf(lowercase(x), 18)"/>
+				<FieldRef field="tf-idf(lowercase(x), amsterdam)"/>
+				<FieldRef field="tf-idf(lowercase(x), basketball)"/>
+				<FieldRef field="tf-idf(lowercase(x), cafeteria)"/>
+				<FieldRef field="tf-idf(lowercase(x), deepspace)"/>
+				<FieldRef field="tf-idf(lowercase(x), deepspace located)"/>
+				<FieldRef field="tf-idf(lowercase(x), does)"/>
+				<FieldRef field="tf-idf(lowercase(x), does cafeteria)"/>
+				<FieldRef field="tf-idf(lowercase(x), does deepspace)"/>
+				<FieldRef field="tf-idf(lowercase(x), does play)"/>
+				<FieldRef field="tf-idf(lowercase(x), does spacebox)"/>
+				<FieldRef field="tf-idf(lowercase(x), field)"/>
+				<FieldRef field="tf-idf(lowercase(x), field hockey)"/>
+				<FieldRef field="tf-idf(lowercase(x), football)"/>
+				<FieldRef field="tf-idf(lowercase(x), friday)"/>
+				<FieldRef field="tf-idf(lowercase(x), friday 15)"/>
+				<FieldRef field="tf-idf(lowercase(x), hockey)"/>
+				<FieldRef field="tf-idf(lowercase(x), la)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures friday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures monday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures saturday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures sunday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures thursday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures tuesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), lectures wednesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), located)"/>
+				<FieldRef field="tf-idf(lowercase(x), monday)"/>
+				<FieldRef field="tf-idf(lowercase(x), monday 15)"/>
+				<FieldRef field="tf-idf(lowercase(x), munich)"/>
+				<FieldRef field="tf-idf(lowercase(x), new)"/>
+				<FieldRef field="tf-idf(lowercase(x), new york)"/>
+				<FieldRef field="tf-idf(lowercase(x), place)"/>
+				<FieldRef field="tf-idf(lowercase(x), place cafeteria)"/>
+				<FieldRef field="tf-idf(lowercase(x), place deepspace)"/>
+				<FieldRef field="tf-idf(lowercase(x), place spacebox)"/>
+				<FieldRef field="tf-idf(lowercase(x), play)"/>
+				<FieldRef field="tf-idf(lowercase(x), play basketball)"/>
+				<FieldRef field="tf-idf(lowercase(x), play field)"/>
+				<FieldRef field="tf-idf(lowercase(x), play football)"/>
+				<FieldRef field="tf-idf(lowercase(x), play poker)"/>
+				<FieldRef field="tf-idf(lowercase(x), play volleyball)"/>
+				<FieldRef field="tf-idf(lowercase(x), play waterpolo)"/>
+				<FieldRef field="tf-idf(lowercase(x), poker)"/>
+				<FieldRef field="tf-idf(lowercase(x), saturday)"/>
+				<FieldRef field="tf-idf(lowercase(x), saturday 12)"/>
+				<FieldRef field="tf-idf(lowercase(x), saturday 18)"/>
+				<FieldRef field="tf-idf(lowercase(x), shanghai)"/>
+				<FieldRef field="tf-idf(lowercase(x), spacebox)"/>
+				<FieldRef field="tf-idf(lowercase(x), spacebox located)"/>
+				<FieldRef field="tf-idf(lowercase(x), sunday)"/>
+				<FieldRef field="tf-idf(lowercase(x), sunday 18)"/>
+				<FieldRef field="tf-idf(lowercase(x), sydney)"/>
+				<FieldRef field="tf-idf(lowercase(x), thursday)"/>
+				<FieldRef field="tf-idf(lowercase(x), thursday 12)"/>
+				<FieldRef field="tf-idf(lowercase(x), tuesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), tuesday 12)"/>
+				<FieldRef field="tf-idf(lowercase(x), tuesday 18)"/>
+				<FieldRef field="tf-idf(lowercase(x), volleyball)"/>
+				<FieldRef field="tf-idf(lowercase(x), waterpolo)"/>
+				<FieldRef field="tf-idf(lowercase(x), wednesday)"/>
+				<FieldRef field="tf-idf(lowercase(x), wednesday 12)"/>
+				<FieldRef field="tf-idf(lowercase(x), wednesday 18)"/>
+				<FieldRef field="tf-idf(lowercase(x), york)"/>
+			</VectorFields>
+			<VectorInstance id="1">
+				<REAL-SparseArray n="66">
+					<Indices>7</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="2">
+				<REAL-SparseArray n="66">
+					<Indices>7 9 11</Indices>
+					<REAL-Entries>3.3774864011671637 2.3966571481554375 4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="6">
+				<REAL-SparseArray n="66">
+					<Indices>7 8 29</Indices>
+					<REAL-Entries>3.3774864011671637 4.881563797943437 4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="8">
+				<REAL-SparseArray n="66">
+					<Indices>9 13 51</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="15">
+				<REAL-SparseArray n="66">
+					<Indices>7</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="17">
+				<REAL-SparseArray n="66">
+					<Indices>29 51 52</Indices>
+					<REAL-Entries>4.476098689835274 3.3774864011671637 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="19">
+				<REAL-SparseArray n="66">
+					<Indices>35 38 51</Indices>
+					<REAL-Entries>4.188416617383492 4.881563797943437 3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="22">
+				<REAL-SparseArray n="66">
+					<Indices>6</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="28">
+				<REAL-SparseArray n="66">
+					<Indices>9 13 51</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="32">
+				<REAL-SparseArray n="66">
+					<Indices>51</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="37">
+				<REAL-SparseArray n="66">
+					<Indices>7 35 37</Indices>
+					<REAL-Entries>3.3774864011671637 4.188416617383492 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="38">
+				<REAL-SparseArray n="66">
+					<Indices>9 13 51</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="41">
+				<REAL-SparseArray n="66">
+					<Indices>6</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="42">
+				<REAL-SparseArray n="66">
+					<Indices>51</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="44">
+				<REAL-SparseArray n="66">
+					<Indices>7</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="45">
+				<REAL-SparseArray n="66">
+					<Indices>6 9 10</Indices>
+					<REAL-Entries>3.3774864011671637 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="48">
+				<REAL-SparseArray n="66">
+					<Indices>7</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="73">
+				<REAL-SparseArray n="66">
+					<Indices>6 35 36</Indices>
+					<REAL-Entries>3.3774864011671637 4.188416617383492 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="75">
+				<REAL-SparseArray n="66">
+					<Indices>51</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="77">
+				<REAL-SparseArray n="66">
+					<Indices>7 9 11</Indices>
+					<REAL-Entries>3.3774864011671637 2.3966571481554375 4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="78">
+				<REAL-SparseArray n="66">
+					<Indices>6</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="79">
+				<REAL-SparseArray n="66">
+					<Indices>6 9 10</Indices>
+					<REAL-Entries>3.3774864011671637 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="88">
+				<REAL-SparseArray n="66">
+					<Indices>6 9 10</Indices>
+					<REAL-Entries>3.3774864011671637 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="92">
+				<REAL-SparseArray n="66">
+					<Indices>6</Indices>
+					<REAL-Entries>3.3774864011671637</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="0">
+				<REAL-SparseArray n="66">
+					<Indices>21 26 56</Indices>
+					<REAL-Entries>2.3966571481554375 4.476098689835274 4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="12">
+				<REAL-SparseArray n="66">
+					<Indices>21 23 30</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="13">
+				<REAL-SparseArray n="66">
+					<Indices>3 21 24 47 49</Indices>
+					<REAL-Entries>3.6288008294480694 2.3966571481554375 3.9652730660692823 3.9652730660692823 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="25">
+				<REAL-SparseArray n="66">
+					<Indices>1 21 28 63 64</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 4.188416617383492 4.188416617383492 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="27">
+				<REAL-SparseArray n="66">
+					<Indices>1 21 27 58 59</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 3.9652730660692823 3.9652730660692823 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="30">
+				<REAL-SparseArray n="66">
+					<Indices>21 27 58</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="33">
+				<REAL-SparseArray n="66">
+					<Indices>1 21 26 56 57</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 4.476098689835274 4.476098689835274 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="46">
+				<REAL-SparseArray n="66">
+					<Indices>21 28 63</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="52">
+				<REAL-SparseArray n="66">
+					<Indices>21 25 53</Indices>
+					<REAL-Entries>2.3966571481554375 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="53">
+				<REAL-SparseArray n="66">
+					<Indices>21 24 47</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="55">
+				<REAL-SparseArray n="66">
+					<Indices>17 21 22</Indices>
+					<REAL-Entries>4.188416617383492 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="61">
+				<REAL-SparseArray n="66">
+					<Indices>3 21 28 63 65</Indices>
+					<REAL-Entries>3.6288008294480694 2.3966571481554375 4.188416617383492 4.188416617383492 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="62">
+				<REAL-SparseArray n="66">
+					<Indices>21 23 30</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="63">
+				<REAL-SparseArray n="66">
+					<Indices>2 17 18 21 22</Indices>
+					<REAL-Entries>3.9652730660692823 4.188416617383492 4.881563797943437 2.3966571481554375 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="65">
+				<REAL-SparseArray n="66">
+					<Indices>3 21 25 53 54</Indices>
+					<REAL-Entries>3.6288008294480694 2.3966571481554375 4.188416617383492 4.188416617383492 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="67">
+				<REAL-SparseArray n="66">
+					<Indices>2 21 23 30 31</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 3.9652730660692823 3.9652730660692823 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="69">
+				<REAL-SparseArray n="66">
+					<Indices>21 27 58</Indices>
+					<REAL-Entries>2.3966571481554375 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="72">
+				<REAL-SparseArray n="66">
+					<Indices>3 21 27 58 60</Indices>
+					<REAL-Entries>3.6288008294480694 2.3966571481554375 3.9652730660692823 3.9652730660692823 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="94">
+				<REAL-SparseArray n="66">
+					<Indices>1 21 24 47 48</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 3.9652730660692823 3.9652730660692823 4.881563797943437</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="4">
+				<REAL-SparseArray n="66">
+					<Indices>50</Indices>
+					<REAL-Entries>4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="7">
+				<REAL-SparseArray n="66">
+					<Indices>20</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="18">
+				<REAL-SparseArray n="66">
+					<Indices>4</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="21">
+				<REAL-SparseArray n="66">
+					<Indices>33 34 66</Indices>
+					<REAL-Entries>3.9652730660692823 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="24">
+				<REAL-SparseArray n="66">
+					<Indices>32</Indices>
+					<REAL-Entries>3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="29">
+				<REAL-SparseArray n="66">
+					<Indices>20</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="34">
+				<REAL-SparseArray n="66">
+					<Indices>20</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="35">
+				<REAL-SparseArray n="66">
+					<Indices>33 34 66</Indices>
+					<REAL-Entries>3.9652730660692823 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="36">
+				<REAL-SparseArray n="66">
+					<Indices>55</Indices>
+					<REAL-Entries>4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="43">
+				<REAL-SparseArray n="66">
+					<Indices>20</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="49">
+				<REAL-SparseArray n="66">
+					<Indices>55</Indices>
+					<REAL-Entries>4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="54">
+				<REAL-SparseArray n="66">
+					<Indices>32</Indices>
+					<REAL-Entries>3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="56">
+				<REAL-SparseArray n="66">
+					<Indices>4</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="57">
+				<REAL-SparseArray n="66">
+					<Indices>33 34 66</Indices>
+					<REAL-Entries>3.9652730660692823 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="59">
+				<REAL-SparseArray n="66">
+					<Indices>33 34 66</Indices>
+					<REAL-Entries>3.9652730660692823 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="66">
+				<REAL-SparseArray n="66">
+					<Indices>4</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="70">
+				<REAL-SparseArray n="66">
+					<Indices>4</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="82">
+				<REAL-SparseArray n="66">
+					<Indices>4</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="84">
+				<REAL-SparseArray n="66">
+					<Indices>32</Indices>
+					<REAL-Entries>3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="85">
+				<REAL-SparseArray n="66">
+					<Indices>32</Indices>
+					<REAL-Entries>3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="86">
+				<REAL-SparseArray n="66">
+					<Indices>50</Indices>
+					<REAL-Entries>4.476098689835274</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="89">
+				<REAL-SparseArray n="66">
+					<Indices>20</Indices>
+					<REAL-Entries>3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="90">
+				<REAL-SparseArray n="66">
+					<Indices>55</Indices>
+					<REAL-Entries>4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="3">
+				<REAL-SparseArray n="66">
+					<Indices>16 39 42</Indices>
+					<REAL-Entries>3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="5">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 43 46</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="9">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 16 39 42</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="11">
+				<REAL-SparseArray n="66">
+					<Indices>39 44 61</Indices>
+					<REAL-Entries>2.2788741124990537 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="14">
+				<REAL-SparseArray n="66">
+					<Indices>39 45 62</Indices>
+					<REAL-Entries>2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="20">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 44 61</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="23">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 16 39 42</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="31">
+				<REAL-SparseArray n="66">
+					<Indices>5 39 40</Indices>
+					<REAL-Entries>3.9652730660692823 2.2788741124990537 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="39">
+				<REAL-SparseArray n="66">
+					<Indices>5 9 12 39 40</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 2.8021222562636017 2.2788741124990537 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="40">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 45 62</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="47">
+				<REAL-SparseArray n="66">
+					<Indices>14 15 19 39 41</Indices>
+					<REAL-Entries>3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="50">
+				<REAL-SparseArray n="66">
+					<Indices>14 15 19 39 41</Indices>
+					<REAL-Entries>3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="51">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 45 62</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="58">
+				<REAL-SparseArray n="66">
+					<Indices>39 44 61</Indices>
+					<REAL-Entries>2.2788741124990537 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="60">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 14 15 19 39 41</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="64">
+				<REAL-SparseArray n="66">
+					<Indices>5 9 12 39 40</Indices>
+					<REAL-Entries>3.9652730660692823 2.3966571481554375 2.8021222562636017 2.2788741124990537 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="68">
+				<REAL-SparseArray n="66">
+					<Indices>39 45 62</Indices>
+					<REAL-Entries>2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="71">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 14 15 19 39 41</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="74">
+				<REAL-SparseArray n="66">
+					<Indices>39 43 46</Indices>
+					<REAL-Entries>2.2788741124990537 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="80">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 43 46</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 4.188416617383492 4.188416617383492</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="81">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 14 15 19 39 41</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 3.782951509275328 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="83">
+				<REAL-SparseArray n="66">
+					<Indices>16 39 42</Indices>
+					<REAL-Entries>3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="87">
+				<REAL-SparseArray n="66">
+					<Indices>5 39 40</Indices>
+					<REAL-Entries>3.9652730660692823 2.2788741124990537 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="91">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 45 62</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 3.782951509275328 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="93">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 39 44 61</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 2.2788741124990537 3.9652730660692823 3.9652730660692823</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+			<VectorInstance id="95">
+				<REAL-SparseArray n="66">
+					<Indices>9 12 16 39 42</Indices>
+					<REAL-Entries>2.3966571481554375 2.8021222562636017 3.782951509275328 2.2788741124990537 3.782951509275328</REAL-Entries>
+				</REAL-SparseArray>
+			</VectorInstance>
+		</VectorDictionary>
+		<SupportVectorMachine targetCategory="1" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="1"/>
+				<SupportVector vectorId="2"/>
+				<SupportVector vectorId="6"/>
+				<SupportVector vectorId="8"/>
+				<SupportVector vectorId="15"/>
+				<SupportVector vectorId="17"/>
+				<SupportVector vectorId="19"/>
+				<SupportVector vectorId="22"/>
+				<SupportVector vectorId="28"/>
+				<SupportVector vectorId="32"/>
+				<SupportVector vectorId="37"/>
+				<SupportVector vectorId="38"/>
+				<SupportVector vectorId="41"/>
+				<SupportVector vectorId="42"/>
+				<SupportVector vectorId="44"/>
+				<SupportVector vectorId="45"/>
+				<SupportVector vectorId="48"/>
+				<SupportVector vectorId="73"/>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="78"/>
+				<SupportVector vectorId="79"/>
+				<SupportVector vectorId="88"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="0"/>
+				<SupportVector vectorId="12"/>
+				<SupportVector vectorId="13"/>
+				<SupportVector vectorId="25"/>
+				<SupportVector vectorId="27"/>
+				<SupportVector vectorId="30"/>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="46"/>
+				<SupportVector vectorId="52"/>
+				<SupportVector vectorId="53"/>
+				<SupportVector vectorId="55"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="62"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="69"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.4665549358450294">
+				<Coefficient value="0.03282114993021472"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.05001230239868168"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.08358822384357467"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0828334523288964"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.08358822384357467"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="2" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="1"/>
+				<SupportVector vectorId="2"/>
+				<SupportVector vectorId="6"/>
+				<SupportVector vectorId="8"/>
+				<SupportVector vectorId="15"/>
+				<SupportVector vectorId="17"/>
+				<SupportVector vectorId="19"/>
+				<SupportVector vectorId="22"/>
+				<SupportVector vectorId="28"/>
+				<SupportVector vectorId="32"/>
+				<SupportVector vectorId="37"/>
+				<SupportVector vectorId="38"/>
+				<SupportVector vectorId="41"/>
+				<SupportVector vectorId="42"/>
+				<SupportVector vectorId="44"/>
+				<SupportVector vectorId="45"/>
+				<SupportVector vectorId="48"/>
+				<SupportVector vectorId="73"/>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="78"/>
+				<SupportVector vectorId="79"/>
+				<SupportVector vectorId="88"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="4"/>
+				<SupportVector vectorId="7"/>
+				<SupportVector vectorId="18"/>
+				<SupportVector vectorId="21"/>
+				<SupportVector vectorId="24"/>
+				<SupportVector vectorId="29"/>
+				<SupportVector vectorId="34"/>
+				<SupportVector vectorId="35"/>
+				<SupportVector vectorId="36"/>
+				<SupportVector vectorId="43"/>
+				<SupportVector vectorId="49"/>
+				<SupportVector vectorId="54"/>
+				<SupportVector vectorId="56"/>
+				<SupportVector vectorId="57"/>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="66"/>
+				<SupportVector vectorId="70"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="84"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="-0.29998769760131827">
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="0">
+			<SupportVectors>
+				<SupportVector vectorId="1"/>
+				<SupportVector vectorId="2"/>
+				<SupportVector vectorId="6"/>
+				<SupportVector vectorId="8"/>
+				<SupportVector vectorId="15"/>
+				<SupportVector vectorId="17"/>
+				<SupportVector vectorId="19"/>
+				<SupportVector vectorId="22"/>
+				<SupportVector vectorId="28"/>
+				<SupportVector vectorId="32"/>
+				<SupportVector vectorId="37"/>
+				<SupportVector vectorId="38"/>
+				<SupportVector vectorId="41"/>
+				<SupportVector vectorId="42"/>
+				<SupportVector vectorId="44"/>
+				<SupportVector vectorId="45"/>
+				<SupportVector vectorId="48"/>
+				<SupportVector vectorId="73"/>
+				<SupportVector vectorId="75"/>
+				<SupportVector vectorId="77"/>
+				<SupportVector vectorId="78"/>
+				<SupportVector vectorId="79"/>
+				<SupportVector vectorId="88"/>
+				<SupportVector vectorId="92"/>
+				<SupportVector vectorId="3"/>
+				<SupportVector vectorId="5"/>
+				<SupportVector vectorId="9"/>
+				<SupportVector vectorId="11"/>
+				<SupportVector vectorId="14"/>
+				<SupportVector vectorId="20"/>
+				<SupportVector vectorId="23"/>
+				<SupportVector vectorId="31"/>
+				<SupportVector vectorId="39"/>
+				<SupportVector vectorId="40"/>
+				<SupportVector vectorId="47"/>
+				<SupportVector vectorId="50"/>
+				<SupportVector vectorId="51"/>
+				<SupportVector vectorId="58"/>
+				<SupportVector vectorId="60"/>
+				<SupportVector vectorId="64"/>
+				<SupportVector vectorId="68"/>
+				<SupportVector vectorId="71"/>
+				<SupportVector vectorId="74"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="83"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.49995990097522736">
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="2" alternateTargetCategory="1">
+			<SupportVectors>
+				<SupportVector vectorId="0"/>
+				<SupportVector vectorId="12"/>
+				<SupportVector vectorId="13"/>
+				<SupportVector vectorId="25"/>
+				<SupportVector vectorId="27"/>
+				<SupportVector vectorId="30"/>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="46"/>
+				<SupportVector vectorId="52"/>
+				<SupportVector vectorId="53"/>
+				<SupportVector vectorId="55"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="62"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="69"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+				<SupportVector vectorId="4"/>
+				<SupportVector vectorId="7"/>
+				<SupportVector vectorId="18"/>
+				<SupportVector vectorId="21"/>
+				<SupportVector vectorId="24"/>
+				<SupportVector vectorId="29"/>
+				<SupportVector vectorId="34"/>
+				<SupportVector vectorId="35"/>
+				<SupportVector vectorId="36"/>
+				<SupportVector vectorId="43"/>
+				<SupportVector vectorId="49"/>
+				<SupportVector vectorId="54"/>
+				<SupportVector vectorId="56"/>
+				<SupportVector vectorId="57"/>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="66"/>
+				<SupportVector vectorId="70"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="84"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="-0.6999866724014283">
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="1">
+			<SupportVectors>
+				<SupportVector vectorId="0"/>
+				<SupportVector vectorId="12"/>
+				<SupportVector vectorId="13"/>
+				<SupportVector vectorId="25"/>
+				<SupportVector vectorId="27"/>
+				<SupportVector vectorId="30"/>
+				<SupportVector vectorId="33"/>
+				<SupportVector vectorId="46"/>
+				<SupportVector vectorId="52"/>
+				<SupportVector vectorId="53"/>
+				<SupportVector vectorId="55"/>
+				<SupportVector vectorId="61"/>
+				<SupportVector vectorId="62"/>
+				<SupportVector vectorId="63"/>
+				<SupportVector vectorId="65"/>
+				<SupportVector vectorId="67"/>
+				<SupportVector vectorId="69"/>
+				<SupportVector vectorId="72"/>
+				<SupportVector vectorId="94"/>
+				<SupportVector vectorId="3"/>
+				<SupportVector vectorId="5"/>
+				<SupportVector vectorId="9"/>
+				<SupportVector vectorId="11"/>
+				<SupportVector vectorId="14"/>
+				<SupportVector vectorId="20"/>
+				<SupportVector vectorId="23"/>
+				<SupportVector vectorId="31"/>
+				<SupportVector vectorId="39"/>
+				<SupportVector vectorId="40"/>
+				<SupportVector vectorId="47"/>
+				<SupportVector vectorId="50"/>
+				<SupportVector vectorId="51"/>
+				<SupportVector vectorId="58"/>
+				<SupportVector vectorId="60"/>
+				<SupportVector vectorId="64"/>
+				<SupportVector vectorId="68"/>
+				<SupportVector vectorId="71"/>
+				<SupportVector vectorId="74"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="83"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="-1.955926418305276E-5">
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+		<SupportVectorMachine targetCategory="3" alternateTargetCategory="2">
+			<SupportVectors>
+				<SupportVector vectorId="4"/>
+				<SupportVector vectorId="7"/>
+				<SupportVector vectorId="18"/>
+				<SupportVector vectorId="21"/>
+				<SupportVector vectorId="24"/>
+				<SupportVector vectorId="29"/>
+				<SupportVector vectorId="34"/>
+				<SupportVector vectorId="35"/>
+				<SupportVector vectorId="36"/>
+				<SupportVector vectorId="43"/>
+				<SupportVector vectorId="49"/>
+				<SupportVector vectorId="54"/>
+				<SupportVector vectorId="56"/>
+				<SupportVector vectorId="57"/>
+				<SupportVector vectorId="59"/>
+				<SupportVector vectorId="66"/>
+				<SupportVector vectorId="70"/>
+				<SupportVector vectorId="82"/>
+				<SupportVector vectorId="84"/>
+				<SupportVector vectorId="85"/>
+				<SupportVector vectorId="86"/>
+				<SupportVector vectorId="89"/>
+				<SupportVector vectorId="90"/>
+				<SupportVector vectorId="3"/>
+				<SupportVector vectorId="5"/>
+				<SupportVector vectorId="9"/>
+				<SupportVector vectorId="11"/>
+				<SupportVector vectorId="14"/>
+				<SupportVector vectorId="20"/>
+				<SupportVector vectorId="23"/>
+				<SupportVector vectorId="31"/>
+				<SupportVector vectorId="39"/>
+				<SupportVector vectorId="40"/>
+				<SupportVector vectorId="47"/>
+				<SupportVector vectorId="50"/>
+				<SupportVector vectorId="51"/>
+				<SupportVector vectorId="58"/>
+				<SupportVector vectorId="60"/>
+				<SupportVector vectorId="64"/>
+				<SupportVector vectorId="68"/>
+				<SupportVector vectorId="71"/>
+				<SupportVector vectorId="74"/>
+				<SupportVector vectorId="80"/>
+				<SupportVector vectorId="81"/>
+				<SupportVector vectorId="83"/>
+				<SupportVector vectorId="87"/>
+				<SupportVector vectorId="91"/>
+				<SupportVector vectorId="93"/>
+				<SupportVector vectorId="95"/>
+			</SupportVectors>
+			<Coefficients absoluteValue="0.6999722391366958">
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.0"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.0"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+				<Coefficient value="-0.1"/>
+			</Coefficients>
+		</SupportVectorMachine>
+	</SupportVectorMachineModel>
+</PMML>

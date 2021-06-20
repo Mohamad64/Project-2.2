@@ -23,18 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3593eb6-0edc-4dc4-9b18-01a6b922fbfd" name="Default Changelist" comment="get response">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_pmml4s_pmml4s_spark_2_11_0_9_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/commons-lang3-3.8.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/commons-math3-3.6.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/commons-text-1.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pmml4s-spark_2.11-0.9.11.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pmml4s_2.11-0.9.11.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/scala-library-2.11.12.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/scala-xml_2.11-1.2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/spray-json_2.11-1.3.5.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/NLP/ToJava.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/NLP/log_reg.pmml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/NLP/nonlinear_svc-2.pmml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/NLP/nonlinear_svc.pmml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/NLP/svc_tfidf.pmml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-example.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project-example.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/GUI/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/NLP/ToJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/NLP/ToJava.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/fxml/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/project/GUI/Controller.class" afterDir="false" />
     </list>
     <list id="3ba39ab2-c487-45f3-96ef-471af51b622a" name="Changes by ramon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,12 +144,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TextEditor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.Database.TextEditor" />
+    <configuration name="ToJava" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.NLP.ToJava" />
       <module name="project-example" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="project.Database.*" />
+          <option name="PATTERN" value="project.NLP.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -157,25 +157,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.MainApp" />
       <item itemvalue="Application.SkillDetection" />
-      <item itemvalue="Application.TextEditor" />
       <item itemvalue="Application.FaceDetection" />
       <item itemvalue="Application.CFGParser" />
+      <item itemvalue="Application.ToJava" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FaceDetection" />
+        <item itemvalue="Application.ToJava" />
         <item itemvalue="Application.CFGParser" />
         <item itemvalue="Application.MainApp" />
         <item itemvalue="Application.SkillDetection" />
-        <item itemvalue="Application.TextEditor" />
       </list>
     </recent_temporary>
   </component>
@@ -404,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621868665055</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="CFG examples">
+      <created>1623234096379</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1623234096379</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -444,6 +446,7 @@
     <MESSAGE value="Please dont screw us up" />
     <MESSAGE value="ITS FUCKING DOOOOOOOOOOOOOOOOOOOOONE" />
     <MESSAGE value="get response" />
-    <option name="LAST_COMMIT_MESSAGE" value="get response" />
+    <MESSAGE value="CFG examples" />
+    <option name="LAST_COMMIT_MESSAGE" value="CFG examples" />
   </component>
 </project>

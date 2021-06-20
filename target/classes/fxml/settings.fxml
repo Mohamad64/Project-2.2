@@ -91,7 +91,7 @@
                </font>
             </JFXCheckBox>
             <JFXNodesList layoutX="685.0" layoutY="319.0" prefHeight="9.0" prefWidth="26.0" />
-            <TextArea fx:id="CFGcfg" layoutX="238.0" layoutY="445.0" onDragDetected="#SettingConfirmBtn" prefHeight="340.0" prefWidth="541.0" promptText="CFG" />
+            <TextArea fx:id="CFGcfg" layoutX="238.0" layoutY="445.0" prefHeight="340.0" prefWidth="541.0" promptText="CFG" />
 <!--            <ColorPicker fx:id = "colorPicker" layoutX="381.0" layoutY="265.0" />-->
          </children>
       </Pane>
