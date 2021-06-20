@@ -14,6 +14,8 @@ import javafx.stage.WindowEvent;
 import org.opencv.core.*;
 import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.ORB;
+
+import org.opencv.xfeatures2d.BEBLID;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
@@ -239,7 +241,7 @@ public class FaceDetectionController
 
         for (File capture : Objects.requireNonNull(FOLDER.listFiles()))
         {
-            int similarity = matchFace(img, capture.getAbsolutePath());
+            int similarity = matchFaceBEBLID(img, capture.getAbsolutePath());
             if (similarity > mostRecognized)
             {
                 mostRecognized = similarity;
@@ -257,12 +259,14 @@ public class FaceDetectionController
             return "Not Recognized";
     }
 
-    private static int matchFace(Mat currImg, String file)
+    private static int matchFaceORB(Mat currImg, String file)
     {
         Mat compImg = Imgcodecs.imread(file);
         ORB orb = ORB.create();
         int similarity = 0;
 
+
+        // ORB - Matching
         MatOfKeyPoint keyPointsFirst = new MatOfKeyPoint();
         MatOfKeyPoint keyPointsSecond = new MatOfKeyPoint();
 
@@ -272,8 +276,10 @@ public class FaceDetectionController
         Mat descriptorsFirst = new Mat();
         Mat descriptorsSecond = new Mat();
 
+
         orb.compute(currImg, keyPointsFirst, descriptorsFirst);
         orb.compute(compImg, keyPointsSecond, descriptorsSecond);
+
 
         if (descriptorsFirst.cols() == descriptorsSecond.cols())
         {
@@ -287,6 +293,42 @@ public class FaceDetectionController
 
         return similarity;
     }
+
+    private static int matchFaceBEBLID(Mat currImg, String file){
+        Mat compImg = Imgcodecs.imread(file);
+        BEBLID beblid = BEBLID.create(0.75f);
+        ORB orb = ORB.create();
+
+        int similarity = 0;
+
+        // BEBLID - Matching
+        MatOfKeyPoint keyPoints1Beblid = new MatOfKeyPoint();
+        MatOfKeyPoint keyPoints2Beblid= new MatOfKeyPoint();
+
+        orb.detect(currImg, keyPoints1Beblid);
+        orb.detect(compImg, keyPoints2Beblid);
+
+        Mat descriptors1Beblid = new Mat();
+        Mat descriptors2Beblid = new Mat();
+
+        beblid.compute(currImg, keyPoints1Beblid, descriptors1Beblid);
+        beblid.compute(compImg, keyPoints2Beblid, descriptors2Beblid);
+
+
+
+        if (descriptors1Beblid.cols() == descriptors2Beblid.cols())
+        {
+            MatOfDMatch matrix = new MatOfDMatch();
+            DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING).match(descriptors1Beblid, descriptors2Beblid, matrix);
+
+            for (DMatch match : matrix.toList())
+                if (match.distance <= 50)
+                    similarity++;
+        }
+
+        return similarity;
+    }
+
 
 
 
