@@ -87,7 +87,6 @@ public class Controller implements Initializable {
     private final Model model1 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/svc_tfidf.pmml")));
     private final Model model2 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/nonlinear_svc.pmml")));
     private final Model model3 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/log_reg.pmml")));
-    private final Model model4 = Model.fromFile(String.valueOf(Paths.get("/Users/mohamadfayazi/Documents/GitHub/Project-2.2/src/main/java/project/NLP/svc_tfidf.pmml")));
 
     @FXML
     public TextArea txtArea;
